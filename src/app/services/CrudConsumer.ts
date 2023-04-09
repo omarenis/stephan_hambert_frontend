@@ -1,6 +1,6 @@
 import {AbstractRestService} from "./genericservice";
 import {Observable, Subscription} from "rxjs";
-import {AbstractControl, FormControl, FormRecord} from "@angular/forms";
+import {FormControl, FormGroup, FormRecord, Validators} from "@angular/forms";
 
 
 interface Option {
@@ -8,20 +8,30 @@ interface Option {
   params: object;
 }
 
-class TableCrudConsumer<T> {
-  public formGroupSearch !: FormRecord;
+interface Object {
+  type: string;
+  required: boolean;
+}
+
+export class CrudConsumer<T> {
+  public formGroupSearch !: FormGroup;
   protected data !: T[];
   protected numberElements !: number;
   protected options !: Option;
   protected getObjectsSubscriber !: (url: string, options?: object | undefined) => Observable<T[]>;
   protected subscription !: Subscription;
   protected actionUrl !: string;
-  protected filterObject !: { [key: string]: [type: string] };
+  protected object !: { [key: string]: Object };
+  protected hasFormIntegrated: boolean;
+  protected formCreationEditGroup !: FormGroup;
 
-  constructor(private service: AbstractRestService<T>, actionUrl: string, options: Option, filterObject: { [key: string]: [type: string]}) {
+  constructor(private service: AbstractRestService<T>, actionUrl: string, options: Option, object: {
+    [key: string]: Object
+  }, hasFormIntegrated: boolean) {
     this.actionUrl = actionUrl;
     this.options = options;
-    this.filterObject = filterObject;
+    this.object = object;
+    this.hasFormIntegrated = hasFormIntegrated !== undefined ? hasFormIntegrated : false;
   }
 
   getData(params ?: object): void {
@@ -35,17 +45,18 @@ class TableCrudConsumer<T> {
   }
 
   ngOnInit() {
-    let formControl: FormControl;
+    this.formGroupSearch = this.createFilterFormGroup();
+    if (this.hasFormIntegrated) {
+      this.formCreationEditGroup = this.createFormCreationEditGroup();
+    }
 
-    Object.keys(this.filterObject).forEach((key: string) => {
-      if(!this.formGroupSearch.contains(key))
-      {
-        this.formGroupSearch.registerControl(key, new FormControl(''))
+    Object.keys(this.object).forEach((key: string) => {
+      if (this.formGroupSearch.contains(key)) {
+        this.formGroupSearch.controls[key].valueChanges.subscribe((value) => {
+          console.log(value);
+        });
       }
-      this.formGroupSearch.controls[key].valueChanges.subscribe((value) => {
-        console.log(value);
-      })
-    })
+    });
     this.getObjectsSubscriber = this.service.list;
     this.getData();
   }
@@ -54,12 +65,28 @@ class TableCrudConsumer<T> {
     this.subscription.unsubscribe();
   }
 
-  protected createFormRecord(): FormRecord {
-    const formRecord = new FormRecord<AbstractControl<any, any>>({});
-    Object.keys(this.filterObject).forEach((key) => {
-      formRecord.registerControl(key, new FormControl());
+  protected createFilterFormGroup(): FormRecord {
+    const formGroup: FormGroup = new FormGroup({});
+    Object.keys(this.object).forEach((key) => {
+      formGroup.addControl(key, new FormControl());
     });
-    console.log(formRecord);
-    return formRecord;
+    return formGroup;
+  }
+
+  protected createFormCreationEditGroup(): FormGroup {
+    const formGroup: FormGroup = new FormGroup<any>({});
+    Object.keys(this.object).forEach(key => {
+      formGroup.addControl(key, new FormControl(this.getDefaultValue(this.object[key].type), this.object[key].required ? [Validators.required] : []))
+    });
+    return formGroup;
+  }
+
+  private getDefaultValue(type: string): false | 0 | '' {
+    if (type === 'number') {
+      return 0;
+    } else if (type === 'boolean') {
+      return false;
+    }
+    return "";
   }
 }
