@@ -1,33 +1,28 @@
 import {AbstractRestService} from "./genericservice";
-import {Observable, Subscription} from "rxjs";
-import {FormControl, FormGroup, FormRecord, Validators} from "@angular/forms";
+import {Subscription} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, Inject, OnInit} from "@angular/core";
+import {Option, Object} from "../models/generic";
 
 
-interface Option {
-  headers: object;
-  params: object;
-}
 
-interface Object {
-  type: string;
-  required: boolean;
-}
-
-export class CrudConsumer<T> {
+@Component({
+  template: ""
+})
+export abstract class CrudConsumer<T> implements OnInit{
   public formGroupSearch !: FormGroup;
   protected data !: T[];
   protected numberElements !: number;
   protected options !: Option;
-  protected getObjectsSubscriber !: (url: string, options?: object | undefined) => Observable<T[]>;
-  protected subscription !: Subscription;
+  protected getObjectsSubscriber !: () => Subscription;
   protected actionUrl !: string;
   protected object !: { [key: string]: Object };
   protected hasFormIntegrated: boolean;
   protected formCreationEditGroup !: FormGroup;
-
-  constructor(private service: AbstractRestService<T>, actionUrl: string, options: Option, object: {
+  constructor(protected service: AbstractRestService<T>,@Inject('') actionUrl: string,@Inject({}) options: Option,
+              @Inject({}) object: {
     [key: string]: Object
-  }, hasFormIntegrated: boolean) {
+  }, @Inject(undefined) hasFormIntegrated ?: boolean) {
     this.actionUrl = actionUrl;
     this.options = options;
     this.object = object;
@@ -38,10 +33,6 @@ export class CrudConsumer<T> {
     if (params !== undefined) {
       this.options.params = params;
     }
-    this.subscription = this.getObjectsSubscriber(this.actionUrl, this.options).subscribe((results: T[]) => {
-      this.data = results;
-      this.numberElements = results.length;
-    });
   }
 
   ngOnInit() {
@@ -49,28 +40,25 @@ export class CrudConsumer<T> {
     if (this.hasFormIntegrated) {
       this.formCreationEditGroup = this.createFormCreationEditGroup();
     }
-
     Object.keys(this.object).forEach((key: string) => {
       if (this.formGroupSearch.contains(key)) {
         this.formGroupSearch.controls[key].valueChanges.subscribe((value) => {
-          console.log(value);
+          this.getData({
+            [key]: value
+          });
         });
       }
     });
-    this.getObjectsSubscriber = this.service.list;
     this.getData();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  protected createFilterFormGroup(): FormRecord {
-    const formGroup: FormGroup = new FormGroup({});
+  protected createFilterFormGroup(): FormGroup {
+    let formControls: {[key: string]: FormControl} = {};
     Object.keys(this.object).forEach((key) => {
-      formGroup.addControl(key, new FormControl());
+      formControls[key] = new FormControl(this.getDefaultValue(this.object[key].type));
     });
-    return formGroup;
+    console.log(formControls);
+    return new FormGroup(formControls);
   }
 
   protected createFormCreationEditGroup(): FormGroup {
