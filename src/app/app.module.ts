@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ListElementsComponent } from './test/list-elements/list-elements.component';
 import {HttpClientModule} from "@angular/common/http";
+import { FormViewTestComponent } from './test/form-view-test/form-view-test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListElementsComponent
+    ListElementsComponent,
+    FormViewTestComponent
   ],
   imports: [
     HttpClientModule,

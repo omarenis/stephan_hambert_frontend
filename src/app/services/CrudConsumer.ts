@@ -1,8 +1,9 @@
 import {AbstractRestService} from "./genericservice";
 import {Subscription} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Component, Inject, OnInit} from "@angular/core";
 import {Option, Object} from "../models/generic";
+import {createFilterFormGroup, createFormCreationEditGroup} from "../models/forms";
+import {FormGroup} from "@angular/forms";
 
 
 
@@ -36,9 +37,9 @@ export abstract class CrudConsumer<T> implements OnInit{
   }
 
   ngOnInit() {
-    this.formGroupSearch = this.createFilterFormGroup();
+    this.formGroupSearch = createFilterFormGroup(this.object);
     if (this.hasFormIntegrated) {
-      this.formCreationEditGroup = this.createFormCreationEditGroup();
+      this.formCreationEditGroup = createFormCreationEditGroup(this.object);
     }
     Object.keys(this.object).forEach((key: string) => {
       if (this.formGroupSearch.contains(key)) {
@@ -50,31 +51,5 @@ export abstract class CrudConsumer<T> implements OnInit{
       }
     });
     this.getData();
-  }
-
-  protected createFilterFormGroup(): FormGroup {
-    let formControls: {[key: string]: FormControl} = {};
-    Object.keys(this.object).forEach((key) => {
-      formControls[key] = new FormControl(this.getDefaultValue(this.object[key].type));
-    });
-    console.log(formControls);
-    return new FormGroup(formControls);
-  }
-
-  protected createFormCreationEditGroup(): FormGroup {
-    const formGroup: FormGroup = new FormGroup<any>({});
-    Object.keys(this.object).forEach(key => {
-      formGroup.addControl(key, new FormControl(this.getDefaultValue(this.object[key].type), this.object[key].required ? [Validators.required] : []))
-    });
-    return formGroup;
-  }
-
-  private getDefaultValue(type: string): false | 0 | '' {
-    if (type === 'number') {
-      return 0;
-    } else if (type === 'boolean') {
-      return false;
-    }
-    return "";
   }
 }
