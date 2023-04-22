@@ -19,6 +19,6 @@ export class FormViewTestComponent extends FormView<Example> {
   constructor(protected override service: AbstractRestService<Example>, protected override router: Router, protected override activatedRoute: ActivatedRoute) {
     super(service, router, activatedRoute, {
       name: {type: 'string', required: true},
-    })
+    }, 'http://localhost:5000/examples')
   }
 }

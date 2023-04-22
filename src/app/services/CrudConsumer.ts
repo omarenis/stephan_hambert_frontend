@@ -20,8 +20,8 @@ export abstract class CrudConsumer<T> implements OnInit{
   protected object !: { [key: string]: Object };
   protected hasFormIntegrated: boolean;
   protected formCreationEditGroup !: FormGroup;
-  constructor(protected service: AbstractRestService<T>,@Inject('') actionUrl: string,@Inject({}) options: Option,
-              @Inject({}) object: {
+  protected constructor(protected service: AbstractRestService<T>, @Inject('') actionUrl: string, @Inject({}) options: Option,
+                        @Inject({}) object: {
     [key: string]: Object
   }, @Inject(undefined) hasFormIntegrated ?: boolean) {
     this.actionUrl = actionUrl;
