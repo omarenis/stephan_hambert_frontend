@@ -1,0 +1,24 @@
+<section class="container-xl container-fluid">
+  <article class="col-md-8 mt-4" *ngFor="let product of products">
+    <section class="card card-blog">
+      <div class="card-image border-radius-lg position-relative">
+        <a href="javascript:">
+          <div class="blur-shadow-image">
+            <img class="img border-radius-lg move-on-hover" [src]="product.image">
+          </div>
+        </a>
+      </div>
+      <div class="card-body px-0">
+        <h4>
+          {{product.title}}
+        </h4>
+        <div>
+          {{product.description}}
+        </div>
+        <a href="javascript:" class="text-primary icon-move-right">More about us
+          <i class="fas fa-arrow-right text-xs ms-1" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+  </article>
+</section>

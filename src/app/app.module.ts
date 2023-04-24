@@ -12,7 +12,7 @@ import {ProductPageComponent} from './screens/public/ecommerce/product-page/prod
 import {BillingComponent} from './screens/public/ecommerce/billing/billing.component';
 import {ContactComponent} from './screens/public/components/contact/contact.component';
 import {LockComponent} from './screens/public/authentication/lock/lock.component';
-import {SigninComponent} from "./screens/public/authentication/signin/signin.component";
+import {SigningComponent} from "./screens/public/authentication/signin/signing.component";
 import {SignupComponent} from "./screens/public/authentication/signup/signup.component";
 import {ResetPasswordComponent} from "./screens/public/authentication/reset-password/reset-password.component";
 import {VerificationComponent} from "./screens/public/authentication/verification/verification.component";
@@ -24,6 +24,7 @@ import {ProfileComponent} from './screens/shared/profile/profile.component';
 import {IndexComponent} from "./screens/dashboard/stock-management/index/index.component";
 import {NgOptimizedImage} from "@angular/common";
 import {ProductListComponent} from "./screens/public/ecommerce/product-list/product-list.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Route[] = [
   {
@@ -68,7 +69,7 @@ const routes: Route[] = [
     PublicComponent,
     DashboardComponent,
     IndexComponent,
-    SigninComponent,
+    SigningComponent,
     SignupComponent,
     ResetPasswordComponent,
     VerificationComponent,
@@ -93,7 +94,8 @@ const routes: Route[] = [
       registrationStrategy: 'registerWhenStable:30000'
     }),
     RouterModule.forRoot(routes),
-    NgOptimizedImage
+    NgOptimizedImage,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
