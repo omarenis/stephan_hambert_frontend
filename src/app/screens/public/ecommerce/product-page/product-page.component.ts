@@ -13,14 +13,15 @@ export class ProductPageComponent implements OnInit {
   product !: Product;
   private actionUrl = `${environment.url}/products`;
 
-  constructor(private productService: AbstractRestService<Product>, private router: Router, private activatedRouter: ActivatedRoute) {
+  constructor(private productService: AbstractRestService<Product>, private router: Router,
+              private activatedRouter: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.activatedRouter.params.subscribe(params => {
       if (params['id'] !== undefined) {
         this.productService.get(this.actionUrl, Number(params['id'])).subscribe(
-          (product) => this.product = product
+          (product: Product) => this.product = product
         )
       }
     })

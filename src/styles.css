@@ -4,3 +4,19 @@
   width: 3em;
   height: 3em;
 }
+/*set the defautl background color of the header section*/
+.pa-header {
+	background: rgba(0, 0, 0, 0.68);
+	-webkit-transition: background-color 0.5s ease-out;
+	-moz-transition: background-color  0.5s ease-out;
+	-o-transition: background-color  0.5s ease-out;
+	transition: background-color  0.5s ease-out;
+}
+/*set the background color of the fixed header when scrolling*/
+.pa-fixed-header {
+	background-color: #000000 !important;
+	-webkit-transition: background-color  0.5s ease-out;
+	-moz-transition: background-color  0.5s ease-out;
+	-o-transition: background-color  0.5s ease-out;
+	transition: background-color  0.5s ease-out;
+}

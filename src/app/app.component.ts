@@ -11,9 +11,6 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {
   }
   async ngOnInit(): Promise<void> {
-/*    let user = localStorage.getItem('user');
-    if(user === null) {
-      await this.router.navigate(['/public']);
-    }*/
+
   }
 }

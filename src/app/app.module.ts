@@ -1,5 +1,11 @@
 import {NgModule, isDevMode} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {ListElementsComponent} from './test/list-elements/list-elements.component';
@@ -25,6 +31,8 @@ import {IndexComponent} from "./screens/dashboard/stock-management/index/index.c
 import {NgOptimizedImage} from "@angular/common";
 import {ProductListComponent} from "./screens/public/ecommerce/product-list/product-list.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {PublicIndexComponent} from './screens/public/public-index/public-index.component';
+
 
 const routes: Route[] = [
   {
@@ -36,10 +44,20 @@ const routes: Route[] = [
         path: '', redirectTo: '/public/index', pathMatch: 'full'
       },
       {
-        path: 'index', component: PublicComponent
+        path: 'index', component: PublicIndexComponent
       },
       {
-        path: 'signup', component: SignupComponent
+        path: 'auth', children: [
+          {
+            path: 'signup', component: SignupComponent
+          },
+          {
+            path: 'login', component: SigningComponent
+          },
+          {
+            path: 'reset-password', component: ResetPasswordComponent
+          }
+        ]
       },
       {
         path: 'products', component: ProductListComponent
@@ -83,9 +101,11 @@ const routes: Route[] = [
     MessagesComponent,
     ProfileComponent,
     ProductListComponent,
+    PublicIndexComponent,
   ],
   imports: [
     HttpClientModule,
+
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
@@ -95,9 +115,32 @@ const routes: Route[] = [
     }),
     RouterModule.forRoot(routes),
     NgOptimizedImage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '535308010302-0m8f4elln3ooa0rqhvhhgebd1ei8hk3q.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('258734885752449')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

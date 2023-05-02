@@ -1,43 +1,53 @@
-<header class="fixed-top">
-      <nav
-        class="navbar navbar-expand-lg blur top-0 shadow position-absolute py-2 start-0 end-0">
-        <div class="container-fluid ps-2 pe-0">
-          <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../../../pages/dashboards/default.html">
-            SHL
-          </a>
-          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-                  aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon mt-2">
+<header class="fixed-top ">
+  <nav
+    class="navbar navbar-expand-lg position-absolute start-0 end-0"
+    [ngClass]="{'pa-header': !scrolled, 'pa-fixed-header': scrolled}">
+    <div class="container-fluid ps-2 pe-0 align-content-center">
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/"
+         style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.0169014s;">
+        <img ngSrc="/assets/img/LUCAS%20HAMBERT.png" alt="Stephane Humbert Lucas" height="50" width="40"/>
+      </a>
+      <ul class="d-flex justify-content-center align-content-center pt-2 d-lg-none d-block">
+              <button class="btn btn-dark" type="button" >
+        Login
+      </button>
+        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon">
                 <span class="navbar-toggler-bar bar1"></span>
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
               </span>
-          </button>
-          <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
-            <ul class="navbar-nav navbar-nav-hover mx-auto">
-              <li class="nav-item">
-                <a class="nav-link ">Welcome to SHL</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ">Our Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ">Contact</a>
-              </li>
-                            <li class="nav-item">
-                <a class="nav-link ">Contact</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav d-lg-block d-none">
-              <li class="nav-item">
-                <a class="btn btn-sm  btn-primary  mb-0 me-1">Login</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+      </button>
+      </ul>
+      <div class="collapse navbar-collapse w-100" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover mx-auto d-flex justify-content-around w-lg-50">
+          <li class="nav-item">
+            <a class="nav-link text-white">Welcome to SHL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white">Our Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white">Contact</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav d-lg-flex justify-content-end d-none">
+          <li class="nav-item">
+            <a class="btn btn-sm  mb-0 me-1" routerLink="/public/auth/signup">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm  mb-0 me-1" routerLink="/public/auth/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
 </header>
 <main class="main-content main-content-bg mt-0">
   <router-outlet></router-outlet>
@@ -46,39 +56,39 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-4 mx-auto text-center">
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
           Company
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
           About Us
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
           Team
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
           Products
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
           Blog
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
           Pricing
         </a>
       </div>
       <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-4 me-4">
           <span class="text-lg fab fa-dribbble"></span>
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-4 me-4">
           <span class="text-lg fab fa-twitter"></span>
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-4 me-4">
           <span class="text-lg fab fa-instagram"></span>
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-4 me-4">
           <span class="text-lg fab fa-pinterest"></span>
         </a>
-        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <a href="javascript:" target="_blank" class="text-secondary me-xl-4 me-4">
           <span class="text-lg fab fa-github"></span>
         </a>
       </div>

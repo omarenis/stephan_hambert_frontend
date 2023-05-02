@@ -1,0 +1,132 @@
+<section id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+            [ngClass]="{'active': step === 0}"
+            aria-current="true" aria-label="Slide 1" (click)="step = 0"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"
+            (click)="step = 1" [ngClass]="{'active': step === 1}"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"
+            (click)="step = 2" [ngClass]="{'active': step === 2}"></button>
+  </div>
+  <div class="carousel-inner">
+    <article class="carousel-item" [ngClass]="{'active': step === 0}">
+      <section class="page-header min-vh-100 d-block" style="background-image: url('/assets/img/carousel1.jpg');">
+        <section class="container-fluid  w-sm-100 w-50 mt-10">
+          <h1 class="text-white fadeIn1 fadeInBottom text-center w-100">New collection.</h1>
+          <section class="carousel-caption mb-5">
+            <p class="lead text-white opacity-8 fadeIn2 fadeInBottom">Collecting stories and legends from all over the
+              world.
+              Finding the beautiful character, the attraction, colour and fragrance, like an Ariadne’s thread. </p>
+            <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">
+              Making it possible to remain faithful to desire and obsession, and finding the right moult, the right
+              combination, the formula, like a saga, an opera, a book of tales.
+            </p>
+          </section>
+        </section>
+      </section>
+    </article>
+    <article class="carousel-item" [ngClass]="{'active': step === 1}">
+      <section class="page-header min-vh-100 d-block"
+               style="background-image: url('/assets/img/carousel2.png'); background-size: cover; background-repeat: no-repeat">
+        <span class="mask" style="background: rgba(229,54,54,0)"></span>
+        <section class="container-fluid w-sm-100 w-50 mt-10">
+          <h1 class="text-white fadeIn1 fadeInBottom text-center w-100">New collection.</h1>
+          <section class="carousel-caption mb-5">
+            <p class="lead text-white opacity-8 fadeIn2 fadeInBottom">Collecting stories and legends from all over the
+              world.
+              Finding the beautiful character, the attraction, colour and fragrance, like an Ariadne’s thread. </p>
+            <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">
+              Making it possible to remain faithful to desire and obsession, and finding the right moult, the right
+              combination, the formula, like a saga, an opera, a book of tales.
+            </p>
+          </section>
+        </section>
+      </section>
+    </article>
+    <article class="carousel-item" [ngClass]="{'active': step === 2}">
+      <section class="page-header min-vh-100 d-block"
+               style="background-image: url('/assets/img/carousel1.jpg'); background-size: cover">
+        <span class="mask" style="background: rgba(229,54,54,0)"></span>
+        <section class="container-fluid w-50 mt-10">
+          <h1 class="text-white fadeIn1 fadeInBottom text-center w-100">New collection.</h1>
+          <section class="carousel-caption mb-5">
+            <p class="lead text-white opacity-8 fadeIn2 fadeInBottom">Collecting stories and legends from all over the
+              world.
+              Finding the beautiful character, the attraction, colour and fragrance, like an Ariadne’s thread. </p>
+            <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">
+              Making it possible to remain faithful to desire and obsession, and finding the right moult, the right
+              combination, the formula, like a saga, an opera, a book of tales.
+            </p>
+          </section>
+        </section>
+      </section>
+    </article>
+  </div>
+</section>
+<article class="container-xl container-fluid mt-5">
+  <h1 class="h1 text-center text-dark">Our Philosophy</h1>
+  <article class="card mb-3 mt-3">
+    <div class="row">
+      <section class="col-md-4 col-sm-12 ">
+        <img ngSrc="/assets/img/artistic.jpg" class="img-fluid rounded-start" alt="..." height="818" width="750">
+      </section>
+      <section class="col-md-8 col-sm-12">
+        <div class="card-body">
+          <h3 class="h3 card-title mb-lg-5">Artistic House of Luxury Fragrance</h3>
+          <p class="text-dark">
+            Stephane Humbert Lucas Paris is a field of expression for its creator and a way for him to free his artistic
+            sensibility and his overflowing creativity where no marketing concessions are welcome.
+            Each creation starts with a blank canvas where touches of colour, musical notes, poetry and images will be
+            progressively inscribed. The permanent inspiration drawn from painting, literature and music sets the tone
+            and imposes a selection of the most beautiful raw materials of fine perfumery. The process can finally
+            begin. Both the harmony and the roughness are beautifully confronted as a result of the creator’s need to
+            place perfumery as a major art.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+  <div class="card mb-3">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title text-center text-lg-start">Synesthete Parisian Perfumer</h3>
+          <section class="card-body mt-2">
+            <p class="card-text">
+              Painter and poet, Stéphane Humbert Lucas studied painting in the South of France with a Flemish master and
+              specialised in the tempera technique where he was obsessed with the combination of pigments and their
+              texture.
+            </p>
+            <p class="card-text">
+              Convinced that every colour had a scent, he discovered his synethesia, a perceptual phenomenon in which
+              the stimulation of his sight simultaneously triggers his sense of smell at the same time.
+              Mixing colours was then a way to master new and unique scents.
+            </p>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <img ngSrc="/assets/img/Mood+film+Gold+Blue.jpg" class="img-fluid"
+             style="height: 350px; border-top-right-radius: 12px; border-bottom-right-radius: 12px"
+             alt="..." height="422" width="750">
+      </div>
+    </div>
+  </div>
+  <p class="card-text ">
+    “I don’t invent scents, I rearrange them and invite them to combine,
+    I’m a matchmaker, a couturier of the invisible.
+    Yet, I ‘see’ my fragrances, each material, each accord vibrate with colours
+    and sometimes these colours emit a sound.
+    I don’t invent smell, like I neither invent pink nor indigo, they are present in our unconscious.
+    I ask them to live together, to be as beautiful as the other, they are my harmony.”
+  </p>
+  <article class="card bg-dark text-white">
+    <img ngSrc="/assets/img/OK_Soleil_de_Jeddah_1.jpg" class="card-img" alt="..." fill>
+    <div class="card-img-overlay">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+        This content is a little bit longer.</p>
+      <p class="card-text">Last updated 3 mins ago</p>
+    </div>
+  </article>
+</article>

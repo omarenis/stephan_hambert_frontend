@@ -8,17 +8,14 @@ import {environment} from "../../../../../environments/environment";
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit {
   products !:Product[];
   private actionUrl = `${environment.url}/products`
-  constructor(private productService: AbstractRestService<Product>){
-
-  }
+  constructor(private productService: AbstractRestService<Product>){}
 
   ngOnInit(): void {
     this.productService.list(this.actionUrl).subscribe(products => {
       this.products = products;
     });
   }
-
 }

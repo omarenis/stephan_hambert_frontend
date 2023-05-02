@@ -1,0 +1,9 @@
+.carousel-indicators > button {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 10px;
+}
+.page-header {
+  width: auto;
+}
