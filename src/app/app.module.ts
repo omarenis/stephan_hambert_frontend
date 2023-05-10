@@ -32,6 +32,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {ProductListComponent} from "./screens/public/ecommerce/product-list/product-list.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {PublicIndexComponent} from './screens/public/public-index/public-index.component';
+import {CollectionsComponent} from "./screens/dashboard/stock-management/collections/collections.component";
+import {CategoriesComponent} from "./screens/dashboard/stock-management/categories/categories.component";
 
 
 const routes: Route[] = [
@@ -75,6 +77,12 @@ const routes: Route[] = [
       {
         path: 'index', component: IndexComponent
       },
+      {
+        path: 'collections', component: CollectionsComponent
+      },
+      {
+        path: 'categories',
+      }
     ]
   },
 ]
@@ -91,6 +99,7 @@ const routes: Route[] = [
     SignupComponent,
     ResetPasswordComponent,
     VerificationComponent,
+    CollectionsComponent,
     ProductPageComponent,
     BillingComponent,
     ContactComponent,
@@ -102,6 +111,7 @@ const routes: Route[] = [
     ProfileComponent,
     ProductListComponent,
     PublicIndexComponent,
+    CategoriesComponent,
   ],
   imports: [
     HttpClientModule,
