@@ -1,7 +1,9 @@
-export interface Statistics
-{
-    number_products: number;
-    number_purchases: number;
-    total_gain: number;
-    id ?: number;
+export class Statistics {
+  constructor(
+    public number_products: number,
+    public number_purchases: number,
+    public total_gain: number,
+    public id ?: number,
+  ) {
+  }
 }

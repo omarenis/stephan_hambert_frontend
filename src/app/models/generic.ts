@@ -2,11 +2,10 @@ export interface Option {
   headers: object;
   params: object;
 }
-
-export interface Object {
+export type ObjectType<T> = {new (): T } | Function;
+export interface Object<T> {
   type: string;
   required: boolean;
-  ClassType ?: Function;
+  ClassType ?: ObjectType<T>;
   urlGetMapper ?: string;
 }
-export type ObjectType<T> = {new (): T } | Function;
