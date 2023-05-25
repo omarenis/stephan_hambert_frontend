@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {CrudConsumer} from "../../../../services/CrudConsumer";
-import {AbstractRestService} from "../../../../services/genericservice";
 import {Collection} from "../../../../models/Collection";
+import {AbstractRestService} from "../../../../services/genericservice";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
@@ -10,16 +10,22 @@ import {environment} from "../../../../../environments/environment";
   styleUrls: ['./collections.component.css']
 })
 export class CollectionsComponent extends CrudConsumer<Collection> {
-  constructor(protected collectionConsumer: AbstractRestService<Collection>) {
-    super(collectionConsumer, `${environment.url}/collections`, {
-      headers: {},
-      params: {}
+  public totalGain !: number;
+  constructor(protected collectionService: AbstractRestService<Collection>) {
+    super(collectionService, `${environment.url}/collections`, {
+      headers: {}, params: {}
     }, {
-      image: {type: 'string', required: true},
+      image: {type: 'string', required: true },
       label: {type: 'string', required: true},
-      description: {type: 'string', required: true},
-      ClassType: Collection,
-      urlGetMapper: `${environment.url}/collections`
-    }, false);
+      description: {type: 'string', required: true}
+    });
+  }
+
+  override async ngOnInit() {
+    this.totalGain = 0;
+    await super.ngOnInit();
+    this.data.forEach((element) => {
+      this.totalGain += element.total_gain;
+    });
   }
 }

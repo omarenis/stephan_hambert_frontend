@@ -34,6 +34,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {PublicIndexComponent} from './screens/public/public-index/public-index.component';
 import {CollectionsComponent} from "./screens/dashboard/stock-management/collections/collections.component";
 import {CategoriesComponent} from "./screens/dashboard/stock-management/categories/categories.component";
+import { ProductsComponent } from './screens/dashboard/components/products/products.component';
 
 
 const routes: Route[] = [
@@ -51,6 +52,9 @@ const routes: Route[] = [
       {
         path: 'auth', children: [
           {
+            path: '', redirectTo: '/auth/login', pathMatch: 'full'
+          },
+          {
             path: 'signup', component: SignupComponent
           },
           {
@@ -62,15 +66,19 @@ const routes: Route[] = [
         ]
       },
       {
-        path: 'products', component: ProductListComponent
+        path: 'products', children: [
+          {
+            path: '', component: ProductListComponent,
+          },
+          {
+            path: ':id', component: ProductPageComponent
+          }
+        ]
       },
-      {
-        path: 'products/:id', component: ProductPageComponent
-      }
     ]
   },
   {
-    path: 'dahsboard', component: DashboardComponent, children: [
+    path: 'dashboard', component: DashboardComponent, children: [
       {
         path: '', redirectTo: '/dashboard/index', pathMatch: 'full'
       },
@@ -81,7 +89,7 @@ const routes: Route[] = [
         path: 'collections', component: CollectionsComponent
       },
       {
-        path: 'categories',
+        path: 'categories', component: CategoriesComponent
       }
     ]
   },
@@ -112,6 +120,7 @@ const routes: Route[] = [
     ProductListComponent,
     PublicIndexComponent,
     CategoriesComponent,
+    ProductsComponent,
   ],
   imports: [
     HttpClientModule,

@@ -13,11 +13,19 @@ export class SigningComponent implements OnInit{
   error !: string;
   constructor(private router: Router, private loginSingupService: LoginSignupService) {}
 
+  loginWithFacebook() {
+
+  }
+
+  loginWithGoogle() {
+
+  }
+
   ngOnInit() {
     this.formGroup = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
-    })
+    });
   }
 
   submit(event: Event){
