@@ -1,4 +1,3 @@
 interface Store {
   name: string;
-
 }

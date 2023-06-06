@@ -11,13 +11,13 @@ import {createFormCreationEditGroup, setFormGroupValues} from "../models/forms";
 export abstract class FormView<T> implements OnInit {
   public formGroup !: FormGroup;
   protected actionUrl: string;
-  protected object: { [key: string]: GenericObject };
+  protected object: { [key: string]: GenericObject<T> };
   protected foreignKeyInstanceList  !: { [key: string]: object[] };
   protected foreignKeyServices !: { [key: string]: AbstractRestService<object> };
 
   protected constructor(protected service: AbstractRestService<T>, protected router: Router,
                         protected activatedRoute: ActivatedRoute,
-                        @Inject({}) object: { [key: string]: GenericObject },
+                        @Inject({}) object: { [key: string]: GenericObject<T> },
                         @Inject('') actionUrl: string) {
     this.actionUrl = actionUrl;
     this.object = object;

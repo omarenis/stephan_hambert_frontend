@@ -1,7 +1,7 @@
 import {AbstractRestService} from "./genericservice";
 import {Subscription} from "rxjs";
 import {Component, Inject, OnInit} from "@angular/core";
-import {Option, Object} from "../models/generic";
+import {Option, Object as GenericObject} from "../models/generic";
 import {createFilterFormGroup, createFormCreationEditGroup} from "../models/forms";
 import {FormGroup} from "@angular/forms";
 
@@ -17,12 +17,12 @@ export abstract class CrudConsumer<T> implements OnInit{
   protected options !: Option;
   protected getObjectsSubscriber !: () => Subscription;
   protected actionUrl !: string;
-  protected object !: { [key: string]: Object };
+  protected object !: { [key: string]: GenericObject<T> };
   protected hasFormIntegrated: boolean;
   protected formCreationEditGroup !: FormGroup;
   protected constructor(protected service: AbstractRestService<T>, @Inject('') actionUrl: string, @Inject({}) options: Option,
                         @Inject({}) object: {
-    [key: string]: Object
+    [key: string]: GenericObject<T>
   }, @Inject(undefined) hasFormIntegrated ?: boolean) {
     this.actionUrl = actionUrl;
     this.options = options;
