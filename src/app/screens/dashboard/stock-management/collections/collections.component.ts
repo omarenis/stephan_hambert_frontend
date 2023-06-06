@@ -3,6 +3,7 @@ import {CrudConsumer} from "../../../../services/CrudConsumer";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {Collection} from "../../../../models/Collection";
 import {environment} from "../../../../../environments/environment";
+import {Object as GenericObject} from "../../../../models/generic";
 
 @Component({
   selector: 'app-collections',
@@ -18,8 +19,7 @@ export class CollectionsComponent extends CrudConsumer<Collection> {
       image: {type: 'string', required: true},
       label: {type: 'string', required: true},
       description: {type: 'string', required: true},
-      ClassType: Collection,
-      urlGetMapper: `${environment.url}/collections`
+
     }, false);
   }
 }
