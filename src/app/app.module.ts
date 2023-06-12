@@ -12,7 +12,6 @@ import {ListElementsComponent} from './test/list-elements/list-elements.componen
 import {HttpClientModule} from "@angular/common/http";
 import {FormViewTestComponent} from './test/form-view-test/form-view-test.component';
 import {PublicComponent} from './layouts/public/public.component';
-import {DashboardComponent} from './layouts/dahsboard/dashboard.component';
 import {Route, RouterModule} from "@angular/router";
 import {ProductPageComponent} from './screens/public/ecommerce/product-page/product-page.component';
 import {BillingComponent} from './screens/public/ecommerce/billing/billing.component';
@@ -32,9 +31,17 @@ import {NgOptimizedImage} from "@angular/common";
 import {ProductListComponent} from "./screens/public/ecommerce/product-list/product-list.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {PublicIndexComponent} from './screens/public/public-index/public-index.component';
-import {CollectionsComponent} from "./screens/dashboard/stock-management/collections/collections.component";
-import {CategoriesComponent} from "./screens/dashboard/stock-management/categories/categories.component";
-import { ProductsComponent } from './screens/dashboard/components/products/products.component';
+import {
+  CollectionFormComponent
+} from './screens/dashboard/stock-management/collections/collection-form/collection-form.component';
+import {CategoriesComponent} from "./screens/dashboard/components/categories/categories.component";
+import {CollectionsComponent} from "./screens/dashboard/components/collections/collections.component";
+import {
+  CollectionDashboardList
+} from './screens/dashboard/stock-management/collections/collections-dashboard-list/collection-dashboard-list.component';
+import { CategoryListComponent } from './screens/dashboard/stock-management/categories/category-list/category-list.component';
+import { PromoListComponent } from './screens/dashboard/stock-management/promos/promo-list/promo-list.component';
+import {DashboardComponent} from "./layouts/dashboard/dashboard.component";
 
 
 const routes: Route[] = [
@@ -52,9 +59,6 @@ const routes: Route[] = [
       {
         path: 'auth', children: [
           {
-            path: '', redirectTo: '/auth/login', pathMatch: 'full'
-          },
-          {
             path: 'signup', component: SignupComponent
           },
           {
@@ -62,19 +66,15 @@ const routes: Route[] = [
           },
           {
             path: 'reset-password', component: ResetPasswordComponent
-          }
+          },
         ]
       },
       {
-        path: 'products', children: [
-          {
-            path: '', component: ProductListComponent,
-          },
-          {
-            path: ':id', component: ProductPageComponent
-          }
-        ]
+        path: 'products', component: ProductListComponent
       },
+      {
+        path: 'products/:id', component: ProductPageComponent
+      }
     ]
   },
   {
@@ -86,10 +86,20 @@ const routes: Route[] = [
         path: 'index', component: IndexComponent
       },
       {
-        path: 'collections', component: CollectionsComponent
+        path: 'collections', children: [
+          {
+            path: '', component: CollectionDashboardList
+          },
+          {
+            path: ':id', component: CollectionFormComponent
+          }
+        ]
       },
       {
-        path: 'categories', component: CategoriesComponent
+        path: 'categories', component: CategoryListComponent
+      },
+      {
+        path: 'promos', component: PromoListComponent
       }
     ]
   },
@@ -101,7 +111,6 @@ const routes: Route[] = [
     ListElementsComponent,
     FormViewTestComponent,
     PublicComponent,
-    DashboardComponent,
     IndexComponent,
     SigningComponent,
     SignupComponent,
@@ -120,7 +129,11 @@ const routes: Route[] = [
     ProductListComponent,
     PublicIndexComponent,
     CategoriesComponent,
-    ProductsComponent,
+    CollectionFormComponent,
+    CollectionDashboardList,
+    CategoryListComponent,
+    PromoListComponent,
+    DashboardComponent
   ],
   imports: [
     HttpClientModule,
@@ -143,12 +156,12 @@ const routes: Route[] = [
       useValue: {
         autoLogin: false,
         providers: [
-          {
+/*          {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               '535308010302-0m8f4elln3ooa0rqhvhhgebd1ei8hk3q.apps.googleusercontent.com'
             )
-          },
+          },*/
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('258734885752449')

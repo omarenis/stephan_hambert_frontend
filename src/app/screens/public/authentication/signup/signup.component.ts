@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit{
       this.formGroup.get('first_name')?.setValue(user.firstName);
       this.formGroup.get('last_name')?.setValue(user.lastName);
       this.formGroup.get('email')?.setValue(user.email);
-    });
+    }).catch(() => {});
   }
 
   ngOnInit(): void {
@@ -36,5 +36,11 @@ export class SignupComponent implements OnInit{
       repeatedPassword: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required])
     })
+  }
+
+  submit(event: Event)
+  {
+    event.preventDefault();
+    console.log(this.formGroup.value);
   }
 }

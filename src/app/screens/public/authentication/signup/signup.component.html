@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form role="form" [formGroup]="formGroup">
+          <form role="form" [formGroup]="formGroup" (ngSubmit)="submit($event)">
             <div class="mb-3">
               <input type="text" class="form-control" placeholder="Username" aria-label="username" formControlName="username">
             </div>

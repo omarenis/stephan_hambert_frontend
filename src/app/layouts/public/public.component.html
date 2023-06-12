@@ -1,28 +1,29 @@
-<header class="fixed-top ">
+<header class="">
   <nav
-    class="navbar navbar-expand-lg position-absolute start-0 end-0"
-    [ngClass]="{'pa-header': !scrolled, 'pa-fixed-header': scrolled}">
+    class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid ps-2 pe-0 align-content-center">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/"
-         style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.0169014s;">
-        <img ngSrc="/assets/img/LUCAS%20HAMBERT.png" alt="Stephane Humbert Lucas" height="50" width="40"/>
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/">
+        <img ngSrc="/assets/img/LUCAS%20HAMBERT.png" alt="Stephane Humbert Lucas" [height]="50" [width]="40"/>
       </a>
-      <ul class="d-flex justify-content-center align-content-center pt-2 d-lg-none d-block">
-              <button class="btn btn-dark" type="button" >
-        Login
-      </button>
+      <ul class="d-flex justify-content-center align-content-center pt-3 d-lg-none d-block">
+        <button class="btn btn-dark" type="button">
+          Login
+        </button>
+        <button class="btn btn-dark" type="button">
+          Sign up
+        </button>
         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-              aria-label="Toggle navigation">
+                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+                aria-label="Toggle navigation">
               <span class="navbar-toggler-icon">
                 <span class="navbar-toggler-bar bar1"></span>
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
               </span>
-      </button>
+        </button>
       </ul>
-      <div class="collapse navbar-collapse w-100" id="navigation">
-        <ul class="navbar-nav navbar-nav-hover mx-auto d-flex justify-content-around w-lg-50">
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ms-auto navbar-nav-hover d-flex w-lg-75 justify-content-around">
           <li class="nav-item">
             <a class="nav-link text-white">Welcome to SHL</a>
           </li>
@@ -35,8 +36,6 @@
           <li class="nav-item">
             <a class="nav-link text-white">Contact</a>
           </li>
-        </ul>
-        <ul class="navbar-nav d-lg-flex justify-content-end d-none">
           <li class="nav-item">
             <a class="btn btn-sm  mb-0 me-1" routerLink="/public/auth/signup">Signup</a>
           </li>
@@ -44,15 +43,23 @@
             <a class="btn btn-sm  mb-0 me-1" routerLink="/public/auth/login">Login</a>
           </li>
         </ul>
+        <!--        <ul class="navbar-nav d-lg-flex justify-content-end d-none">
+                  <li class="nav-item">
+                    <a class="btn btn-sm  mb-0 me-1" routerLink="/public/auth/signup">Signup</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-sm  mb-0 me-1" routerLink="/public/auth/login">Login</a>
+                  </li>
+                </ul>-->
       </div>
     </div>
   </nav>
   <!-- End Navbar -->
 </header>
-<main class="main-content main-content-bg mt-0">
+<main class="main-content main-content-bg">
   <router-outlet></router-outlet>
 </main>
-<footer class="footer py-5">
+<!--<footer class="footer py-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mb-4 mx-auto text-center">
@@ -105,4 +112,4 @@
       </div>
     </div>
   </div>
-</footer>
+</footer>-->

@@ -10,7 +10,7 @@ import {FormGroup} from "@angular/forms";
 @Component({
   template: ""
 })
-export abstract class CrudConsumer<T> implements OnInit{
+export abstract class CrudConsumer<T> implements OnInit {
   public formGroupSearch !: FormGroup;
   protected data !: T[];
   protected numberElements !: number;
@@ -20,10 +20,10 @@ export abstract class CrudConsumer<T> implements OnInit{
   protected object !: { [key: string]: GenericObject<T> };
   protected hasFormIntegrated: boolean;
   protected formCreationEditGroup !: FormGroup;
-  protected constructor(protected service: AbstractRestService<T>, @Inject('') actionUrl: string, @Inject({}) options: Option,
-                        @Inject({}) object: {
-    [key: string]: GenericObject<T>
-  }, @Inject(undefined) hasFormIntegrated ?: boolean) {
+  protected constructor(protected service: AbstractRestService<T>, @Inject('') actionUrl: string,
+                        @Inject({}) options: Option,
+                        @Inject({}) object: { [key: string]: GenericObject<T> },
+                        @Inject(undefined) hasFormIntegrated ?: boolean) {
     this.actionUrl = actionUrl;
     this.options = options;
     this.object = object;

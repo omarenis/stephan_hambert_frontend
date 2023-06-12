@@ -9,6 +9,7 @@ export interface Token{
     first_name: string;
     last_name: string;
     is_superuser: boolean;
+    username: string;
 }
 
 @Injectable({
