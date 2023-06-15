@@ -3,7 +3,7 @@ import {AbstractRestService} from "../../../../../services/genericservice";
 import {Promo} from "../../../../../models/Promo";
 import {environment} from "../../../../../../environments/environment";
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
-import {Category} from "../../../../../models/Category";
+import {Category, categoryObject} from "../../../../../models/Category";
 
 @Component({
   selector: 'app-category-list',
@@ -15,8 +15,7 @@ export class CategoryListComponent extends CrudConsumer<Category>{
     super(service, `${environment.url}/categories`, {
       headers: {},
       params: {}
-    }, {
-      label: {type: 'string', required: true},
-    });
+    }, categoryObject,
+    true);
   }
 }

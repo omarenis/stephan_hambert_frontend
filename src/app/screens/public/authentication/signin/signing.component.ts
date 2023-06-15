@@ -41,7 +41,7 @@ export class SigningComponent implements OnInit {
 
   loginWithFacebook() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
-      console.log(response);
+
     });
   }
 

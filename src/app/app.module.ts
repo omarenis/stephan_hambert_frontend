@@ -21,7 +21,6 @@ import {SigningComponent} from "./screens/public/authentication/signin/signing.c
 import {SignupComponent} from "./screens/public/authentication/signup/signup.component";
 import {ResetPasswordComponent} from "./screens/public/authentication/reset-password/reset-password.component";
 import {VerificationComponent} from "./screens/public/authentication/verification/verification.component";
-import {StockManagementComponent} from './screens/dashboard/stock-management/stock-management.component';
 import {CrmComponent} from './screens/dashboard/crm/crm.component';
 import {CustomersComponent} from './screens/dashboard/crm/customers/customers.component';
 import {MessagesComponent} from './screens/dashboard/crm/messages/messages.component';
@@ -69,6 +68,13 @@ const routes: Route[] = [
           },
         ]
       },
+      {
+        path: 'ecommerce', children: [
+          {
+            path: 'products'
+          }
+        ]
+      }
       {
         path: 'products', component: ProductListComponent
       },
@@ -121,7 +127,6 @@ const routes: Route[] = [
     BillingComponent,
     ContactComponent,
     LockComponent,
-    StockManagementComponent,
     CrmComponent,
     CustomersComponent,
     MessagesComponent,

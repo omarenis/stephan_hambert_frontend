@@ -4,7 +4,6 @@ import {Collection} from "../../../../../models/Collection";
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../../environments/environment";
-import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-collection-form',

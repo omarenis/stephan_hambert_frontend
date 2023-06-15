@@ -6,5 +6,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent {
-  @Input() customers !:
+
 }
