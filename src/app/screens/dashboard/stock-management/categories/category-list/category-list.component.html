@@ -1,1 +1,15 @@
-<p>category-list works!</p>
+<div class="card mx-auto">
+  <form class="ms-5 mt-5 mb-3">
+    <div class="input-group w-50">
+      <label for="numberItems" class="input-group-text">nombre de categories par page</label>
+      <select class="form-control w-25" id="numberItems" aria-label="Default select example">
+        <option selected value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </form>
+  <div class="container">
+    <div app-categories [categories]="[]"></div>
+  </div>
+</div>

@@ -9,9 +9,7 @@ import {DOCUMENT} from "@angular/common";
 export class DashboardComponent implements OnInit{
   sidebarDisplayed !: boolean;
   constructor(@Inject(DOCUMENT) private document: Document) {}
-  @HostListener('window:resize', ['$event'])
-  resize(): void {
-  }
+
 
   ngOnInit(): void {
     this.sidebarDisplayed = false;

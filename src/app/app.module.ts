@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
-  GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
 import {AppComponent} from './app.component';
@@ -34,12 +33,13 @@ import {
   CollectionFormComponent
 } from './screens/dashboard/stock-management/collections/collection-form/collection-form.component';
 import {CategoriesComponent} from "./screens/dashboard/components/categories/categories.component";
-import {CollectionsComponent} from "./screens/dashboard/components/collections/collections.component";
 import {
   CollectionDashboardList
 } from './screens/dashboard/stock-management/collections/collections-dashboard-list/collection-dashboard-list.component';
-import { CategoryListComponent } from './screens/dashboard/stock-management/categories/category-list/category-list.component';
-import { PromoListComponent } from './screens/dashboard/stock-management/promos/promo-list/promo-list.component';
+import {
+  CategoryListComponent
+} from './screens/dashboard/stock-management/categories/category-list/category-list.component';
+import {PromoListComponent} from './screens/dashboard/stock-management/promos/promo-list/promo-list.component';
 import {DashboardComponent} from "./layouts/dashboard/dashboard.component";
 
 
@@ -71,16 +71,13 @@ const routes: Route[] = [
       {
         path: 'ecommerce', children: [
           {
-            path: 'products'
+            path: 'products', component: ProductListComponent
+          },
+          {
+            path: 'products/:id', component: ProductPageComponent
           }
         ]
-      }
-      {
-        path: 'products', component: ProductListComponent
       },
-      {
-        path: 'products/:id', component: ProductPageComponent
-      }
     ]
   },
   {
@@ -122,7 +119,7 @@ const routes: Route[] = [
     SignupComponent,
     ResetPasswordComponent,
     VerificationComponent,
-    CollectionsComponent,
+    CustomersComponent,
     ProductPageComponent,
     BillingComponent,
     ContactComponent,
@@ -138,7 +135,7 @@ const routes: Route[] = [
     CollectionDashboardList,
     CategoryListComponent,
     PromoListComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     HttpClientModule,
@@ -161,12 +158,12 @@ const routes: Route[] = [
       useValue: {
         autoLogin: false,
         providers: [
-/*          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '535308010302-0m8f4elln3ooa0rqhvhhgebd1ei8hk3q.apps.googleusercontent.com'
-            )
-          },*/
+          /*          {
+                      id: GoogleLoginProvider.PROVIDER_ID,
+                      provider: new GoogleLoginProvider(
+                        '535308010302-0m8f4elln3ooa0rqhvhhgebd1ei8hk3q.apps.googleusercontent.com'
+                      )
+                    },*/
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('258734885752449')
