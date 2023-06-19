@@ -4,7 +4,7 @@ import {AbstractRestService} from "../../../../services/genericservice";
 import {Router} from "@angular/router";
 interface Operation {
   operation: string;
-  data: {[key: string]: [object | string | number]}
+  data: {attribute: string}
 }
 @Component({
   selector: '[app-categories]',
@@ -21,11 +21,11 @@ export class CategoriesComponent implements OnInit{
   ngOnInit() {
     this.action = new EventEmitter<Operation>();
   }
-  orderBy(key: string, value: string) {
+  orderBy(key: string) {
     this.action.emit({
       operation: 'orderBy',
       data: {
-        [key]: [value]
+        attribute: key
       }
     })
   }

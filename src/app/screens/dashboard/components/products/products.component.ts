@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input} from '@angular/core';
 import {Product} from "../../../../models/Product";
 
 @Component({
@@ -9,7 +9,6 @@ import {Product} from "../../../../models/Product";
 export class ProductsComponent {
   @Input() products !: Product[];
   @Input() editable !: boolean;
-
   ngOnInit() {
 
   }
