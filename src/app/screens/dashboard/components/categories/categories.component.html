@@ -1,37 +1,36 @@
 <table class="table">
-  <thead>
+  <thead class="border-0 ">
   <tr>
-    <th scope="col">#</th>
-    <th scope="col" class="text-sm text-center text-capitalize">nom de categorie</th>
-    <th scope="col" class="text-sm text-capitalize">nombre de produits total</th>
-    <th scope="col" class="text-sm text-capitalize">nombre de produits achetées</th>
-    <th scope="col" class="text-sm text-capitalize"> nomnre des achats</th>
+    <th scope="col" class="p-0 text-center">
+      <button class="btn btn-link text-sm text-capitalize p-0">ID</button>
+    </th>
+    <th scope="col" class="p-0 text-center">
+      <button (click)="orderBy('title', 'title')" class="btn btn-link text-sm text-capitalize p-0">titre de categorie</button>
+    </th>
+    <th scope="col" class="p-0 text-center">
+      <button (click)="orderBy('numberProducts', 'numberProducts')" class="btn btn-link text-sm text-capitalize p-0">nombre de produits
+        total
+      </button>
+    </th>
+    <th scope="col" class="p-0 text-center">
+      <button class="btn btn-link text-sm text-capitalize p-0">nombre de produits achetées</button>
+    </th>
+    <th scope="col" class="p-0 text-center">
+      <button (click)="orderBy('numberPurchases', 'numberPurchases')" class=" btn btn-link text-sm text-capitalize p-0">
+        nomnre des achats
+      </button>
+    </th>
     <th scope="col" class="text-sm"></th>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="col">#</th>
-    <td class="text-sm text-center text-capitalize">nom de categorie</td>
-    <td class="text-sm text-center text-capitalize">nombre de produits total</td>
+  <tr *ngFor="let category of categories">
+    <th scope="col">{{ category.id }}</th>
+    <td class="text-sm text-center text-capitalize">{{category.label}}</td>
+    <td class="text-sm text-center text-capitalize">{{category.number_products}}</td>
     <td class="text-sm text-center text-capitalize">nombre de produits achetées</td>
-    <td class="text-sm text-center text-capitalize"> nomnre des achats</td>
-    <td class="text-sm"></td>
-  </tr>
-  <tr>
-    <th scope="col">#</th>
-    <td class="text-sm text-center text-capitalize">nom de categorie</td>
-    <td class="text-sm text-center text-capitalize">nombre de produits total</td>
-    <td class="text-sm text-center text-capitalize">nombre de produits achetées</td>
-    <td class="text-sm text-center text-capitalize"> nomnre des achats</td>
-    <td class="text-sm"></td>
-  </tr>
-  <tr>
-    <th scope="col">#</th>
-    <td class="text-sm text-center text-capitalize">nom de categorie</td>
-    <td class="text-sm text-center text-capitalize">nombre de produits total</td>
-    <td class="text-sm text-center text-capitalize">nombre de produits achetées</td>
-    <td class="text-sm text-center text-capitalize"> nomnre des achats</td>
+    <td class="text-sm text-center text-capitalize">{{category.number_purchases}}</td>
+    <td class="text-sm text-center text-capitalize">{{category.total_gain}}</td>
     <td class="text-sm"></td>
   </tr>
   </tbody>

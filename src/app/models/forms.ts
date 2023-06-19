@@ -19,7 +19,7 @@ export function createFormCreationEditGroup(object: { [key: string]: GenericObje
   return formGroup;
 }
 
-export function createFilterFormGroup(object: { [key: string]: GenericObject<any>}): FormGroup {
+export function createFilterFormGroup(object: { [key: string]: GenericObject<any> }): FormGroup {
   let formControls: { [key: string]: FormControl } = {};
   Object.keys(object).forEach((key) => {
     formControls[key] = new FormControl(getDefaultValue(object[key].type));

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormView} from "../../../../../services/FormView";
-import {Collection} from "../../../../../models/Collection";
+import {Collection, collectionObject} from "../../../../../models/Collection";
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../../environments/environment";
@@ -10,13 +10,11 @@ import {environment} from "../../../../../../environments/environment";
   templateUrl: './collection-form.component.html',
   styleUrls: ['./collection-form.component.css']
 })
-export class CollectionFormComponent extends FormView<Collection> {
+  export class CollectionFormComponent extends FormView<Collection> {
   imagePath: any;
   constructor(protected override service: AbstractRestService<Collection>,
               protected override  router: Router, protected override activatedRoute: ActivatedRoute) {
-    super(service, router, activatedRoute, {
-      title: {type: 'text', required: true}
-    }, `${environment.url}/collections`);
+    super(service, router, activatedRoute, collectionObject, `${environment.url}/collections`);
   }
 
   readImage($event: Event) {

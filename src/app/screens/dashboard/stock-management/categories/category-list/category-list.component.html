@@ -1,11 +1,16 @@
+<form class="row p-2 bg-transparent align-items-center gx-1">
+  <label for="inputPassword" class="col-2 text-center">Password</label>
+  <input type="password" class="col-7 form-control" id="inputPassword">
+  <button class="btn btn-success">add category</button>
+</form>
 <div class="card mx-auto">
-  <form class="ms-5 mt-5 mb-3">
-    <div class="input-group w-50">
+  <form class="ms-5 mt-5 mb-3" method="get" [formGroup]="formGroupSearch">
+    <div class="input-group w-25">
       <label for="numberItems" class="input-group-text">nombre de categories par page</label>
-      <select class="form-control w-25" id="numberItems" aria-label="Default select example">
-        <option selected value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+      <select class="form-control" id="numberItems" aria-label="Default select example">
+        <option selected value="1">15</option>
+        <option value="2">20</option>
+        <option value="3">30</option>
       </select>
     </div>
   </form>

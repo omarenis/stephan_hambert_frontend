@@ -1,5 +1,6 @@
 import {Category} from "./Category";
 import {Promo} from "./Promo";
+import {Object} from "./generic";
 
 export interface Product {
   title: string;
@@ -14,4 +15,17 @@ export interface Product {
   promo: Promo | number;
   number_purchases?: number;
   id?: number;
+}
+
+
+export const productObject = {
+  title: { type: 'string', required: true },
+  code: { type: 'string', required: true },
+  description: {type: 'string', required: true},
+  price: {type: 'float', required: true},
+  current_quantity: {type: 'number', required: true},
+  tva: { type: 'float', required: true },
+  image: {type: 'file', required: true},
+  ingredients: {type: 'string', required: true},
+  category: {type: 'foreign_key', required: true, classType: 'Category'}
 }
