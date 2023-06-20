@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginSignupService, Token} from "../../../../services/login-signup.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
 
 @Component({
   selector: 'app-signing',
@@ -14,7 +13,7 @@ export class SigningComponent implements OnInit {
   error !: string;
 
 
-  constructor(private router: Router, private loginSingupService: LoginSignupService, private authService: SocialAuthService) {
+  constructor(private router: Router, private loginSingupService: LoginSignupService) {
   }
 
   ngOnInit() {
@@ -40,9 +39,7 @@ export class SigningComponent implements OnInit {
   }
 
   loginWithFacebook() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
 
-    });
   }
 
 /*  loginWithGoogle() {

@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FacebookLoginProvider, SocialAuthService, SocialUser} from "angularx-social-login";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginSignupService} from "../../../../services/login-signup.service";
 import {Router} from "@angular/router";
@@ -19,18 +18,12 @@ interface SignupFormGroup {
 })
 export class SignupComponent implements OnInit{
   formGroup !: FormGroup;
-  constructor(private socialAuthService: SocialAuthService, private loginSignupService: LoginSignupService,
+  constructor(private loginSignupService: LoginSignupService,
               private router: Router, @Inject(DOCUMENT) private document: Document) {
   }
 
   signupWithFacebook() {
-    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user: SocialUser) => {
-      this.formGroup.get('first_name')?.setValue(user.firstName);
-      this.formGroup.get('last_name')?.setValue(user.lastName);
-      this.formGroup.get('email')?.setValue(user.email);
-    }).catch(() => {
 
-    });
   }
 
   ngOnInit(): void {
