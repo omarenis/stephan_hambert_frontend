@@ -41,6 +41,7 @@ import {
 } from './screens/dashboard/stock-management/categories/category-list/category-list.component';
 import {PromoListComponent} from './screens/dashboard/stock-management/promos/promo-list/promo-list.component';
 import {DashboardComponent} from "./layouts/dashboard/dashboard.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 const routes: Route[] = [
@@ -139,15 +140,17 @@ const routes: Route[] = [
   ],
   imports: [
     HttpClientModule,
-
     BrowserModule.withServerTransition({appId: 'serverApp'}),
+BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking'
+}),
     NgOptimizedImage,
     ReactiveFormsModule,
     SocialLoginModule
