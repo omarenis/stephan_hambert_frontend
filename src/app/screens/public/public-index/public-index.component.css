@@ -12,13 +12,46 @@ html
 {
   display: flex;
   position: absolute;
-  width: 300%;
+  width: 200%;
   overflow-x: hidden;
 }
 
 .slider-item
 {
-  width: 400px;
   display: inline-block;
   position: relative;
+}
+
+.slider-iyt
+
+@media (min-width: 576px) {
+  .slider-item
+  {
+    min-width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .slider-item{
+    min-width: 25vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .slider-item {
+    min-width: 25vw;
+  }
+}
+
+@media (min-width: 1200px) {
+    .slider-item {
+    min-width: 33vw;
+    height: 15vh;
+  }
+}
+
+@media (min-width: 1400px) {
+  .slider-item {
+    min-width: 33vw;
+  }
 }

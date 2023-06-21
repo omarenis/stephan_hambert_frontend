@@ -1,10 +1,5 @@
 import {NgModule, isDevMode} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-  FacebookLoginProvider
-} from 'angularx-social-login';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {ListElementsComponent} from './test/list-elements/list-elements.component';
@@ -41,6 +36,11 @@ import {
 } from './screens/dashboard/stock-management/categories/category-list/category-list.component';
 import {PromoListComponent} from './screens/dashboard/stock-management/promos/promo-list/promo-list.component';
 import {DashboardComponent} from "./layouts/dashboard/dashboard.component";
+import {ProductsComponent} from "./screens/dashboard/components/products/products.component";
+import {
+  ProductsDahsboardComponent
+} from './screens/dashboard/stock-management/products/products-dahsboard/products-dahsboard.component';
+import { ProductDashboardFormComponent } from './screens/dashboard/stock-management/products/product-dashboard-form/product-dashboard-form.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -97,6 +97,16 @@ const routes: Route[] = [
           {
             path: ':id', component: CollectionFormComponent
           }
+        ],
+      },
+      {
+                path: 'products', children: [
+          {
+            path: '', component: ProductsDahsboardComponent
+          },
+          {
+            path: ':id', component: CollectionFormComponent
+          }
         ]
       },
       {
@@ -137,46 +147,26 @@ const routes: Route[] = [
     CategoryListComponent,
     PromoListComponent,
     DashboardComponent,
+    ProductsComponent,
+    ProductsDahsboardComponent,
+    ProductDashboardFormComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule.withServerTransition({appId: 'serverApp'}),
-BrowserAnimationsModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-}),
+    RouterModule.forRoot(routes),
     NgOptimizedImage,
     ReactiveFormsModule,
-    SocialLoginModule
   ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          /*          {
-                      id: GoogleLoginProvider.PROVIDER_ID,
-                      provider: new GoogleLoginProvider(
-                        '535308010302-0m8f4elln3ooa0rqhvhhgebd1ei8hk3q.apps.googleusercontent.com'
-                      )
-                    },*/
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('258734885752449')
-          }
-        ],
-        onError: (err) => {
-          console.error(err);
-        }
-      } as SocialAuthServiceConfig,
-    }
+
   ],
   bootstrap: [AppComponent]
 })

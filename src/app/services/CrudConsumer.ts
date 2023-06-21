@@ -52,4 +52,9 @@ export abstract class CrudConsumer<T> implements OnInit {
     });
     this.getData();
   }
+  delete(id: number): void
+  {
+
+  }
+
 }

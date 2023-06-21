@@ -4,7 +4,7 @@ import {AbstractRestService} from "../../../../services/genericservice";
 import {Router} from "@angular/router";
 interface Operation {
   operation: string;
-  data: {attribute: string}
+  data: {[key: string]: Category | string}
 }
 @Component({
   selector: '[app-categories]',
