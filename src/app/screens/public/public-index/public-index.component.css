@@ -12,35 +12,13 @@ html
 {
   display: flex;
   position: absolute;
-  width: 250%;
+  width: 300%;
   overflow-x: hidden;
-}
-@keyframes moveLeftEvent{
-  0% {
-    transform: translate(0%);
-  }
-  100%{
-    transform: translate(-100%);
-  }
-}
-@keyframes moveRightEvent{
-  0% {
-    transform: translate(0%);
-  }
-  100%{
-    transform: translate(100%);
-  }
-}
-
-
-.move-left {
-  animation:moveLeftEvent 1s ease-in;
-  transform: translate(-100%);
 }
 
 .slider-item
 {
-  width: 30vw;
+  width: 400px;
   display: inline-block;
   position: relative;
 }

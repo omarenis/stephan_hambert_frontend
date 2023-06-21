@@ -9,40 +9,34 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   templateUrl: './public-index.component.html',
   styleUrls: ['./public-index.component.css'],
   animations: [
-    trigger('left', [
-      state('true', style({
-        transform: 'translate(-100%)',
+    trigger('position', [
+      state('initial', style({
+        transform: 'translate(0%)'
       })),
-      state('false', style({
-        transform: 'translate(100%)'
+      state('initial', style({
+        transform: 'translate({{ initialState }}%)',
+        animate: '1.5s ease-in-out'
+      }), {params: {initialState: 0}}),
+      state('left', style({
+        transform: 'translateX(-100%)'
       })),
-      transition('true => false', animate('1.5s ease-in-out')),  // animation timing
-      transition('false => true', animate('1.5s ease-in-out')),
-      transition('true => true', animate('1.5s ease-in-out')),
-      transition('false => false', animate('1.5s ease-in-out'))
-    ]),
-    trigger('right', [
-      state('true', style({
-        transform: 'translate(100%)',
+      state('right', style({
+        transform: 'translateX(100%)'
       })),
-      state('false', style({
-        transform: 'translate(-100%)'
-      })),
-      transition('true => false', animate('1000ms linear')),  // animation timing
-      transition('false => true', animate('1000ms linear'))
+      transition('initial <=> left', animate('1.5s ease-in')),
+      transition('initial => right', animate('1.5s ease-in'))
     ])
   ]
 })
 export class PublicIndexComponent implements OnInit {
   step !: number;
   collections !: Collection[];
-  startItem !: number;
-  move !: string;
-  left !: string;
-  right !: string;
+  position !: string;
+  initialValue !: number;
+
   ngOnInit(): void {
-    this.step = 0;
-    this.startItem = 0;
+    this.initialValue = 0;
+    this.position = 'initial';
     this.document.body.classList.add('overflow-x-hidden');
   }
 
@@ -51,12 +45,13 @@ export class PublicIndexComponent implements OnInit {
   }
 
   prevSlider() {
-    this.left = 'true';
-    this.right = '';
+    this.position = 'left';
+    this.initialValue -= 50;
+    this.position ='initial';
   }
 
   nextSlider() {
-    this.right = 'true';
-    this.left = '';
+    this.position = this.position === 'right' ? 'right': 'right';
+    this.initialValue += 50;
   }
 }
