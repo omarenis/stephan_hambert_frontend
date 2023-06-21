@@ -10,21 +10,13 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   styleUrls: ['./public-index.component.css'],
   animations: [
     trigger('position', [
-      state('initial', style({
-        transform: 'translate(0%)'
-      })),
-      state('initial', style({
-        transform: 'translate({{ initialState }}%)',
-        animate: '1.5s ease-in-out'
-      }), {params: {initialState: 0}}),
       state('left', style({
-        transform: 'translateX(-100%)'
-      })),
+        transform: 'translate({{ initialState }}%)',
+      }), {params: {initialState: 0}}),
       state('right', style({
-        transform: 'translateX(100%)'
-      })),
-      transition('initial <=> left', animate('1.5s ease-in')),
-      transition('initial => right', animate('1.5s ease-in'))
+        transform: 'translate({{ initialState }}%)',
+      }), {params: {initialState: 0}}),
+      transition('* <=> *', animate('1.5s ease-in'))
     ])
   ]
 })
@@ -45,13 +37,12 @@ export class PublicIndexComponent implements OnInit {
   }
 
   prevSlider() {
-    this.position = 'left';
-    this.initialValue -= 50;
-    this.position ='initial';
+    this.position =  this.position ===  'right' ? 'left': 'right';
+    this.initialValue -= 100;
   }
 
   nextSlider() {
-    this.position = this.position === 'right' ? 'right': 'right';
-    this.initialValue += 50;
+    this.position = this.position ===  'right' ? 'left': 'right' ;
+    this.initialValue += 100;
   }
 }
