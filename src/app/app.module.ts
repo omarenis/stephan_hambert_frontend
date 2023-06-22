@@ -44,6 +44,7 @@ import {
   ProductDashboardFormComponent
 } from './screens/dashboard/stock-management/products/product-dashboard-form/product-dashboard-form.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CardComponent } from './screens/public/public-index/card/card.component';
 
 
 const routes: Route[] = [
@@ -151,7 +152,8 @@ const routes: Route[] = [
     DashboardComponent,
     ProductsComponent,
     ProductsDahsboardComponent,
-    ProductDashboardFormComponent
+    ProductDashboardFormComponent,
+    CardComponent
   ],
   imports: [
     HttpClientModule,

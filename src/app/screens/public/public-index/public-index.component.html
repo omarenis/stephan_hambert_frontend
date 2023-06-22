@@ -124,10 +124,19 @@
 <button (click)="prevSlider()" [disabled]="initialValue === 0">previous</button>
 <button (click)="nextSlider()">next</button>
 <h1 class="h1 text-center"> Our Collections </h1>
-<div class="position-absolute container-fluid overflow-x-hidden">
+<div class="">
   <div class="slider">
-    <div class="card  slider-item" [@position]="{value: position, params: {initialState: initialValue}}">
+    <div class="card slider-item" [@position]="{value: position, params: {initialState: initialValue}}">
       <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="200" [height]="600" loading="lazy">
+      <div class="card-body d-none">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+          This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card  slider-item" style="transform: scale(120%)"   [@position]="{value: position, params: {initialState: initialValue}}">
+      <img ngSrc="/assets/img/artistic.jpg" [width]="234 * 120 / 100" [height]="292 * 120 / 100" class="card-img-top" alt="..."  loading="lazy">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
@@ -136,8 +145,8 @@
       </div>
     </div>
     <div class="card  slider-item" [@position]="{value: position, params: {initialState: initialValue}}">
-      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="200" [height]="600" loading="lazy">
-      <div class="card-body">
+      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="234" [height]="292" loading="lazy">
+      <div class="card-body ">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
           This content is a little bit longer.</p>
@@ -145,35 +154,17 @@
       </div>
     </div>
     <div class="card  slider-item" [@position]="{value: position, params: {initialState: initialValue}}">
-      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="200" [height]="600" loading="lazy">
-      <div class="card-body">
+      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="234" [height]="292" loading="lazy">
+      <div class="card-body d-none">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
           This content is a little bit longer.</p>
         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
       </div>
     </div>
-    <div class="card  slider-item" [@position]="{value: position, params: {initialState: initialValue}}">
-      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="200" [height]="600" loading="lazy">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-          This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card  slider-item" [@position]="{value: position, params: {initialState: initialValue}}">
-      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="200" [height]="600" loading="lazy">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-          This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card slider-item " [@position]="{value: position, params: {initialState: initialValue}}">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
+    <div class="card  slider-item " [@position]="{value: position, params: {initialState: initialValue}}">
+      <img ngSrc="/assets/img/artistic.jpg" class="card-img-top" alt="..." [width]="234" [height]="292" loading="lazy">
+      <div class="card-body d-none">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
           This content is a little bit longer.</p>

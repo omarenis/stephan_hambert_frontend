@@ -29,9 +29,9 @@
       Export
     </button>
   </div>
-  <div app-categories [categories]="[]"></div>
+  <div app-categories [categories]="data"></div>
 </div>
-<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+<div class="modal fade" #model id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-body p-0">
@@ -40,6 +40,7 @@
             <h3 class="font-weight-bolder text-info text-gradient">Create category</h3>
           </div>
           <div class="card-body">
+            <p class="alert alert-danger" *ngIf="err">{{err}}</p>
             <form role="form text-left" [formGroup]="formCreationEditGroup" (ngSubmit)="submit($event)">
               <label>Title</label>
               <div class="input-group mb-3">

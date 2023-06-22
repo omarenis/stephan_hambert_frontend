@@ -20,21 +20,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr *ngFor="let category of categories">
       <td class="text-sm text-secondary mb-0 text-center">
-        1
+        {{category.id}}
       </td>
       <td class="text-sm text-secondary mb-0 text-center">
-        category title
+        {{category.title}}
       </td>
       <td class="text-sm text-secondary mb-0 text-center">
-        number of products
+        {{category.number_products}}
       </td>
       <td class="text-sm text-secondary mb-0 text-center">
         number products purshared
       </td>
       <td class="text-sm text-secondary mb-0">
-        number purshases
+        {{category.number_purchases}}
       </td>
       <td class="d-flex justify-content-end">
         <button type="button" class="btn btn-link">

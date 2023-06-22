@@ -16,7 +16,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       state('right', style({
         transform: 'translate({{ initialState }}%)',
       }), {params: {initialState: 0}}),
-      transition('* <=> *', animate('1.5s ease-in'))
+      transition('* <=> *', animate('1s ease-in'))
     ])
   ]
 })
