@@ -34,6 +34,11 @@ export abstract class CrudConsumer<T> implements OnInit {
     if (params !== undefined) {
       this.options.params = params;
     }
+    this.service.list(this.actionUrl, this.options).subscribe({
+      next: (data: T[]) => {
+        this.data  = data;
+      }
+    });
   }
 
   ngOnInit() {
@@ -56,5 +61,5 @@ export abstract class CrudConsumer<T> implements OnInit {
   {
 
   }
-
 }
+

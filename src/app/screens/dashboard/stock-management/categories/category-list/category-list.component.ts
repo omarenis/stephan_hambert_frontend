@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {AbstractRestService} from "../../../../../services/genericservice";
-import {Promo} from "../../../../../models/Promo";
 import {environment} from "../../../../../../environments/environment";
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
 import {Category, categoryObject} from "../../../../../models/Category";
@@ -17,5 +16,13 @@ export class CategoryListComponent extends CrudConsumer<Category>{
       params: {}
     }, categoryObject,
     true);
+  }
+
+  submit(event: Event) {
+    this.service.create(this.actionUrl, this.formCreationEditGroup.value).subscribe({
+      next: (response: Category) => {
+        this.data.push(response);
+      }
+    });
   }
 }

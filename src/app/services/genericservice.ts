@@ -17,8 +17,8 @@ export abstract class AbstractRestService<T> {
         return this.http.get<T>(`${url}/${id}`, options);
     }
 
-    create(url: string, object: T | FormData, options ?: object): Observable<T | FormData> {
-        return this.http.post<T | FormData>(url, object, options);
+    create(url: string, object: T | FormData, options ?: object): Observable<T> {
+        return this.http.post<T>(url, object, options);
     }
 
     put(url: string, id: number, object: T | FormData, options ?: object): Observable<T> {

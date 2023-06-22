@@ -2,9 +2,9 @@ import {Statistics} from "./Statistics";
 
 export interface Category extends Statistics
 {
-    label: string;
+    title: string;
 }
 
 export const categoryObject = {
-  label: {type: 'string', required: true}
+  title: {type: 'string', required: true}
 }

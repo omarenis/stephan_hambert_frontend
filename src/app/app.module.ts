@@ -40,7 +40,9 @@ import {ProductsComponent} from "./screens/dashboard/components/products/product
 import {
   ProductsDahsboardComponent
 } from './screens/dashboard/stock-management/products/products-dahsboard/products-dahsboard.component';
-import { ProductDashboardFormComponent } from './screens/dashboard/stock-management/products/product-dashboard-form/product-dashboard-form.component';
+import {
+  ProductDashboardFormComponent
+} from './screens/dashboard/stock-management/products/product-dashboard-form/product-dashboard-form.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -100,7 +102,7 @@ const routes: Route[] = [
         ],
       },
       {
-                path: 'products', children: [
+        path: 'products', children: [
           {
             path: '', component: ProductsDahsboardComponent
           },
@@ -165,9 +167,7 @@ const routes: Route[] = [
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
