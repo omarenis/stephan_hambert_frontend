@@ -45,6 +45,9 @@ import {
 } from './screens/dashboard/stock-management/products/product-dashboard-form/product-dashboard-form.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CardComponent } from './screens/public/public-index/card/card.component';
+import { CartComponent } from './screens/public/ecommerce/cart/cart.component';
+import { CheckoutComponent } from './screens/public/ecommerce/checkout/checkout.component';
+import { NewsletterComponent } from './screens/public/components/newsletter/newsletter.component';
 
 
 const routes: Route[] = [
@@ -79,6 +82,12 @@ const routes: Route[] = [
           },
           {
             path: 'products/:id', component: ProductPageComponent
+          },
+          {
+            path: 'cart', component: CartComponent
+          },
+          {
+            path: 'checkout', component: CheckoutComponent
           }
         ]
       },
@@ -153,7 +162,10 @@ const routes: Route[] = [
     ProductsComponent,
     ProductsDahsboardComponent,
     ProductDashboardFormComponent,
-    CardComponent
+    CardComponent,
+    CartComponent,
+    CheckoutComponent,
+    NewsletterComponent
   ],
   imports: [
     HttpClientModule,

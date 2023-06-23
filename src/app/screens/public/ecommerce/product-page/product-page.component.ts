@@ -21,7 +21,12 @@ export class ProductPageComponent implements OnInit {
     this.activatedRouter.params.subscribe(params => {
       if (params['id'] !== undefined) {
         this.productService.get(this.actionUrl, Number(params['id'])).subscribe(
-          (product: Product) => this.product = product
+          {
+            next: (product: Product) => this.product = product,
+            error: (err) => {
+              console.log(err);
+            }
+          }
         )
       }
     })

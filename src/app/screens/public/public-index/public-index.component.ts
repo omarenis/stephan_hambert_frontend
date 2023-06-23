@@ -25,6 +25,29 @@ export class PublicIndexComponent implements OnInit {
   collections !: Collection[];
   position !: string;
   initialValue !: number;
+  customOptions  =   {
+    loop: true,
+    margin: 10,
+    dots: false,
+    center: true,
+    nav: true,
+    autoplay: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 3
+      }
+    },
+  };
+  order = 0;
 
   ngOnInit(): void {
     this.initialValue = 0;
@@ -37,12 +60,14 @@ export class PublicIndexComponent implements OnInit {
   }
 
   prevSlider() {
-    this.position =  this.position ===  'right' ? 'left': 'right';
+    this.position = this.position === 'right' ? 'left' : 'right';
     this.initialValue -= 100;
   }
 
-  nextSlider() {
-    this.position = this.position ===  'right' ? 'left': 'right' ;
+  nextSlider(event: any) {
+
+    console.log(event.currentTarget.classList);
+    this.position = this.position === 'right' ? 'left' : 'right';
     this.initialValue += 100;
   }
 }
