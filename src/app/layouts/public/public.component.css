@@ -1,17 +1,61 @@
 .nav-link {
   font-size: 1.1em;
 }
-.bg-transparent
-{
+
+.bg-transparent {
   transition: background-color 0.3s ease;
 }
-.bg-black
-{
+
+.bg-black {
   background-color: black;
-  transition: background-color 0.3s  ease;
+  transition: background-color 0.3s ease;
 }
-.bg-black > #navigation > ul > li > a
-{
+
+.bg-black > #navigation > ul > li > a {
   color: white;
 
+}
+
+/* Fotter CSS */
+.footer {
+  background-color: #f8f6f1;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.newsletter-input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.footer-titles {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 5px;
 }
