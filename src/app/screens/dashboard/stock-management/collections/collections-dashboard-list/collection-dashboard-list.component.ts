@@ -16,7 +16,12 @@ export class CollectionDashboardList extends CrudConsumer<Collection> {
       headers: {},
       params: {}
     }, {
-
     });
   }
+
+  orderBy(id: string) {
+
+  }
+
+  protected readonly Number = Number;
 }

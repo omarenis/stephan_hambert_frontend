@@ -1,0 +1,106 @@
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" (click)="moveToSlide(0)"
+            [ngClass]="{'active': step === 0}" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1" [attr.aria-current]="step === 0"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" (click)="moveToSlide(1)" data-bs-slide-to="1"
+            [ngClass]="{'active': step === 1}" aria-label="Slide 2" [attr.aria-current]="step === 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" (click)="moveToSlide(2)" data-bs-slide-to="2"
+            [ngClass]="{'active': step === 2}" aria-label="Slide 3" [attr.aria-current]="step === 2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item" [ngClass]="{'active': step === 0}">
+      <div class="page-header min-vh-100"
+           style="background-image: url('/assets/img/carousel1.jpg');">
+        <span class="mask bg-gradient-dark"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 my-auto">
+              <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Pricing Plans</h4>
+              <h1 class="text-white fadeIn2 fadeInBottom">Work with the rockets</h1>
+              <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Wealth creation is an evolutionarily recent
+                positive-sum game. Status is an old zero-sum game. Those attacking wealth creation are often just
+                seeking status.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" [ngClass]="{'active': step === 1}" id="hello">
+      <div class="page-header min-vh-100 m-"
+           style="background-image: url('/assets/img/carousel2.png');">
+        <span class="mask bg-gradient-dark"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 my-auto">
+              <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Our Team</h4>
+              <h1 class="text-white fadeIn2 fadeInBottom">Work with the best</h1>
+              <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Free people make free choices. Free choices mean
+                you get unequal outcomes. You can have freedom, or you can have equal outcomes. You can’t have both.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" [ngClass]="{'active': step === 2}">
+      <div class="page-header min-vh-100"
+           style="background-image: url('https://images.unsplash.com/photo-1552793494-111afe03d0ca?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1920&amp;q=80');">
+        <span class="mask bg-gradient-dark"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 my-auto">
+              <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Office Places</h4>
+              <h1 class="text-white fadeIn2 fadeInBottom">Work from home</h1>
+              <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">You’re spending time to save money when you
+                should be spending money to save time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="min-vh-100 position-absolute w-100 top-0">
+    <a class="carousel-control-prev pe-7" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon position-absolute bottom-30" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next ps-7" href="#carouselExampleControls" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon position-absolute bottom-50" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+</div>
+<section class="container-xl container-fluid">
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <span class="title-accent fs-6 text-uppercase" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000"
+            data-aos-once="true">About us</span>
+      <h3 class="py-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1500" data-aos-once="true">Vaso is
+        the only best online store for varieties of collection of clean and beautiful vases.</h3>
+      <p data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1800" data-aos-once="true">Et id sapien id enim,
+        sit tempor cursus elit, fusce. Nunc tristique facilisis consectetur at vivamus ut porta porta. Ut nisl, tortor,
+        aliquam blandit vitae vehicula vivamus leo nullam urna, scelerisque unc lectus phasellus adipiscing arcu.
+        Tristique facilisis nunc consectetur at tempor cursusut porta.</p>
+    </div>
+  </div>
+</section>
+<ul class="nav nav-pills d-flex align-items-center justify-content-center" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
+  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+  <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
+  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+</div>

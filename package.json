@@ -33,8 +33,11 @@
     "apexcharts": "^3.37.3",
     "express": "^4.15.2",
     "flatpickr": "^4.6.13",
+    "install": "^0.13.0",
+    "jquery": "^3.7.0",
     "ng-apexcharts": "^1.7.4",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.12",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

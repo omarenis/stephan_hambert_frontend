@@ -26,6 +26,7 @@ export class CategoryListComponent extends CrudConsumer<Category>{
     this.service.create(this.actionUrl, this.formCreationEditGroup.value).subscribe({
       next: (response: Category) => {
         this.data.push(response);
+        this.modelForm.nativeElement.click();
       },
       error: (err) => {
         console.log(err);

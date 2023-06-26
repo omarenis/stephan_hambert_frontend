@@ -4,7 +4,7 @@ import {AbstractRestService} from "../../../../services/genericservice";
 import {Router} from "@angular/router";
 interface Operation {
   operation: string;
-  data: {[key: string]: Category | string}
+  data: {[key: string]: object | number | string}
 }
 @Component({
   selector: '[app-categories]',
@@ -14,7 +14,7 @@ interface Operation {
 export class CategoriesComponent implements OnInit{
 
   @Input() categories !: Category[];
-  @Input() editable !: string;
+  @Input() editable !: boolean;
   @Output() action !: EventEmitter<Operation>;
   constructor(private service: AbstractRestService<Category>, private router: Router) {
   }
@@ -29,4 +29,13 @@ export class CategoriesComponent implements OnInit{
       }
     })
   }
+
+  delete(id: number) {
+    this.action.emit({
+      operation: 'delete',
+      data: {"id": id}
+    })
+  }
+
+  protected readonly Number = Number;
 }

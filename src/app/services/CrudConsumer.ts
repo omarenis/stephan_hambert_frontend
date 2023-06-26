@@ -59,7 +59,7 @@ export abstract class CrudConsumer<T> implements OnInit {
   }
   delete(id: number): void
   {
-
+    this.service.delete(this.actionUrl, id, this.options).then(( )=> {});
   }
 }
 

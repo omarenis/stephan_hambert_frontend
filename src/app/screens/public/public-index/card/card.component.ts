@@ -8,10 +8,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     animations: [
     trigger('position', [
       state('left', style({
-        transform: 'translate({{ initialState }}%)',
+        transform: 'translate({{ initialState }}px)',
       }), {params: {initialState: 0}}),
       state('right', style({
-        transform: 'translate({{ initialState }}%)',
+        transform: 'translate({{ initialState }}px)',
       }), {params: {initialState: 0}}),
       transition('* <=> *', animate('1s ease-in'))
     ])
@@ -20,8 +20,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class CardComponent implements OnInit{
   @Input() position !: string;
   @Input() initialValue !: number;
-
+  @Input() order !: number;
   ngOnInit(): void {
   }
-
 }

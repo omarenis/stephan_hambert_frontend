@@ -3,33 +3,11 @@
   height: 10px;
   border: 0;
   border-radius: 10px;
+  background-color:  white;
 }
 .slider
 {
   display: block;
   align-content: center;
   height: 40vh !important;
-}
-img {
-  width: 40% !important;
-  height: 50% !important;
-  align-self: center;
-}
-
-owl-carousel-o {
-  position: relative;
-}
-
-.owl-prev, .owl-next {
-  position:absolute;
-  top: 30%;
-}
-.owl-prev {
-  opacity: 0;
-  display: none;
-}
-
-.owl-next {
-  right: 0;
-  display: none;
 }
