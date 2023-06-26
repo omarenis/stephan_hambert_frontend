@@ -36,6 +36,7 @@
     "install": "^0.13.0",
     "jquery": "^3.7.0",
     "ng-apexcharts": "^1.7.4",
+    "ngx-owl-carousel-o": "^15.0.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.12",
     "tslib": "^2.3.0",

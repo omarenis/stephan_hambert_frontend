@@ -1,3 +1,17 @@
 .nav-link {
   font-size: 1.1em;
 }
+.bg-transparent
+{
+  transition: background-color 0.3s ease;
+}
+.bg-black
+{
+  background-color: black;
+  transition: background-color 0.3s  ease;
+}
+.bg-black > #navigation > ul > li > a
+{
+  color: white;
+
+}

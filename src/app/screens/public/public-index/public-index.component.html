@@ -12,7 +12,7 @@
     <div class="carousel-item" [ngClass]="{'active': step === 0}">
       <div class="page-header min-vh-100"
            style="background-image: url('/assets/img/carousel1.jpg');">
-        <span class="mask bg-gradient-dark"></span>
+        <span class="mask"></span>
         <div class="container">
           <div class="row">
             <div class="col-lg-6 my-auto">
@@ -29,7 +29,7 @@
     <div class="carousel-item" [ngClass]="{'active': step === 1}" id="hello">
       <div class="page-header min-vh-100 m-"
            style="background-image: url('/assets/img/carousel2.png');">
-        <span class="mask bg-gradient-dark"></span>
+        <span class="mask"></span>
         <div class="container">
           <div class="row">
             <div class="col-lg-6 my-auto">
@@ -45,7 +45,7 @@
     <div class="carousel-item" [ngClass]="{'active': step === 2}">
       <div class="page-header min-vh-100"
            style="background-image: url('https://images.unsplash.com/photo-1552793494-111afe03d0ca?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1920&amp;q=80');">
-        <span class="mask bg-gradient-dark"></span>
+        <span class="mask bg-gradient-faded-danger"></span>
         <div class="container">
           <div class="row">
             <div class="col-lg-6 my-auto">
@@ -70,7 +70,7 @@
     </a>
   </div>
 </div>
-<section class="container-xl container-fluid">
+<section class="container-xl container-fluid mt-5 text-center">
   <div class="row">
     <div class="offset-md-2 col-md-8">
       <span class="title-accent fs-6 text-uppercase" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000"
@@ -84,6 +84,93 @@
     </div>
   </div>
 </section>
+
+<section class="container-fluid min-height-100 mt-2 mb-2">
+  <owl-carousel-o [options]="carousel">
+    <ng-container *ngFor="let product of products; let i=index">
+      <ng-template class="slide" [id]="i.toString()" carouselSlide>
+        <div class="card ms-2 me-2 p-2">
+          <img ngSrc="{{product.image}}" class="card-img" [width]="200" [height]="200" alt="...">
+          <div class="mt-2">
+            <h5 class="card-title text-center">Card title</h5>
+            <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in to
+              additional
+              content. This content is a little bit longer.</p>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>
+<div class="card text-bg-dark min-height-100 mt-5" id="section">
+  <img ngSrc="/assets/img/stephane.png" [width]="width" [height]="height" class="card-img" alt="...">
+  <div class="card-img-overlay ps-10 container-fluid" style="margin-top: 32%">
+    <h5 class="card-title" style="font-size: 60px; font-weight: 400; color: black; font-family: Lucida Fax;">
+      L’HISTOIRE</h5>
+    <p class="card-text" style="width: 529px; color: black">Lorem Ipsum is simply dummy text of the printing and
+      typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+      unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    <button class="btn btn-dark" id="readMore" style="background-color: #272727">Découvrir</button>
+  </div>
+</div>
+<section class="row mt-5" style="padding-left: 53px; padding-right: 53px">
+  <article class="col-md-6 col-sm-12" *ngFor="let collection of collections">
+    <div class="card container pt-0 pe-0 ps-0 border-radius-0" style="border: 1px solid black">
+      <img ngSrc="{{collection.image}}" [width]="900" [height]="600" alt=""
+           class="card-img-top border-radius-0 img-fluid"/>
+      <div class=" justify-content-center">
+        <h4 class="card-title text-center"
+            style="color: black; font-weight: semibold; font-family: Lucida Fax; font-size: 50px">
+          {{collection.label}}
+        </h4>
+        <p class="text-center text-black-50 card-description">
+          {{collection.description}}
+        </p>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-dark border-radius-0">
+            Découvrir
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+<div class="card text-bg-dark min-height-100 border-radius-0 mt-5" id="">
+  <img ngSrc="/assets/img/stephane2.png" [width]="width" [height]="height" class="card-img border-radius-0" alt="...">
+  <div class="card-img-overlay container-fluid" style="margin-top: 32%">
+
+    <div class="d-flex flex-column align-items-end pe-5">
+      <h5 class="card-title" style="font-size: 60px; font-weight: 400; color: black; font-family: Lucida Fax;">
+        L’HISTOIRE</h5>
+      <p class="card-text text-right" style="width: 529px; color: black">Lorem Ipsum is simply dummy text of the
+        printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      <button class="btn btn-dark" id="readMore" style="background-color: #272727">Découvrir</button>
+    </div>
+  </div>
+</div>
+<div class="d-flex flex-column justify-content-center mt-5">
+  <h1 class="h1 text-center" style="color: black">NEWSLETTER</h1>
+  <p class="newsletter-para">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.
+  </p>
+  <form class="d-flex justify-content-center mt-5 w-100">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputPassword2" class="sr-only">Email adress</label>
+      <input type="email" style="width: 404px;
+height: 59px;
+" class="form-control" id="inputPassword2" placeholder="Email Address">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" style="background-color: #272727; width: 203px;
+height: 59px;">S’inscrire</button>
+  </form>
+</div>
+<!--
 <ul class="nav nav-pills d-flex align-items-center justify-content-center" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
@@ -104,3 +191,4 @@
   <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
   <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
 </div>
+-->
