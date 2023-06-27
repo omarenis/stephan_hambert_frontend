@@ -1,4 +1,4 @@
-import {Statistics} from "./Statistics";
+import {Statistics} from "../Statistics";
 
 export interface Category extends Statistics
 {

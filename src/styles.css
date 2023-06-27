@@ -21,8 +21,11 @@
 	-o-transition: background-color  0.5s ease-out;
 	transition: background-color  0.5s ease-out;
 }
-div.owl-item.active {
+.right {
   cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWwxOCAxNi4yMzZMMSAzNCIgc3Ryb2tlPSIjMjUyNTI1IiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=") 10 17,pointer;
+}
+.left {
+  cursor: url("/assets/arrows/arrow-left.svg") 10 17, pointer;
 }
 .owl-item.active.center {
   cursor: pointer;

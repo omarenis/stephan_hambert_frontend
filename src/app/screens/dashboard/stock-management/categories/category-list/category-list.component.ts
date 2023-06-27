@@ -2,8 +2,9 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {environment} from "../../../../../../environments/environment";
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
-import {Category, categoryObject} from "../../../../../models/Category";
+import {Category, categoryObject} from "../../../../../models/stock_managment/Category";
 import {er} from "@fullcalendar/core/internal-common";
+import {Operation} from "../../../../../models/forms";
 
 @Component({
   selector: 'app-category-list',
@@ -33,5 +34,9 @@ export class CategoryListComponent extends CrudConsumer<Category>{
         this.err = err.err.message;
       }
     });
+  }
+
+  action(event: Operation) {
+
   }
 }

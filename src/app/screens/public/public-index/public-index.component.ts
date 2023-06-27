@@ -1,11 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Collection} from "../../../models/Collection";
+import {Component, ElementRef, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
+import {Collection} from "../../../models/stock_managment/Collection";
 import {AbstractRestService} from "../../../services/genericservice";
 import {DOCUMENT} from "@angular/common";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Product} from "../../../models/Product";
-import {Category} from "../../../models/Category";
-import {Promo} from "../../../models/Promo";
+import {Product} from "../../../models/stock_managment/Product";
+import {Category} from "../../../models/stock_managment/Category";
+import {Promo} from "../../../models/stock_managment/Promo";
 
 @Component({
   selector: 'app-public-index',
@@ -14,6 +14,7 @@ import {Promo} from "../../../models/Promo";
 })
 export class PublicIndexComponent implements OnInit {
   step !: number;
+  navStep !: number;
   collections !: ({
     image: string;
     description: string;
@@ -28,6 +29,7 @@ export class PublicIndexComponent implements OnInit {
   products !: Product[];
   width !: number;
   height !: number;
+  @ViewChild('productContainer') el !: ElementRef;
   constructor(private collectionService: AbstractRestService<Collection>, @Inject(DOCUMENT) private document: Document) {
     document.documentElement.setAttribute('style', 'overflow-x: hidden');
   }
@@ -43,6 +45,8 @@ export class PublicIndexComponent implements OnInit {
       loop: true,
       dots: false,
       navSpeed: 800,
+      center: true,
+      autoplay: true,
       responsive: {
         0: {
           items: 1
@@ -51,7 +55,7 @@ export class PublicIndexComponent implements OnInit {
           items: 3
         },
         740: {
-          items: 4
+          items: 3
         },
         940: {
           items: 5
@@ -151,17 +155,29 @@ export class PublicIndexComponent implements OnInit {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
       id: 0
     },
-    {
-      image: '/assets/img/collections/collection_serpent.png',
-      label: 'LA COLLECTION SERPENT',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
-      id: 0
-    }]
+      {
+        image: '/assets/img/collections/collection_serpent.png',
+        label: 'LA COLLECTION SERPENT',
+        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
+        id: 0
+      }];
+    this.navStep = 0;
   }
 
   prevSlider() {
     this.position = this.position === 'right' ? 'left' : 'right';
     this.initialValue -= 100;
+  }
+
+  changeCursorArrow(event: MouseEvent) {
+    console.log(event.clientX > window.innerWidth * 2 / 4);
+    if (event.clientX > window.innerWidth * 2 / 4) {
+      this.mouseLogo = true;
+    }
+    if (event.clientX < window.innerWidth / 4) {
+      this.mouseLogo =  false;
+    }
+    this.mouseLogo =  null;
   }
 
   nextSlider(event: any) {
@@ -171,8 +187,17 @@ export class PublicIndexComponent implements OnInit {
   }
 
   moveToSlide(step: number) {
-    this.transitionStep = false;
+    this.step = step;
   }
 
   protected readonly window = window;
+  mouseLogo !: boolean | null;
+
+  selectProducts(navStep: number) {
+    this.navStep = navStep;
+  }
+
+  startAnimation(swipeup: string, $event: any, i: number) {
+    console.log(i);
+  }
 }

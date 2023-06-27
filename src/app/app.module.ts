@@ -49,6 +49,7 @@ import { CartComponent } from './screens/public/ecommerce/cart/cart.component';
 import { CheckoutComponent } from './screens/public/ecommerce/checkout/checkout.component';
 import { NewsletterComponent } from './screens/public/components/newsletter/newsletter.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MousePositionDirective } from './directives/mouse-position.directive';
 
 const routes: Route[] = [
   {
@@ -166,6 +167,7 @@ const routes: Route[] = [
     CartComponent,
     CheckoutComponent,
     NewsletterComponent,
+    MousePositionDirective,
   ],
   imports: [
     CarouselModule,

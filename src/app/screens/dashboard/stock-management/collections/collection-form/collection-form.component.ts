@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormView} from "../../../../../services/FormView";
-import {Collection, collectionObject} from "../../../../../models/Collection";
+import {Collection, collectionObject} from "../../../../../models/stock_managment/Collection";
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../../environments/environment";

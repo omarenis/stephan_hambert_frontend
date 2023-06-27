@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
-import {Product} from "../../../../models/Product";
+import {Product} from "../../../../models/stock_managment/Product";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 
