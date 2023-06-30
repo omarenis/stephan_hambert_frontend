@@ -1,10 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Category, categoryObject} from "../../../../models/Category";
+import {Category, categoryObject} from "../../../../models/stock_managment/Category";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {Router} from "@angular/router";
-import {Operation} from "../extra";
-
-
+import {Operation} from "../../../../models/forms";
 
 @Component({
   selector: '[app-categories]',
@@ -15,7 +13,7 @@ export class CategoriesComponent implements OnInit {
 
   @Input() categories !: Category[];
   @Input() editable !: boolean;
-  @Output() action : EventEmitter<Operation> = new EventEmitter<Operation>();
+  @Output() action: EventEmitter<Operation> = new EventEmitter<Operation>();
 
   constructor(private service: AbstractRestService<Category>, private router: Router) {
   }
@@ -36,7 +34,7 @@ export class CategoriesComponent implements OnInit {
     if (id !== undefined) {
       this.action.emit({
         operation: 'delete',
-        data: {id}
+        data: {"id": id}
       })
     }
   }

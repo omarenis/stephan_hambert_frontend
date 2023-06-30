@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+interface Inscription {
+  email: string;
+}
 
 @Component({
-  selector: 'app-newsletter',
+  selector: '[app-newsletter]',
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.css']
 })
-export class NewsletterComponent {
 
+
+export class NewsletterComponent implements OnInit {
+  constructor() {
+  }
+  ngOnInit() {
+
+  }
 }

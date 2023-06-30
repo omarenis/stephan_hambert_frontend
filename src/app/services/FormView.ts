@@ -31,6 +31,7 @@ export abstract class FormView<T> implements OnInit {
       }
     });
     this.formGroup = createFormCreationEditGroup(this.object);
+    console.log(this.formGroup);
     this.activatedRoute.params.subscribe(params => {
       console.log(Number(params['id']));
       if (params['id'] !== null) {

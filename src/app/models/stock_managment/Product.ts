@@ -1,6 +1,6 @@
 import {Category} from "./Category";
 import {Promo} from "./Promo";
-import {Object} from "./generic";
+import {Object} from "../generic";
 
 export interface Product {
   title: string;

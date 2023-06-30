@@ -1,7 +1,10 @@
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Object as GenericObject} from "./generic";
 
-
+export interface Operation {
+  operation: string;
+  data: {[key: string]: object | number | string}
+}
 export function getDefaultValue(type: string): false | '' | 0 {
   if (type === 'number') {
     return 0;

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from "../../../../models/Product";
+import {Product} from "../../../../models/stock_managment/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {environment} from "../../../../../environments/environment";
 
