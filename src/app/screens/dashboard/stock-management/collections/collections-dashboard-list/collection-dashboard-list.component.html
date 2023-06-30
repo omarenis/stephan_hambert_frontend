@@ -1,8 +1,8 @@
 <div class="ms-auto card">
   <div class="ms-auto me-2 mb-3 mt-5 d-flex">
-    <button class="btn bg-gradient-primary btn-sm mb-0 me-3" data-bs-toggle="modal" data-bs-target="#modal-form">+&nbsp;
-      New Product
-    </button>
+    <a class="btn bg-gradient-primary btn-sm mb-0 me-3" routerLink="/dashboard/collections/create">+&nbsp;
+      New Collection
+    </a>
     <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
       Import
     </button>
@@ -29,8 +29,8 @@
       Export
     </button>
   </div>
-  <div class="table table-responsive">
-    <table class="table mb-0" style="overflow-y: scroll; max-height: 400px">
+  <div class="table table-responsive tableWrap">
+    <table class="table mb-0">
       <thead>
       <tr>
         <th scope="col" (click)="orderBy('id')"
@@ -43,7 +43,8 @@
             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">number products
         </th>
         <th scope="col" (click)="orderBy('category')"
-            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">number purchases
+            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">number
+          purchases
         </th>
         <th scope="col" (click)="orderBy('quantity')"
             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">total gain
@@ -59,13 +60,13 @@
           <p class="text-sm text-secondary mb-0 ">1</p>
         </td>
         <td class=" text-center">
-        <div class="d-flex align-content-center">
-                    <img
-            ngSrc=""
-            class="avatar avatar-md me-3" alt="table image" [width]="40" [height]="40">
-          <h5 class="mb-0 text-sm">{{collection.label}}</h5>
+          <div class="d-flex align-content-center">
+            <img
+              ngSrc=""
+              class="avatar avatar-md me-3" alt="table image" [width]="40" [height]="40">
+            <h5 class="mb-0 text-sm">{{collection.label}}</h5>
 
-        </div>
+          </div>
         <td class="align-items-center text-center">
           <p class="text-sm text-secondary">
             {{collection.number_products}}
@@ -82,7 +83,7 @@
           </p>
         </td>
         <td class="d-flex">
-          <button type="button" class="btn btn-link">
+            <button type="button" class="btn btn-link" (click)="delete(collection.id)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="24px" fill="red">
               <path
                 d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"/>

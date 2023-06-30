@@ -1,4 +1,5 @@
 import {NgModule, isDevMode} from '@angular/core';
+ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
@@ -49,6 +50,12 @@ import { CartComponent } from './screens/public/ecommerce/cart/cart.component';
 import { CheckoutComponent } from './screens/public/ecommerce/checkout/checkout.component';
 import { NewsletterComponent } from './screens/public/components/newsletter/newsletter.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import {FlatpickrModule} from "angularx-flatpickr";
+import { ChatComponent } from './screens/public/components/chat/chat.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {environment} from "../environments/environment";
+import { PartnersComponent } from './screens/dashboard/partners/partners.component';
+const config: SocketIoConfig = { url: environment.url, options: {} };
 
 const routes: Route[] = [
   {
@@ -166,10 +173,15 @@ const routes: Route[] = [
     CartComponent,
     CheckoutComponent,
     NewsletterComponent,
+    ChatComponent,
+    PartnersComponent,
   ],
   imports: [
     CarouselModule,
     HttpClientModule,
+    EditorModule,
+    FlatpickrModule.forRoot(),
+    SocketIoModule.forRoot(config),
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -182,7 +194,9 @@ const routes: Route[] = [
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+          { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

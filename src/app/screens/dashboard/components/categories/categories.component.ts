@@ -2,25 +2,27 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Category, categoryObject} from "../../../../models/Category";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {Router} from "@angular/router";
-interface Operation {
-  operation: string;
-  data: {[key: string]: object | number | string}
-}
+import {Operation} from "../extra";
+
+
+
 @Component({
   selector: '[app-categories]',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit{
+export class CategoriesComponent implements OnInit {
 
   @Input() categories !: Category[];
   @Input() editable !: boolean;
-  @Output() action !: EventEmitter<Operation>;
+  @Output() action : EventEmitter<Operation> = new EventEmitter<Operation>();
+
   constructor(private service: AbstractRestService<Category>, private router: Router) {
   }
+
   ngOnInit() {
-    this.action = new EventEmitter<Operation>();
   }
+
   orderBy(key: string) {
     this.action.emit({
       operation: 'orderBy',
@@ -30,12 +32,12 @@ export class CategoriesComponent implements OnInit{
     })
   }
 
-  delete(id: number) {
-    this.action.emit({
-      operation: 'delete',
-      data: {"id": id}
-    })
+  delete(id: number | undefined) {
+    if (id !== undefined) {
+      this.action.emit({
+        operation: 'delete',
+        data: {id}
+      })
+    }
   }
-
-  protected readonly Number = Number;
 }

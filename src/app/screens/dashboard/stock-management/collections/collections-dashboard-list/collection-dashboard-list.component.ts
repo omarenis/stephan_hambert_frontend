@@ -18,10 +18,4 @@ export class CollectionDashboardList extends CrudConsumer<Collection> {
     }, {
     });
   }
-
-  orderBy(id: string) {
-
-  }
-
-  protected readonly Number = Number;
 }

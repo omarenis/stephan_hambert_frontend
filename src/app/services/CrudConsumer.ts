@@ -57,9 +57,19 @@ export abstract class CrudConsumer<T> implements OnInit {
     });
     this.getData();
   }
-  delete(id: number): void
+  delete(id: number | undefined): void
   {
+    if(id !== undefined)
+    {
     this.service.delete(this.actionUrl, id, this.options).then(( )=> {});
+    }
+  }
+
+  orderBy(attribute: string) {
+    this.service.list(`${this.actionUrl}`, {
+      params: {
+        orderBy: attribute
+      }
+    })
   }
 }
-

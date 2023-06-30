@@ -43,6 +43,7 @@ export class PublicIndexComponent implements OnInit {
       loop: true,
       dots: false,
       navSpeed: 800,
+      center: true,
       responsive: {
         0: {
           items: 1

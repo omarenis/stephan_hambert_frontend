@@ -7,7 +7,7 @@ export interface Collection extends Statistics {
 }
 
 export const collectionObject = {
-  image: {type: 'file', required: true},
-  label: {type: 'string', required: true},
-  description: {type: 'string', required: true}
+  image: { type: 'file', required: true },
+  label: { type: 'string', required: true },
+  description: { type: 'string', required: true }
 }

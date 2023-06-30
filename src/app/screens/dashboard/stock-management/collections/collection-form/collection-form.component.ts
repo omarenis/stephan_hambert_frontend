@@ -24,5 +24,9 @@ import {environment} from "../../../../../../environments/environment";
 
   submit(event: Event) {
     event.preventDefault();
+    console.log(this.formGroup.invalid);
+    console.log(this.formGroup.value);
   }
+
+  protected readonly window = window;
 }

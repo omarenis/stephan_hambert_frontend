@@ -32,9 +32,15 @@ export abstract class FormView<T> implements OnInit {
     });
     this.formGroup = createFormCreationEditGroup(this.object);
     this.activatedRoute.params.subscribe(params => {
+      console.log(Number(params['id']));
       if (params['id'] !== null) {
-        this.service.get(this.actionUrl, Number(params['id'])).subscribe((instance: T): void => {
-          setFormGroupValues((instance as { [key: string]: string | number | boolean }), this.formGroup);
+        this.service.get(this.actionUrl, Number(params['id'])).subscribe({
+          next: (instance: T): void => {
+            setFormGroupValues((instance as { [key: string]: string | number | boolean }), this.formGroup);
+          },
+          error: () => {
+
+          }
         });
       }
     });

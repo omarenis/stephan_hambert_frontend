@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
-import {Promo} from "../../../../../models/Promo";
+import {Promo, promoObject} from "../../../../../models/Promo";
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {environment} from "../../../../../../environments/environment";
 
@@ -10,15 +10,15 @@ import {environment} from "../../../../../../environments/environment";
   styleUrls: ['./promo-list.component.css']
 })
 export class PromoListComponent extends CrudConsumer<Promo>{
+  err !: string;
   constructor(protected override service: AbstractRestService<Promo>) {
     super(service, `${environment.url}/promos`, {
       headers: {},
       params: {}
-    }, {
-      label: {type: 'string', required: true},
-      datetime_start: {type: 'date', required: true},
-      datetime_end: {type: 'date', required: true},
-      percentage: {type: 'float', required: true}
-    }, true);
+    }, promoObject, true);
+  }
+
+  submit($event: any) {
+
   }
 }

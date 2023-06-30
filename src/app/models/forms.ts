@@ -27,7 +27,7 @@ export function createFilterFormGroup(object: { [key: string]: GenericObject<any
   return new FormGroup(formControls);
 }
 
-export function setFormGroupValues(instance: { [key: string]: string | number | boolean }, formGroup: FormGroup) {
+export function  setFormGroupValues(instance: { [key: string]: string | number | boolean }, formGroup: FormGroup) {
   Object.keys(instance).forEach((key) => {
     if (formGroup.contains(key)) {
       formGroup.get(key)?.setValue(instance[key])

@@ -3,7 +3,7 @@ import {AbstractRestService} from "../../../../../services/genericservice";
 import {environment} from "../../../../../../environments/environment";
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
 import {Category, categoryObject} from "../../../../../models/Category";
-import {er} from "@fullcalendar/core/internal-common";
+import {Operation} from "../../../components/extra";
 
 @Component({
   selector: 'app-category-list',
@@ -33,5 +33,9 @@ export class CategoryListComponent extends CrudConsumer<Category>{
         this.err = err.err.message;
       }
     });
+  }
+
+  action($event: Operation) {
+    console.log($event.operation);
   }
 }
