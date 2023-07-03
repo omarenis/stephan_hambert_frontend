@@ -50,6 +50,7 @@ import { CheckoutComponent } from './screens/public/ecommerce/checkout/checkout.
 import { NewsletterComponent } from './screens/public/components/newsletter/newsletter.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
  import { EditorModule } from '@tinymce/tinymce-angular';
+import {MousePositionDirective} from "./directives/mouse-position.directive";
 const routes: Route[] = [
   {
     path: '', component: AppComponent,
@@ -134,6 +135,7 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     AppComponent,
+    MousePositionDirective,
     ListElementsComponent,
     FormViewTestComponent,
     PublicComponent,

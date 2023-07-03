@@ -51,7 +51,7 @@ export class PublicIndexComponent implements OnInit {
           items: 3
         },
         740: {
-          items: 4
+          items: 3
         },
         940: {
           items: 5
