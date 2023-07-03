@@ -1,11 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Collection} from "../../../models/Collection";
 import {AbstractRestService} from "../../../services/genericservice";
 import {DOCUMENT} from "@angular/common";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Product} from "../../../models/Product";
-import {Category} from "../../../models/Category";
-import {Promo} from "../../../models/Promo";
+import {Collection} from "../../../models/stock_managment/Collection";
+import {Product} from "../../../models/stock_managment/Product";
+
 
 @Component({
   selector: 'app-public-index',

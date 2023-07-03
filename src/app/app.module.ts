@@ -49,7 +49,7 @@ import { CartComponent } from './screens/public/ecommerce/cart/cart.component';
 import { CheckoutComponent } from './screens/public/ecommerce/checkout/checkout.component';
 import { NewsletterComponent } from './screens/public/components/newsletter/newsletter.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
+ import { EditorModule } from '@tinymce/tinymce-angular';
 const routes: Route[] = [
   {
     path: '', component: AppComponent,
@@ -170,6 +170,7 @@ const routes: Route[] = [
   imports: [
     CarouselModule,
     HttpClientModule,
+    EditorModule,
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

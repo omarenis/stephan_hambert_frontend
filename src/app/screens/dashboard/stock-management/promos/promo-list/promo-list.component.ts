@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
-import {Promo, promoObject} from "../../../../../models/Promo";
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {environment} from "../../../../../../environments/environment";
+import {Promo, promoObject} from "../../../../../models/stock_managment/Promo";
 
 @Component({
   selector: 'app-promo-list',
