@@ -2,8 +2,8 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractRestService} from "../../../../../services/genericservice";
 import {environment} from "../../../../../../environments/environment";
 import {CrudConsumer} from "../../../../../services/CrudConsumer";
-import {Category, categoryObject} from "../../../../../models/Category";
 import {Operation} from "../../../components/extra";
+import {Category, categoryObject} from "../../../../../models/stock_managment/Category";
 
 @Component({
   selector: 'app-category-list',
