@@ -4,6 +4,7 @@ import {DOCUMENT} from "@angular/common";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {Collection} from "../../../models/stock_managment/Collection";
 import {Product} from "../../../models/stock_managment/Product";
+import {FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -182,4 +183,5 @@ export class PublicIndexComponent implements OnInit {
   }
 
   protected readonly window = window;
+  newsletterFormGroup !: FormGroup;
 }
