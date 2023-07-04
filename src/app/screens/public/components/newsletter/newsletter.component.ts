@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 interface Inscription {
   email: string;
@@ -12,9 +13,13 @@ interface Inscription {
 
 
 export class NewsletterComponent implements OnInit {
+  formGroup !: FormGroup;
   constructor() {
   }
   ngOnInit() {
 
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email])
+    })
   }
 }

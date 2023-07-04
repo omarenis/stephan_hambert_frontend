@@ -1,0 +1,16 @@
+input[type=email] {
+
+  width: 404px;
+  height: 59px;
+  border: 1px solid #000;
+  border-radius: 0;
+
+}
+
+button[type=submit] {
+  width: 203px;
+  height: 59px;
+  flex-shrink: 0;
+  background-color: black;
+  border-radius: 0
+}
