@@ -27,6 +27,7 @@ export class PublicIndexComponent implements OnInit {
   products !: Product[];
   width !: number;
   height !: number;
+
   constructor(private collectionService: AbstractRestService<Collection>, @Inject(DOCUMENT) private document: Document) {
     document.documentElement.setAttribute('style', 'overflow-x: hidden');
   }
@@ -48,12 +49,18 @@ export class PublicIndexComponent implements OnInit {
           items: 1
         },
         400: {
-          items: 3
+          items: 1
         },
         740: {
           items: 3
         },
+        1123: {
+          items: 4,
+        },
         940: {
+          items: 3
+        },
+        1200: {
           items: 5
         }
       },
@@ -151,12 +158,12 @@ export class PublicIndexComponent implements OnInit {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
       id: 0
     },
-    {
-      image: '/assets/img/collections/collection_serpent.png',
-      label: 'LA COLLECTION SERPENT',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
-      id: 0
-    }]
+      {
+        image: '/assets/img/collections/collection_serpent.png',
+        label: 'LA COLLECTION SERPENT',
+        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
+        id: 0
+      }]
   }
 
   prevSlider() {

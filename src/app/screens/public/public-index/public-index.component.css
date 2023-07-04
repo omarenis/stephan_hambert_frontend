@@ -27,3 +27,17 @@
   font-family: Proxima Nova, serif;
   line-height: 25px;
 }
+.nav-link.active
+{
+  text-align: center;
+  text-underline: black;
+}
+.tab-content
+{
+  border: 0;
+  background-color: white;
+}
+.nav-link.active
+{
+  border-color: transparent;
+}
