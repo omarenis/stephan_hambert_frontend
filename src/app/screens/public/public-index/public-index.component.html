@@ -70,29 +70,13 @@
     </a>
   </div>
 </div>
-<section class="container-xl container-fluid mt-5 text-center">
-  <div class="row">
-    <div class="offset-md-2 col-md-8">
-      <span class="title-accent fs-6 text-uppercase" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000"
-            data-aos-once="true">About us</span>
-      <h3 class="py-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1500" data-aos-once="true">Vaso is
-        the only best online store for varieties of collection of clean and beautiful vases.</h3>
-      <p data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1800" data-aos-once="true">Et id sapien id enim,
-        sit tempor cursus elit, fusce. Nunc tristique facilisis consectetur at vivamus ut porta porta. Ut nisl, tortor,
-        aliquam blandit vitae vehicula vivamus leo nullam urna, scelerisque unc lectus phasellus adipiscing arcu.
-        Tristique facilisis nunc consectetur at tempor cursusut porta.</p>
-    </div>
-  </div>
-</section>
-
-<section class="container-fluid min-height-100 mt-2 mb-2">
+<section class="container-fluid min-height-100 mt-2 mb-2 mt-5">
   <ul class="nav  nav-pills justify-content-center w-100 bg-white" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
               role="tab" aria-controls="home-tab-pane" aria-selected="true">TOUT
       </button>
     </li>
-
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
               role="tab" aria-controls="contact-tab-pane" aria-selected="false">BEST SELLERS
@@ -150,11 +134,11 @@
         </ng-template>
       </ng-container>
     </owl-carousel-o>
-    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="2">
+    <div class="tab-pane fade"  id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="2">
       <owl-carousel-o [options]="carousel">
         <ng-container *ngFor="let product of products; let i=index">
-          <ng-template class="slide" [id]="i.toString()" carouselSlide>
-            <div class="card ms-2 me-2 p-2 w-100" appMousePosition [id]="i / (products.length / 2)">
+          <div class="slide bg-white" [id]="i.toString()" carouselSlide>
+            <div class="card ms-2 " appMousePosition >
               <img ngSrc="{{product.image}}" class="card-img" [width]="100" [height]="250" alt="..." loading="lazy">
               <div class="mt-2">
                 <h5 class="card-title text-center">Card title</h5>
@@ -166,16 +150,17 @@
                 </div>
               </div>
             </div>
-          </ng-template>
+          </div>
         </ng-container>
       </owl-carousel-o>
     </div>
     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="3">
-      <owl-carousel-o [options]="carousel">
+      <div style="width: 300px; border: 1px solid rebeccapurple">
+              <owl-carousel-o [options]="carousel">
         <ng-container *ngFor="let product of products; let i=index">
           <ng-template class="slide" [id]="i.toString()" carouselSlide>
             <div class="card ms-2 me-2 p-2" appMousePosition [id]="i / (products.length / 2)">
-              <img ngSrc="{{product.image}}" class="card-img" [width]="100" [height]="250" alt="..." loading="lazy">
+              <img ngSrc="{{product.image}}" class="card-img min-height-100" [width]="250" [height]="450" alt="..." loading="lazy">
               <div class="mt-2">
                 <h5 class="card-title text-center">Card title</h5>
                 <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in to
@@ -189,6 +174,7 @@
           </ng-template>
         </ng-container>
       </owl-carousel-o>
+      </div>
     </div>
   </div>
   <div class="d-flex justify-content-center">

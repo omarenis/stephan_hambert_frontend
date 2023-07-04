@@ -45,9 +45,10 @@ export class PublicIndexComponent implements OnInit {
       dots: false,
       navSpeed: 800,
       center: true,
+      items: 3,
       responsive: {
         0: {
-          items: 1
+          items: 1,
         },
         400: {
           items: 1
@@ -55,15 +56,6 @@ export class PublicIndexComponent implements OnInit {
         740: {
           items: 3
         },
-        1123: {
-          items: 4,
-        },
-        940: {
-          items: 3
-        },
-        1200: {
-          items: 5
-        }
       },
       nav: true
     }
