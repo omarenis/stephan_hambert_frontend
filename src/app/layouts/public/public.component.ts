@@ -1,5 +1,6 @@
-import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, Inject, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
+import {ComponentNotifyService} from "../../services/component-ntify.service";
 
 @Component({
   selector: 'app-public',
@@ -8,13 +9,15 @@ import {DOCUMENT} from "@angular/common";
 })
 export class PublicComponent implements OnInit {
   scrolled !: boolean;
+  isIndex !: boolean;
+  constructor(@Inject(DOCUMENT) private document: Document, private notificationService: ComponentNotifyService, private detection: ChangeDetectorRef) {
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
   }
 
   @HostListener('window:scroll', ['$event'])
   scrolling($event: any) {
     this.scrolled = window.scrollY > 50;
+
   }
 
   ngOnInit(): void {
@@ -25,5 +28,9 @@ export class PublicComponent implements OnInit {
     if (this.document.body.classList.contains('bg-gray-100')) {
       this.document.body.classList.remove('bg-gray-100');
     }
+    this.notificationService.getComponentNotification().subscribe((message: Record<string, any>) => {
+      this.isIndex = message["operation"] !== undefined && message["operation"]  == 'navigation' && message["page"] == 'index';
+      this.detection.detectChanges();
+    });
   }
 }

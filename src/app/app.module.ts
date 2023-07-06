@@ -52,6 +52,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
  import { EditorModule } from '@tinymce/tinymce-angular';
 import {MousePositionDirective} from "./directives/mouse-position.directive";
 import { FooterOptionsComponent } from './screens/dashboard/cms/footer-options/footer-options.component';
+import {ChatComponent} from "./screens/public/components/chat/chat.component";
+import { ProductsCarouselComponent } from './screens/public/components/products-carousel/products-carousel.component';
 const routes: Route[] = [
   {
     path: '', component: AppComponent,
@@ -170,6 +172,8 @@ const routes: Route[] = [
     CheckoutComponent,
     NewsletterComponent,
     FooterOptionsComponent,
+    ChatComponent,
+    ProductsCarouselComponent
   ],
   imports: [
     CarouselModule,

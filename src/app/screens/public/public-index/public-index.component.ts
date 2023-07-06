@@ -5,6 +5,7 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 import {Collection} from "../../../models/stock_managment/Collection";
 import {Product} from "../../../models/stock_managment/Product";
 import {FormGroup} from "@angular/forms";
+import {ComponentNotifyService} from "../../../services/component-ntify.service";
 
 
 @Component({
@@ -29,11 +30,16 @@ export class PublicIndexComponent implements OnInit {
   width !: number;
   height !: number;
 
-  constructor(private collectionService: AbstractRestService<Collection>, @Inject(DOCUMENT) private document: Document) {
+  constructor(private collectionService: AbstractRestService<Collection>, @Inject(DOCUMENT) private document: Document,
+              private notificationService: ComponentNotifyService) {
     document.documentElement.setAttribute('style', 'overflow-x: hidden');
   }
 
   ngOnInit(): void {
+    this.notificationService.setConnection({
+      operation: "navigation",
+      page: "index"
+    });
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.initialValue = 0;
