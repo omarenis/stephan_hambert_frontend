@@ -9,15 +9,16 @@ import {Product} from "../../../../models/stock_managment/Product";
 })
 export class ProductsCarouselComponent implements OnInit{
   carousel !: OwlOptions;
+  @Input() numberItems !: number;
 
   @Input() products !: Product[];
   ngOnInit(): void {
-        this.carousel = {
+    this.carousel = {
       loop: true,
       dots: false,
       navSpeed: 800,
       center: true,
-      items: 3,
+      items: this.numberItems,
       responsive: {
         0: {
           items: 1,
@@ -26,7 +27,7 @@ export class ProductsCarouselComponent implements OnInit{
           items: 1
         },
         740: {
-          items: 3
+          items: this.numberItems
         },
       },
       nav: true

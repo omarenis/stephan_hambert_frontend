@@ -119,12 +119,78 @@ margin-bottom: 18px;
       </article>
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+      <article class="card-plain mx-auto d-flex flex-row align-items-center">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <img class="w-100 mx-auto col-md-6 col-sm-12"
+                 ngSrc="/assets/img/img.png"
+                 alt="chair" [width]="664" [height]="633">
+          </div>
+          <div class="col-md-6 d-block align-self-center">
+            <div class="card-body  ps-4">
+              <h5 class="card-title history-title"
+                  style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif"> Notes olfactives </h5>
+              <ul class="d-block  list-unstyled">
+                <li>
+                  <p class="">
+                    <span class="text-bold">Fulgurance :</span> <br/>
+                  <span>Mangue, citron, baies roses, </span>
+                  </p>
+                </li>
+                <li>
+                  <p class="text-bold"> gingembre Métamorphose : </p>
+                  <p>Coumarine bleue, jasmin, </p>
+                </li>
+                <li>
+                  <p class="text-bold"> bois sec Quintessence : </p>
+                  <p>Oud, Nagarmotha, Musk, Amber </p>
+                </li>
+              </ul>
+              <h5 class="card-title history-title" style="
+font-family: Lucida Fax,serif;
+font-size: 32px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0em;
+text-align: left;
+   margin-top: 34px;
+">Ingrédients </h5>
+              <p style="
 
+font-family: Proxima Nova,serif;
+font-size: 20px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0em;
+text-align: left;
+margin-bottom: 18px;
+">
+                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant
+                impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
+                imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de
+                texte. </p>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...
+      <div class="d-block">
+        <div class="">
+
+        </div>
+      </div>
     </div>
   </div>
 
 </div>
-<app-products-carousel [products]="products"></app-products-carousel>
+<h2 class="mt-5" style="
+font-family: Lucida Fax;
+font-size: 50px;
+font-weight: 400;
+line-height: 59px;
+letter-spacing: 0em;
+text-align: center;
+">Vous aimeriez également...</h2>
+<app-products-carousel [products]="products" [numberItems]="3"></app-products-carousel>
 <div app-newsletter></div>
