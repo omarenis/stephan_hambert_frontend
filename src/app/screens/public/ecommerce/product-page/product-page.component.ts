@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {ComponentNotifyService} from "../../../../services/component-ntify.service";
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {Comment} from "../../../../models/crm/Comment";
 
 @Component({
   selector: 'app-product-page',
@@ -15,7 +16,9 @@ export class ProductPageComponent implements OnInit {
   product !: Product;
   private actionUrl = `${environment.url}/products`;
   products !: Product[];
-    carousel !: OwlOptions;
+  carousel !: OwlOptions;
+  comments !: Comment[];
+
   constructor(private productService: AbstractRestService<Product>, private router: Router,
               private activatedRouter: ActivatedRoute, private notifyService: ComponentNotifyService) {
 
@@ -126,6 +129,80 @@ export class ProductPageComponent implements OnInit {
       promo: 0,
       number_purchases: 0,
     }];
+
+    this.comments = [
+      {
+        client: {
+          first_name: 'John',
+          last_name: 'John',
+          username: 'John',
+          customerprofile: null,
+          email: ''
+        },
+        product: 1,
+        rating: 5,
+        content: "Amazing fragrance I recommend to everyone.",
+        dateComment: new Date(),
+        id: 1
+      },
+      {
+        client: {
+          first_name: 'John',
+          last_name: 'John',
+          username: 'John',
+          email: '',
+          customerprofile: null,
+        },
+        product: 1,
+        rating: 5,
+        content: "Amazing fragrance I recommend to everyone.",
+        dateComment: new Date(),
+        id: 1
+      },
+      {
+        client: {
+          first_name: 'John',
+          last_name: 'John',
+          username: 'John',
+          email: '',
+          customerprofile: null,
+        },
+        product: 1,
+        rating: 5,
+        content: "Amazing fragrance I recommend to everyone.",
+        dateComment: new Date(),
+        id: 1
+      },
+      {
+        client: {
+          first_name: 'John',
+          last_name: 'John',
+          username: 'John',
+          email: '',
+          customerprofile: null,
+        },
+        product: 1,
+        rating: 5,
+        content: "Amazing fragrance I recommend to everyone.",
+        dateComment: new Date(),
+        id: 1
+      },
+      {
+        client: {
+          first_name: 'John',
+          last_name: 'John',
+          username: 'John',
+          email: '',
+          customerprofile: null,
+        },
+        product: 1,
+        rating: 5,
+        content: "Amazing fragrance I recommend to everyone.",
+        dateComment: new Date(),
+        id: 1
+      }
+    ];
+
     this.activatedRouter.params.subscribe(params => {
       if (params['id'] !== undefined) {
         this.productService.get(this.actionUrl, Number(params['id'])).subscribe(
@@ -139,5 +216,6 @@ export class ProductPageComponent implements OnInit {
       }
     })
   }
+
 }
 

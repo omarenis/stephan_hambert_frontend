@@ -88,7 +88,7 @@
       </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+      <button class="nav-link" id="presents-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
               role="tab" aria-controls="disabled-tab-pane" aria-selected="false">CADEAUX
       </button>
     </li>
@@ -137,7 +137,7 @@
         </ng-container>
       </owl-carousel-o>
     </div>
-    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="3">
+    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="presents-tab" tabindex="3">
       <div style="width: 300px; border: 1px solid rebeccapurple">
         <owl-carousel-o [options]="carousel">
           <ng-container *ngFor="let product of products; let i=index">
@@ -186,7 +186,7 @@
            class="card-img-top border-radius-0 img-fluid"/>
       <div class=" justify-content-center">
         <h4 class="card-title text-center"
-            style="color: black; font-weight: 400; font-family: Lucida Fax; font-size: 50px">
+            style="color: black; font-weight: 400; font-family: Lucida Fax,serif; font-size: 50px">
           {{collection.label}}
         </h4>
         <p class="text-center text-black-50 card-description">
@@ -218,5 +218,5 @@
 </div>
 <div app-newsletter></div>
 <div class="d-flex flex-column align-items-end">
-  <div app-chat></div>
+<!--  <div app-chat></div>-->
 </div>

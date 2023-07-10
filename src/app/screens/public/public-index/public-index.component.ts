@@ -33,6 +33,8 @@ export class PublicIndexComponent implements OnInit {
   constructor(private collectionService: AbstractRestService<Collection>, @Inject(DOCUMENT) private document: Document,
               private notificationService: ComponentNotifyService) {
     document.documentElement.setAttribute('style', 'overflow-x: hidden');
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
   }
 
   ngOnInit(): void {

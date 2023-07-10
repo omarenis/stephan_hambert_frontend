@@ -134,16 +134,17 @@ margin-bottom: 18px;
                 <li>
                   <p class="">
                     <span class="text-bold">Fulgurance :</span> <br/>
-                  <span>Mangue, citron, baies roses, </span>
+                    <span>Mangue, citron, baies roses, </span>
                   </p>
                 </li>
                 <li>
-                  <p class="text-bold"> gingembre Métamorphose : </p>
-                  <p>Coumarine bleue, jasmin, </p>
+                  <p class=""><span class="text-bold">gingembre Métamorphose :</span> <br/>
+                    <span>Coumarine bleue, jasmin, </span>
                 </li>
                 <li>
-                  <p class="text-bold"> bois sec Quintessence : </p>
-                  <p>Oud, Nagarmotha, Musk, Amber </p>
+                  <p class=""><span class="text-bold">bois sec Quintessence :</span> <br/>
+                    <span>Oud, Nagarmotha, Musk, Amber </span>
+                  </p>
                 </li>
               </ul>
               <h5 class="card-title history-title" style="
@@ -174,10 +175,50 @@ margin-bottom: 18px;
         </div>
       </article>
     </div>
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...
-      <div class="d-block">
-        <div class="">
-
+    <div class="tab-pane fade " id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...
+      <div class="d-block w-75 mx-auto">
+        <div class="d-flex justify-content-around flex-fill mb-3" *ngFor="let comment of comments">
+          <div class="d-block container">
+            <h6 class="title-comment">{{comment.client.first_name}} {{comment.client.last_name}}</h6>
+            <p class="content-comment">{{comment.content}}</p>
+          </div>
+          <div class="d-block flex-fill">
+            <div class="d-flex w-100 justify-content-end" style="margin-bottom: 8px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="black"
+              >
+                <path
+                  d="M14 0L17.1432 9.67376H27.3148L19.0858 15.6525L22.229 25.3262L14 19.3475L5.77101 25.3262L8.9142 15.6525L0.685208 9.67376H10.8568L14 0Z"
+                  fill="black"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="black"
+              >
+                <path
+                  d="M14 0L17.1432 9.67376H27.3148L19.0858 15.6525L22.229 25.3262L14 19.3475L5.77101 25.3262L8.9142 15.6525L0.685208 9.67376H10.8568L14 0Z"
+                  fill="black"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="black"
+              >
+                <path
+                  d="M14 0L17.1432 9.67376H27.3148L19.0858 15.6525L22.229 25.3262L14 19.3475L5.77101 25.3262L8.9142 15.6525L0.685208 9.67376H10.8568L14 0Z"
+                  fill="black"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="black"
+              >
+                <path
+                  d="M14 0L17.1432 9.67376H27.3148L19.0858 15.6525L22.229 25.3262L14 19.3475L5.77101 25.3262L8.9142 15.6525L0.685208 9.67376H10.8568L14 0Z"
+                  fill="black"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="black"
+              >
+                <path
+                  d="M14 0L17.1432 9.67376H27.3148L19.0858 15.6525L22.229 25.3262L14 19.3475L5.77101 25.3262L8.9142 15.6525L0.685208 9.67376H10.8568L14 0Z"
+                  fill="black"/>
+              </svg>
+            </div>
+            <div class="d-flex justify-content-end">
+              <p class="">{{comment.dateComment | date}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

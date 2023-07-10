@@ -33,3 +33,21 @@
   text-align: left;
   margin-bottom: 28px;
 }
+
+.title-comment {
+  color: #000;
+  font-family: Proxima Nova;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+}
+
+.content-comment {
+  color: #000;
+  font-family: Proxima Nova;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+}
