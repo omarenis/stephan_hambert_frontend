@@ -1,25 +1,23 @@
-<img ngSrc="/assets/img/product-list-image/product-list-oùmage.png" [width]="window.innerWidth" [height]="window.innerHeight" class="min-height-160">
+<img ngSrc="/assets/img/product-list-image/product-list-oùmage.png" [width]="window.innerWidth"
+     [height]="window.innerHeight" class="min-height-160">
+<h1 class="product-list-title">
+  FRAGRANCES
+</h1>
+
 <section class="container-xl container-fluid row mx-auto">
-  <article class="col-lg-3 col-md-6 col-sm-12 mt-4" *ngFor="let product of products">
-    <section class="card card-blog">
-      <div class="card-image border-radius-lg position-relative">
-        <a [routerLink]="'/public/ecommece/products/' + product.slug">
-          <div class="blur-shadow-image">
-            <img class="img border-radius-lg move-on-hover" [src]="product.image">
-          </div>
-        </a>
-      </div>
-      <div class="card-body px-0">
-        <h4>
+  <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
+    <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
+      <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
+           [alt]="'product number' + product.id?.toString()">
+      <div class="card-body">
+        <h4 class="product-list-title">
           {{product.title}}
         </h4>
-        <p class="">
-          {{product.description}}
+        <p class="product-price">
+          {{product.price}}
         </p>
-        <a href="javascript:" class="text-primary icon-move-right">More about us
-          <i class="fas fa-arrow-right text-xs ms-1" aria-hidden="true"></i>
-        </a>
       </div>
-    </section>
+    </a>
   </article>
 </section>
+<div app-newsletter></div>
