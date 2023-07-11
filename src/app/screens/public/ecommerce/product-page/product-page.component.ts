@@ -51,6 +51,7 @@ export class ProductPageComponent implements OnInit {
       price: 0,
       current_quantity: 0,
       tva: 0,
+      slug: '',
       image: '/assets/img/products/product1.png',
       ingredients: '',
       category: 0,
@@ -63,6 +64,7 @@ export class ProductPageComponent implements OnInit {
       price: 0,
       current_quantity: 0,
       tva: 0,
+      slug: '',
       image: '/assets/img/products/product2.png',
       ingredients: '',
       category: 0,
@@ -79,6 +81,7 @@ export class ProductPageComponent implements OnInit {
       ingredients: '',
       category: 0,
       promo: 0,
+      slug: '',
       number_purchases: 0,
     }, {
       title: '',
@@ -87,6 +90,7 @@ export class ProductPageComponent implements OnInit {
       price: 0,
       current_quantity: 0,
       tva: 0,
+      slug: '',
       image: '/assets/img/products/product4.png',
       ingredients: '',
       category: 0,
@@ -103,6 +107,7 @@ export class ProductPageComponent implements OnInit {
       ingredients: '',
       category: 0,
       promo: 0,
+      slug: '',
       number_purchases: 0,
     }, {
       title: '',
@@ -114,6 +119,7 @@ export class ProductPageComponent implements OnInit {
       image: '/assets/img/products/product6.png',
       ingredients: '',
       category: 0,
+      slug: '',
       promo: 0,
       number_purchases: 0,
     }, {
@@ -127,6 +133,7 @@ export class ProductPageComponent implements OnInit {
       ingredients: '',
       category: 0,
       promo: 0,
+      slug: '',
       number_purchases: 0,
     }];
 
@@ -202,7 +209,6 @@ export class ProductPageComponent implements OnInit {
         id: 1
       }
     ];
-
     this.activatedRouter.params.subscribe(params => {
       if (params['id'] !== undefined) {
         this.productService.get(this.actionUrl, Number(params['id'])).subscribe(

@@ -5,6 +5,7 @@ import {Object} from "../generic";
 export interface Product {
   title: string;
   code: string;
+  slug: string;
   description: string;
   price: number;
   current_quantity: number;

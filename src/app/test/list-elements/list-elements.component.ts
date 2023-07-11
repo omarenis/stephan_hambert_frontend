@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CrudConsumer} from "../../services/CrudConsumer";
 import {AbstractRestService} from "../../services/genericservice";
 interface Product {
+  slug: string;
   label: string;
   price: number;
   id ?: number;
@@ -17,7 +18,6 @@ export class ListElementsComponent extends CrudConsumer<Product>{
       label: {type: 'string', required: true},
       price: {type: 'number', required: true}
     });
-
     console.log(this.formGroupSearch);
   }
 }

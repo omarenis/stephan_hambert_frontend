@@ -79,10 +79,12 @@ export class PublicIndexComponent implements OnInit {
       category: 0,
       promo: 0,
       number_purchases: 0,
+      slug: 'original',
     }, {
       title: '',
       code: '',
       description: '',
+      slug: 'original',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -101,6 +103,7 @@ export class PublicIndexComponent implements OnInit {
       image: '/assets/img/products/product3.png',
       ingredients: '',
       category: 0,
+      slug: '',
       promo: 0,
       number_purchases: 0,
     }, {
@@ -114,10 +117,12 @@ export class PublicIndexComponent implements OnInit {
       ingredients: '',
       category: 0,
       promo: 0,
+      slug: '',
       number_purchases: 0,
     }, {
       title: '',
       code: '',
+      slug: '',
       description: '',
       price: 0,
       current_quantity: 0,
@@ -139,6 +144,7 @@ export class PublicIndexComponent implements OnInit {
       category: 0,
       promo: 0,
       number_purchases: 0,
+      slug: '',
     }, {
       title: '',
       code: '',
@@ -150,6 +156,7 @@ export class PublicIndexComponent implements OnInit {
       ingredients: '',
       category: 0,
       promo: 0,
+      slug: '',
       number_purchases: 0,
     }];
 
