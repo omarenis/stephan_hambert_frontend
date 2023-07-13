@@ -1,10 +1,22 @@
 <img ngSrc="/assets/img/product-list-image/product-list-oùmage.png" [width]="window.innerWidth"
-     [height]="window.innerHeight" class="min-height-160">
+     [height]="window.innerHeight" class="h-100 w-100" alt="" style="">
 <h1 class="product-list-title">
   FRAGRANCES
 </h1>
-
-<section class="container-xl container-fluid row mx-auto">
+<ul class="nav nav-pills mb-3 d-flex justify-content-center bg-white" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">HISTOIRE</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">NOTES OLFACTIVES</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">AVIS</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <section class="container-xl container-fluid row mx-auto">
   <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
     <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
       <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
@@ -20,4 +32,42 @@
     </a>
   </article>
 </section>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+    <section class="container-xl container-fluid row mx-auto">
+  <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
+    <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
+      <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
+           [alt]="'product number' + product.id?.toString()">
+      <div class="card-body">
+        <h4 class="product-list-title">
+          {{product.title}}
+        </h4>
+        <p class="product-price">
+          {{product.price}}
+        </p>
+      </div>
+    </a>
+  </article>
+</section>
+  </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+    <section class="container-xl container-fluid row mx-auto">
+  <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
+    <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
+      <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
+           [alt]="'product number' + product.id?.toString()">
+      <div class="card-body">
+        <h4 class="product-list-title">
+          {{product.title}}
+        </h4>
+        <p class="product-price">
+          {{product.price}}
+        </p>
+      </div>
+    </a>
+  </article>
+</section>
+  </div>
+</div>
 <div app-newsletter></div>
