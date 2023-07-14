@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from "../../../../models/stock_managment/Product";
-import {AbstractRestService} from "../../../../services/genericservice";
-import {environment} from "../../../../../environments/environment";
-import {Category} from "../../../../models/stock_managment/Category";
-import {Promo} from "../../../../models/stock_managment/Promo";
+import {Product} from "../../../models/stock_managment/Product";
+import {environment} from "../../../../environments/environment";
+import {AbstractRestService} from "../../../services/genericservice";
 
 @Component({
   selector: 'app-product-list',

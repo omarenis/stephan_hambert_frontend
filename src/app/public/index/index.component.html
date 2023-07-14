@@ -1,1 +1,222 @@
-<p>index works!</p>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" (click)="step = 0"
+            [ngClass]="{'active': step === 0}" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1" [attr.aria-current]="step === 0"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" (click)="step = 1" data-bs-slide-to="1"
+            [ngClass]="{'active': step === 1}" aria-label="Slide 2" [attr.aria-current]="step === 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" (click)="step = 2" data-bs-slide-to="2"
+            [ngClass]="{'active': step === 2}" aria-label="Slide 3" [attr.aria-current]="step === 2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item" [ngClass]="{'active': step === 0}">
+      <div class="page-header min-vh-100"
+           style="background-image: url('/assets/img/carousel1.jpg');">
+        <span class="mask"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 my-auto">
+              <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Pricing Plans</h4>
+              <h1 class="text-white fadeIn2 fadeInBottom">Work with the rockets</h1>
+              <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Wealth creation is an evolutionarily recent
+                positive-sum game. Status is an old zero-sum game. Those attacking wealth creation are often just
+                seeking status.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" [ngClass]="{'active': step === 1}" id="hello">
+      <div class="page-header min-vh-100 m-"
+           style="background-image: url('/assets/img/carousel2.png');">
+        <span class="mask"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 my-auto">
+              <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Our Team</h4>
+              <h1 class="text-white fadeIn2 fadeInBottom">Work with the best</h1>
+              <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Free people make free choices. Free choices mean
+                you get unequal outcomes. You can have freedom, or you can have equal outcomes. You can’t have both.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" [ngClass]="{'active': step === 2}">
+      <div class="page-header min-vh-100"
+           style="background-image: url('https://images.unsplash.com/photo-1552793494-111afe03d0ca?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1920&amp;q=80');">
+        <span class="mask bg-gradient-faded-danger"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 my-auto">
+              <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Office Places</h4>
+              <h1 class="text-white fadeIn2 fadeInBottom">Work from home</h1>
+              <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">You’re spending time to save money when you
+                should be spending money to save time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="min-vh-100 position-absolute w-100 top-0">
+    <a class="carousel-control-prev pe-7" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon position-absolute bottom-30" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next ps-7" href="#carouselExampleControls" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon position-absolute bottom-50" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+</div>
+<section class="container-fluid min-height-100 mt-2 mb-2 mt-5">
+  <ul class="nav  nav-pills justify-content-center w-100 bg-white" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+              role="tab" aria-controls="home-tab-pane" aria-selected="true">TOUT
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+              role="tab" aria-controls="contact-tab-pane" aria-selected="false">BEST SELLERS
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+              role="tab" aria-controls="disabled-tab-pane" aria-selected="false">NOUVEAUTÉS
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="presents-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+              role="tab" aria-controls="disabled-tab-pane" aria-selected="false">CADEAUX
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content bg-white" id="myTabContent">
+    <div class="tab-pane fade show active bg-white" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+         tabindex="0">
+      <div app-carousel [products]="products"></div>
+    </div>
+    <owl-carousel-o [options]="carousel" class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                    aria-labelledby="profile-tab" tabindex="1">
+      <ng-container *ngFor="let product of products; let i=index">
+        <ng-template class="slide" [id]="i.toString()" carouselSlide>
+          <div class="card ms-2 me-2 p-2" appMousePosition>
+            <img ngSrc="{{product.image}}" class="card-img" [width]="100" [height]="250" alt="..." loading="lazy">
+            <div class="mt-2">
+              <h5 class="card-title text-center">Card title</h5>
+              <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in to
+                additional
+                content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="2">
+      <owl-carousel-o [options]="carousel">
+        <ng-container *ngFor="let product of products; let i=index">
+          <div class="slide bg-white" [id]="i.toString()" carouselSlide>
+            <div class="card ms-2 " appMousePosition>
+              <img ngSrc="{{product.image}}" class="card-img" [width]="100" [height]="250" alt="..." loading="lazy">
+              <div class="mt-2">
+                <h5 class="card-title text-center">Card title</h5>
+                <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in to
+                  additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="presents-tab" tabindex="3">
+      <div style="width: 300px; border: 1px solid rebeccapurple">
+        <owl-carousel-o [options]="carousel">
+          <ng-container *ngFor="let product of products; let i=index">
+            <ng-template class="slide" [id]="i.toString()" carouselSlide>
+              <div class="card ms-2 me-2 p-2" appMousePosition [id]="i / (products.length / 2)">
+                <img ngSrc="{{product.image}}" class="card-img min-height-100" [width]="250" [height]="450" alt="..."
+                     loading="lazy">
+                <div class="mt-2">
+                  <h5 class="card-title text-center">Card title</h5>
+                  <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in
+                    to
+                    additional
+                    content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-center">
+                    <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <a class="link text-center text-decoration-underline mt-5"> Voir tous les parfums </a>
+  </div>
+</section>
+<div class="card min-height-100 mt-5 bg-transparent" id="section">
+  <img ngSrc="/assets/img/stephane.png" [width]="width" [height]="height" class="card-img w-100"
+       style="border-radius: 0; min-width: 100%"
+       alt="...">
+  <div class="card-img-overlay container-fluid mt-12 pt-7">
+    <h5 class="card-title" style="font-size: 60px; font-weight: 400; color: black; font-family: Lucida Fax;">
+      L’HISTOIRE</h5>
+    <p class="card-text" style="width: 529px; color: black">Lorem Ipsum is simply dummy text of the printing and
+      typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+      unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    <button class="btn btn-dark" id="readMore" style="background-color: #272727">Découvrir</button>
+  </div>
+</div>
+<section class="row mt-5" style="padding-left: 53px; padding-right: 53px">
+  <article class="col-md-6 col-sm-12" *ngFor="let collection of collections">
+    <div class="card container pt-0 pe-0 ps-0 border-radius-0" style="border: 1px solid black">
+      <img ngSrc="{{collection.image}}" [width]="900" [height]="600" alt=""
+           class="card-img-top border-radius-0 img-fluid"/>
+      <div class=" justify-content-center">
+        <h4 class="card-title text-center"
+            style="color: black; font-weight: 400; font-family: Lucida Fax,serif; font-size: 50px">
+          {{collection.label}}
+        </h4>
+        <p class="text-center text-black-50 card-description">
+          {{collection.description}}
+        </p>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-dark border-radius-0">
+            Découvrir
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+<div class="card min-height-100 border-radius-0" id="">
+  <img ngSrc="/assets/img/stephane2.png" [width]="width" [height]="height" class="card-img border-radius-0 min-vw-100"
+       alt="...">
+  <div class="card-img-overlay container-fluid mt-12 pt-7">
+    <div class="d-flex flex-column align-items-end pe-5">
+      <h5 class="card-title" style="font-size: 60px; font-weight: 400; color: black; font-family: Lucida Fax,serif;">
+        L’HISTOIRE</h5>
+      <p class="card-text text-right" style="width: 529px; color: black">Lorem Ipsum is simply dummy text of the
+        printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+      <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
+    </div>
+  </div>
+</div>
+<div app-newsletter></div>
+<div class="d-flex flex-column align-items-end">
+<!--  <div app-chat></div>-->
+</div>

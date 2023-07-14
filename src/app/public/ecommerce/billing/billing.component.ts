@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AbstractRestService} from "../../../../services/genericservice";
-import {Order} from "../../../../models/ecommerce/Order";
+import {AbstractRestService} from "../../../services/genericservice";
+import {Order} from "../../../models/ecommerce/Order";
 
 @Component({
   selector: 'app-billing',

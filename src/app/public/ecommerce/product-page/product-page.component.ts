@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractRestService} from "../../../../services/genericservice";
-import {Product} from "../../../../models/stock_managment/Product";
 import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../../../environments/environment";
-import {ComponentNotifyService} from "../../../../services/component-ntify.service";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Comment} from "../../../../models/crm/Comment";
+import {Product} from "../../../models/stock_managment/Product";
+import {environment} from "../../../../environments/environment";
+import {AbstractRestService} from "../../../services/genericservice";
+import {ComponentNotifyService} from "../../../services/component-ntify.service";
+import {Comment} from "../../../models/crm/Comment";
 
 @Component({
   selector: 'app-product-page',
