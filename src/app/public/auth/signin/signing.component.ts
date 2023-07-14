@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {LoginSignupService, Token} from "../../../../services/login-signup.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {LoginSignupService, Token} from "../../../services/login-signup.service";
 
 @Component({
   selector: 'app-signing',

@@ -1,0 +1,72 @@
+.nav-link {
+  font-size: 1.1em;
+}
+
+.bg-transparent {
+  transition: background-color 0.3s ease;
+}
+
+.bg-black {
+  background-color: black;
+  transition: background-color 0.3s ease;
+}
+
+.bg-black > #navigation > ul > li > a {
+  color: white;
+
+}
+
+/* Fotter CSS */
+.footer {
+  background-color: #f8f6f1;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.newsletter-input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.footer-titles {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+.nav-link
+{
+  color: #FFF;
+text-align: center;
+font-size: 20px;
+  font-family: Proxima Nova, serif;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  margin-left: 6.4px;
+}

@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginSignupService} from "../../../../services/login-signup.service";
 import {Router} from "@angular/router";
 import {DOCUMENT} from "@angular/common";
+import {LoginSignupService} from "../../../services/login-signup.service";
 interface SignupFormGroup {
   first_name: FormControl;
   last_name: FormControl;

@@ -10,6 +10,7 @@ import {ComponentNotifyService} from "../../services/component-ntify.service";
 export class PublicComponent implements OnInit {
   scrolled !: boolean;
   isIndex !: boolean;
+
   constructor(@Inject(DOCUMENT) private document: Document, private notificationService: ComponentNotifyService, private detection: ChangeDetectorRef) {
 
   }
@@ -29,7 +30,7 @@ export class PublicComponent implements OnInit {
       this.document.body.classList.remove('bg-gray-100');
     }
     this.notificationService.getComponentNotification().subscribe((message: Record<string, any>) => {
-      this.isIndex = message["operation"] !== undefined && message["operation"]  == 'navigation' && message["page"] == 'index';
+      this.isIndex = message["operation"] !== undefined && message["operation"] == 'navigation' && message["page"] == 'index';
       this.detection.detectChanges();
     });
   }
