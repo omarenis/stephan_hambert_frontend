@@ -9,10 +9,19 @@ import { CategoriesComponent } from './stock-management/categories-dashboard/cat
 import { PromosComponent } from './stock-management/promos-dashboard/promos/promos.component';
 import { PromoComponent } from './stock-management/promos-dashboard/promo/promo.component';
 import { CategoryComponent } from './stock-management/categories-dashboard/category/category.component';
-import {Route, RouterOutlet} from "@angular/router";
+import {Route, RouterLink, RouterOutlet} from "@angular/router";
 import { CustomersComponent } from './components/customers/customers.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { CategoriesTableComponent } from './components/categories-table/categories-table.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {EditorComponent} from "@tinymce/tinymce-angular";
+import { IndexComponent } from './index/index.component';
+import { PartnersComponent } from './cms/partners/partners.component';
+import { PartnerComponent } from './cms/partner/partner.component';
+import { CustomerComponent } from './customer/customer.component';
+import { MessagesComponent } from './messages/messages.component';
+ import { EditorModule } from '@tinymce/tinymce-angular';
+import { FooterOptionsComponent } from './cms/footer-options/footer-options.component';
 
 
 const routes: Route[]  = [
@@ -36,12 +45,23 @@ const routes: Route[]  = [
     CategoryComponent,
     CustomersComponent,
     ProductsTableComponent,
-    CategoriesTableComponent
+    CategoriesTableComponent,
+    IndexComponent,
+    PartnersComponent,
+    PartnerComponent,
+    CustomerComponent,
+    MessagesComponent,
+    FooterOptionsComponent
   ],
   imports: [
     CommonModule,
     NgOptimizedImage,
-    RouterOutlet
+    RouterOutlet,
+    FormsModule,
+    ReactiveFormsModule,
+    EditorComponent,
+    EditorModule,
+    RouterLink
   ]
 })
 export class DashboardModule { }
