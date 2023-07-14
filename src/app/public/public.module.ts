@@ -20,48 +20,45 @@ import {LockComponent} from './auth/lock/lock.component';
 import {VerificationComponent} from './auth/verification/verification.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MousePositionDirective} from "./mouse-position.directive";
 
 
 const routes: Route[] = [
   {
-    path: '', redirectTo: '/public', pathMatch: 'full'
+    path: 'public', component: AppComponent, redirectTo: '/index', pathMatch: 'full'
   },
   {
-    path: 'public', component: AppComponent, children: [
+    path: 'index', component: IndexComponent
+  },
+  {
+    path: 'auth', children: [
       {
-        path: 'index', component: IndexComponent
+        path: 'signup', component: SignupComponent
       },
       {
-        path: 'auth', children: [
-          {
-            path: 'signup', component: SignupComponent
-          },
-          {
-            path: 'login', component: SigningComponent
-          },
-          {
-            path: 'reset-password', component: ResetPasswordComponent
-          },
-        ]
+        path: 'login', component: SigningComponent
       },
       {
-        path: 'ecommerce', children: [
-          {
-            path: 'products', component: ProductListComponent
-          },
-          {
-            path: 'products/:id', component: ProductPageComponent
-          },
-          {
-            path: 'cart', component: CartComponent
-          },
-          {
-            path: 'checkout', component: CheckoutComponent
-          }
-        ]
-      }
+        path: 'reset-password', component: ResetPasswordComponent
+      },
     ]
   },
+  {
+    path: 'ecommerce', children: [
+      {
+        path: 'products', component: ProductListComponent
+      },
+      {
+        path: 'products/:id', component: ProductPageComponent
+      },
+      {
+        path: 'cart', component: CartComponent
+      },
+      {
+        path: 'checkout', component: CheckoutComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
@@ -82,7 +79,8 @@ const routes: Route[] = [
     SignupComponent,
     SigningComponent,
     LockComponent,
-    VerificationComponent
+    VerificationComponent,
+    MousePositionDirective
   ],
   imports: [
     CommonModule,

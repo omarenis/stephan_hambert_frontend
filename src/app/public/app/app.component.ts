@@ -12,7 +12,7 @@ scrolled !: boolean;
   isIndex !: boolean;
 
   constructor(@Inject(DOCUMENT) private document: Document, private notificationService: ComponentNotifyService, private detection: ChangeDetectorRef) {
-
+    console.log("hel")
   }
 
   @HostListener('window:scroll', ['$event'])

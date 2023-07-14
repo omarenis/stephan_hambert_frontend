@@ -2,23 +2,20 @@ import {NgModule, isDevMode} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {ListElementsComponent} from './test/list-elements/list-elements.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormViewTestComponent} from './test/form-view-test/form-view-test.component';
 import {Route, RouterModule} from "@angular/router";
 import {ProfileComponent} from './screens/shared/profile/profile.component';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MousePositionDirective} from "./public/mouse-position.directive";
 import { PublicModule } from './public/public.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 const routes: Route[] = [
   {
-    path: '', component: AppComponent,
+    path: '', component: AppComponent
   },
   {
-    path: 'public', loadChildren: () => import('./public/public.module').then((module) => module.PublicModule)
+    path: 'public', loadChildren: () => import('./public/public.module').then((module) => module.PublicModule), pathMatch: 'prefix'
   },
   {
     path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then((module) => module.DashboardModule)
@@ -28,9 +25,6 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     AppComponent,
-    MousePositionDirective,
-    ListElementsComponent,
-    FormViewTestComponent,
     ProfileComponent,
   ],
   imports: [
