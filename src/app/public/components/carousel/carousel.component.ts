@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Product} from "../../../models/stock_managment/Product";
+import {Product} from "../../../dashboard/stock-management/models/Product";
 
 @Component({
   selector: '[app-carousel]',

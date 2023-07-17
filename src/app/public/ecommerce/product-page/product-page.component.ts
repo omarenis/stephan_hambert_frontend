@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Product} from "../../../models/stock_managment/Product";
+import {Product} from "../../../dashboard/stock-management/models/Product";
 import {environment} from "../../../../environments/environment";
 import {AbstractRestService} from "../../../services/genericservice";
 import {ComponentNotifyService} from "../../../services/component-ntify.service";
-import {Comment} from "../../../models/crm/Comment";
+import {Comment} from "../../../dashboard/crm/models/Comment";
 
 @Component({
   selector: 'app-product-page',

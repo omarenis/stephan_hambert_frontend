@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
-import {Promo, promoObject} from "../../../../models/stock_managment/Promo";
+import {Promo, promoObject} from "../../models/Promo";
 import {environment} from "../../../../../environments/environment";
 import {CrudConsumer} from "../../../../services/CrudConsumer";
 

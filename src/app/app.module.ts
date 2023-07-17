@@ -8,14 +8,12 @@ import {ProfileComponent} from './screens/shared/profile/profile.component';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { PublicModule } from './public/public.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 const routes: Route[] = [
   {
     path: '', component: AppComponent
   },
   {
-    path: 'public', loadChildren: () => import('./public/public.module').then((module) => module.PublicModule), pathMatch: 'prefix'
+    path: 'public', loadChildren: () => import('./public/public.module').then((module) => module.PublicModule)
   },
   {
     path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then((module) => module.DashboardModule)
@@ -40,8 +38,6 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     NgOptimizedImage,
     ReactiveFormsModule,
-    PublicModule,
-    DashboardModule,
   ],
   providers: [
 

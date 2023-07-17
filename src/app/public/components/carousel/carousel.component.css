@@ -1,0 +1,14 @@
+.owl-item.active.center {
+  cursor: pointer;
+}
+
+.owl-nav {
+  position: absolute;
+  top: 0;
+  display: none;
+}
+.owl-prev{
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}

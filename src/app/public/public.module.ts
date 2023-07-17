@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Route, RouterLink, RouterModule, RouterOutlet, ROUTES} from "@angular/router";
+import {Route, RouterModule, RouterOutlet} from "@angular/router";
 import {AppComponent} from './app/app.component';
 import {ChatComponent} from './components/chat/chat.component';
 import {ContactComponent} from './components/contact/contact.component';
@@ -25,7 +25,7 @@ import {MousePositionDirective} from "./mouse-position.directive";
 
 const routes: Route[] = [
   {
-    path: 'public', component: AppComponent, redirectTo: '/index', pathMatch: 'full'
+    path: '', component: AppComponent,
   },
   {
     path: 'index', component: IndexComponent

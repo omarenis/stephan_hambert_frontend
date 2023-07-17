@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
-import {Category, categoryObject} from "../../../../models/stock_managment/Category";
+import {Category, categoryObject} from "../../models/Category";
 import {environment} from "../../../../../environments/environment";
 import {CrudConsumer} from "../../../../services/CrudConsumer";
 import {Operation} from "../../../../models/forms";
