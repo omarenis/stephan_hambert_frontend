@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe, NgIf} from '@angular/common';
 import {Route, RouterModule} from "@angular/router";
 import {CategoriesComponent} from "./categories-dashboard/categories/categories.component";
 import {CategoryComponent} from "./categories-dashboard/category/category.component";
@@ -12,6 +12,7 @@ import {CategoriesTableComponent} from "./components/categories-table/categories
 import {ProductsTableComponent} from "./components/products-table/products-table.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {EditorComponent} from "@tinymce/tinymce-angular";
+import {SharedModule} from "../shared/shared.module";
 
 
 const routes: Route[] = [
@@ -51,10 +52,10 @@ const routes: Route[] = [
     ProductsTableComponent
   ],
   imports: [
-    CommonModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    EditorComponent
+    SharedModule.forRoot(),
+    DatePipe,
+    NgIf
   ]
 })
 export class StockManagementModule {

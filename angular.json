@@ -11,8 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "src/custom-webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
             "outputPath": "dist/frontend-bootstrap-5/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -21,7 +25,11 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              { "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce",
+                "output": "/tinymce/"
+              },
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest"

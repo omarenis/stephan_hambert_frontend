@@ -33,9 +33,6 @@ const routes: Route[]  = [
   ],
   imports: [
     CommonModule,
-    NgOptimizedImage,
-    RouterOutlet,
-    SharedModule.forRoot(),
     RouterModule.forChild(routes)
   ],
   providers: [

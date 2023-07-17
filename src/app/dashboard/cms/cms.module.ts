@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {Route} from "@angular/router";
-import { PartnersComponent } from './partners/partners.component';
-import { PartnerComponent } from './partner/partner.component';
+import {PartnersComponent} from './partners/partners.component';
+import {PartnerComponent} from './partner/partner.component';
 import {FooterOptionsComponent} from "./footer-options/footer-options.component";
+import {SharedModule} from "../shared/shared.module";
 
 
 const routes: Route[] = [
@@ -17,15 +18,17 @@ const routes: Route[] = [
     path: 'general-settings', component: FooterOptionsComponent
   }
 ];
+
 @NgModule({
   declarations: [
 
     PartnersComponent,
-       PartnerComponent,
-    FooterOptionsComponent
+    PartnerComponent,
+    FooterOptionsComponent,
   ],
   imports: [
-    CommonModule
+    SharedModule.forRoot()
   ]
 })
-export class CmsModule { }
+export class CmsModule {
+}

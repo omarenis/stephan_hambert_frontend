@@ -4,6 +4,7 @@ import {Route, RouterModule} from "@angular/router";
 import {CustomerComponent} from "./customer/customer.component";
 import {CustomersComponent} from "./customers/customers.component";
 import {MessagesComponent} from "./messages/messages.component";
+import {SharedModule} from "../shared/shared.module";
 
 
 const routes: Route[] = [
@@ -24,7 +25,8 @@ const routes: Route[] = [
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class CrmModule { }

@@ -1,5 +1,5 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {EditorComponent, EditorModule} from "@tinymce/tinymce-angular";
 import {FlatpickrModule} from 'angularx-flatpickr';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -15,14 +15,16 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     FormsModule,
     ReactiveFormsModule,
     EditorComponent,
-    FullCalendarModule,
+    NgOptimizedImage,
   ],
   exports: [
+    CommonModule,
     EditorModule,
     FormsModule,
     ReactiveFormsModule,
     FullCalendarModule,
-    FlatpickrModule
+    FlatpickrModule,
+    NgOptimizedImage
   ]
 })
 export class SharedModule {
