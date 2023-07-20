@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import { AppComponent } from './app/app.component';
-import {Route, RouterModule, RouterOutlet} from "@angular/router";
+import {Route, RouterModule} from "@angular/router";
 import { CustomersComponent } from './components/customers/customers.component';
 import { IndexComponent } from './index/index.component';
-import {SharedModule} from "./shared/shared.module";
 
 
 const routes: Route[]  = [

@@ -4,27 +4,28 @@ import {EditorComponent, EditorModule} from "@tinymce/tinymce-angular";
 import {FlatpickrModule} from 'angularx-flatpickr';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FullCalendarModule} from "@fullcalendar/angular";
+import { AlertComponent } from '../alert/alert.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AlertComponent
+  ],
   imports: [
     CommonModule,
     EditorModule,
     FlatpickrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    EditorComponent,
     NgOptimizedImage,
   ],
   exports: [
     CommonModule,
-    EditorModule,
     FormsModule,
     ReactiveFormsModule,
     FullCalendarModule,
     FlatpickrModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ]
 })
 export class SharedModule {

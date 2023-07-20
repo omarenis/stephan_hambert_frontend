@@ -34,7 +34,7 @@ export abstract class AbstractRestService<T> {
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, keep it'
-    }).then((result) => {
+    }).then((result: any) => {
       if (result.value) {
         this.http.delete<void>(`${url}/${id}`, options).subscribe({
           next: () => {

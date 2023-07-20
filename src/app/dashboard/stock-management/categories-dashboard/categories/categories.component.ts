@@ -36,6 +36,6 @@ export class CategoriesComponent extends CrudConsumer<Category>{
   }
 
   action($event: Operation) {
-    console.log($event.operation);
+    this.service.delete(this.actionUrl, Number())
   }
 }

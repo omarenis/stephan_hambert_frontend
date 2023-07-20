@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, DatePipe, NgIf} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {Route, RouterModule} from "@angular/router";
 import {CategoriesComponent} from "./categories-dashboard/categories/categories.component";
 import {CategoryComponent} from "./categories-dashboard/category/category.component";
@@ -10,9 +10,11 @@ import {PromoComponent} from "./promos-dashboard/promo/promo.component";
 import { AppComponent } from './app/app.component';
 import {CategoriesTableComponent} from "./components/categories-table/categories-table.component";
 import {ProductsTableComponent} from "./components/products-table/products-table.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {EditorComponent} from "@tinymce/tinymce-angular";
 import {SharedModule} from "../shared/shared.module";
+import {EditorModule} from "@tinymce/tinymce-angular";
+import {ProductsComponent} from "./products-dashboard/products/products.component";
+import {ProductComponent} from "./products-dashboard/product/product.component";
+import { FormWizardModule } from 'angular-wizard-form';
 
 
 const routes: Route[] = [
@@ -36,6 +38,12 @@ const routes: Route[] = [
   },
   {
     path: 'promos/:id', component: PromoComponent
+  },
+  {
+    path: 'products', component: ProductsComponent
+  },
+  {
+    path: 'products/:id', component: ProductComponent
   }
 ];
 
@@ -49,14 +57,16 @@ const routes: Route[] = [
     PromosComponent,
     PromoComponent,
     CategoriesTableComponent,
-    ProductsTableComponent
+    ProductsTableComponent,
+    ProductsComponent,
+    ProductComponent
   ],
   imports: [
+    CommonModule,
+    EditorModule,
     RouterModule.forChild(routes),
     SharedModule.forRoot(),
-    DatePipe,
-    NgIf
+    FormWizardModule
   ]
 })
-export class StockManagementModule {
-}
+export class StockManagementModule {}
