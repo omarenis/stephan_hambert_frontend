@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import {OrdersComponent} from "./orders/orders.component";
 
 
 
