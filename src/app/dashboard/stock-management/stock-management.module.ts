@@ -14,7 +14,6 @@ import {SharedModule} from "../shared/shared.module";
 import {EditorModule} from "@tinymce/tinymce-angular";
 import {ProductsComponent} from "./products-dashboard/products/products.component";
 import {ProductComponent} from "./products-dashboard/product/product.component";
-import { ArchwizardModule } from 'angular-archwizard';
 
 
 const routes: Route[] = [
@@ -64,10 +63,8 @@ const routes: Route[] = [
   imports: [
     CommonModule,
     EditorModule,
-
     RouterModule.forChild(routes),
     SharedModule.forRoot(),
-    ArchwizardModule
   ]
 })
 export class StockManagementModule {}

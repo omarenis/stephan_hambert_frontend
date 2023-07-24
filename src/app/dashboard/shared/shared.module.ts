@@ -1,10 +1,10 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {EditorComponent, EditorModule} from "@tinymce/tinymce-angular";
+import {EditorModule} from "@tinymce/tinymce-angular";
 import {FlatpickrModule} from 'angularx-flatpickr';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FullCalendarModule} from "@fullcalendar/angular";
-import { AlertComponent } from '../alert/alert.component';
+import {AlertComponent} from '../alert/alert.component';
 
 
 @NgModule({

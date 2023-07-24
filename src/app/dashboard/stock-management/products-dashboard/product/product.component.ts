@@ -18,11 +18,12 @@ const additionalData = {
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit{
-  essetialInformationFormGroup !: FormGroup;
-  isCompleted
-    : any;
+  essentialInformationFormGroup !: FormGroup;
+  isCompleted: any;
   formGroup !: FormGroup;
   additionalData !: FormGroup;
+  steps !: string[];
+  currentStep !: number;
   constructor(private essentialInformationService: AbstractRestService<Product>) {
   }
 
@@ -54,4 +55,5 @@ export class ProductComponent implements OnInit{
   submit($event: any) {
 
   }
+
 }
