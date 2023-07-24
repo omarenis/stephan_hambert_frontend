@@ -26,7 +26,7 @@ export abstract class FormView<T> implements OnInit {
   ngOnInit(): void {
     this.foreignKeyInstanceList = {};
     Object.keys(this.object).forEach(key => {
-      if (this.object[key].type === 'foreign_key' && this.object[key].ClassType !== undefined) {
+      if (this.object[key].type === 'foreign_key') {
         this.foreignKeyServices[key] = inject(AbstractRestService<Function>);
       }
     });

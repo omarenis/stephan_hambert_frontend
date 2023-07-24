@@ -19,7 +19,7 @@ export interface Product {
 }
 
 
-export const productObject = {
+export const productObject: {[key: string]: Object<Product>} = {
   title: { type: 'string', required: true },
   code: { type: 'string', required: true },
   description: {type: 'string', required: true},
@@ -28,5 +28,5 @@ export const productObject = {
   tva: { type: 'float', required: true },
   image: {type: 'file', required: true},
   ingredients: {type: 'string', required: true},
-  category: {type: 'foreign_key', required: true, classType: 'Category'}
+  category: {type: 'foreign_key', required: true}
 }
