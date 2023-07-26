@@ -1,6 +1,13 @@
+import { CustomerProfile } from "../../crm/models/User"
+
 export interface Order
 {
-  customer: number | CustomerProfile
+  customer: number | CustomerProfile;
+  total: number;
+  totalHT: number;
+  tva: number;
+  shipping_method: string;
+  created_at: Date;
 }
 
 export const order = {

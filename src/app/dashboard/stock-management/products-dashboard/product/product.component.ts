@@ -3,6 +3,8 @@ import {FormGroup} from "@angular/forms";
 import {Product, productObject} from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {createFormCreationEditGroup} from "../../../../models/forms";
+import {Promo} from "../../models/Promo";
+import {Category} from "../../models/Category";
 
 const additionalData = {
   product: {type: 'foreign_key', required: true },
@@ -24,11 +26,16 @@ export class ProductComponent implements OnInit{
   additionalData !: FormGroup;
   steps !: string[];
   currentStep !: number;
-  constructor(private essentialInformationService: AbstractRestService<Product>) {
+  categories !: Category[];
+  promos !: Promo[];
+  constructor(private essentialInformationService: AbstractRestService<Product>, private additionalInformation: AbstractRestService<>) {
   }
 
   ngOnInit() {
     this.formGroup = createFormCreationEditGroup(productObject);
+    this.currentStep = 0;
+    this.steps = ['product information', 'history', 'olfactive'];
+
   }
 
   onStep2Next($event: any) {

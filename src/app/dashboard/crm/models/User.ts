@@ -1,4 +1,4 @@
-interface CustomerProfile {
+export interface CustomerProfile {
 
     facebook: string;
     google: string;
