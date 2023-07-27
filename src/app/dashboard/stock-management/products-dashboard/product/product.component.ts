@@ -6,6 +6,7 @@ import {createFormCreationEditGroup} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
 import {Category} from "../../models/Category";
 
+
 const additionalData = {
   product: {type: 'foreign_key', required: true },
   first_image: {type: 'file', required: true },
