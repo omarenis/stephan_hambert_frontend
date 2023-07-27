@@ -21,6 +21,8 @@ import {VerificationComponent} from './auth/verification/verification.component'
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MousePositionDirective} from "./mouse-position.directive";
+import { CollectionsComponent } from './collections/collections.component';
+import { PhilosophieComponent } from './philosophie/philosophie.component';
 
 
 const routes: Route[] = [
@@ -80,7 +82,9 @@ const routes: Route[] = [
     SigningComponent,
     LockComponent,
     VerificationComponent,
-    MousePositionDirective
+    MousePositionDirective,
+    CollectionsComponent,
+    PhilosophieComponent
   ],
   imports: [
     CommonModule,
