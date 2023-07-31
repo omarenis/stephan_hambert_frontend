@@ -65,6 +65,7 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     SharedModule.forRoot(),
     NbChoicesModule,
+
   ]
 })
 export class StockManagementModule {}

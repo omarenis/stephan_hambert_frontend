@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {Product} from "../../../dashboard/stock-management/models/Product";
@@ -6,6 +6,41 @@ import {environment} from "../../../../environments/environment";
 import {AbstractRestService} from "../../../services/genericservice";
 import {ComponentNotifyService} from "../../../services/component-ntify.service";
 import {Comment} from "../../../dashboard/crm/models/Comment";
+import {DOCUMENT} from "@angular/common";
+import Options from 'photoswipe';
+import Item from 'photoswipe';
+export interface PSUIOptions extends Options {
+    addCaptionHTMLFn?: (item: PSItem, captionEl: HTMLElement, isFake?: boolean) => boolean;
+    shareEl?: boolean;
+}
+
+class WebKitPoint {
+}
+
+export interface PSItem extends Item {
+    bounds?: PSItemBounds;
+    imageAppended?: boolean;
+    img?: HTMLImageElement;
+    initialPosition?: WebKitPoint;
+    loaded?: boolean;
+    loading?: boolean;
+    // pid?: number;
+    title?: string;
+    msrc?: string;
+}
+
+export interface DynamicPSItem {
+    smallImage?: PSItem;
+    mediumImage?: PSItem;
+    largeImage?: PSItem;
+    originalImage: PSItem;
+}
+
+export interface PSItemBounds {
+    center: WebKitPoint;
+    max: WebKitPoint;
+    min: WebKitPoint;
+}
 
 @Component({
   selector: 'app-product-page',
@@ -20,11 +55,22 @@ export class ProductPageComponent implements OnInit {
   comments !: Comment[];
 
   constructor(private productService: AbstractRestService<Product>, private router: Router,
-              private activatedRouter: ActivatedRoute, private notifyService: ComponentNotifyService) {
+              private activatedRouter: ActivatedRoute, private notifyService: ComponentNotifyService,
+              @Inject(DOCUMENT) private document: Document) {
 
   }
 
   ngOnInit() {
+      const photoswipeCss = document.createElement('link');
+      photoswipeCss.rel = 'stylesheet';
+      photoswipeCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css';
+      document.head.append(photoswipeCss);
+    const photoswipeScript = document.createElement('script');
+    photoswipeScript.src =  'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js';
+    photoswipeScript.type = 'text/javascript';
+    photoswipeScript.defer = true;
+
+    this.document.body.append(photoswipeScript);
     this.carousel = {
       loop: true,
       dots: false,
