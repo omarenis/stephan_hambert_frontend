@@ -13,9 +13,9 @@
           <div class="col-8">
             <div class="row">
               <h5 class="font-weight-bolder">Collection Information</h5>
-              <div class="col-md-6 col-sm-12">
-                <label for="label">label</label>
-                <input class="form-control" type="text" formControlName="label" id="label" placeholder="eg. Off-White"/>
+              <div class="col-md-6 col-sm-12 mb-4">
+                <label for="title">label</label>
+                <input class="form-control" type="text" formControlName="title" id="title" placeholder="eg. Off-White"/>
               </div>
               <div class="col-md-6 col-sm-12">
                 <label for="code">code</label>
@@ -23,21 +23,20 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 col-sm-12">
+              <div class="col-md-6 col-sm-12 mb-4">
                 <label for="collection">Collection</label>
-                <input class="form-control" type="text" formControlName="label" id="collection"
+                <input class="form-control" type="text" formControlName="collection" id="collection"
                        placeholder="eg. Off-White"/>
               </div>
               <div class="col-md-6 col-sm-12">
                 <label for="categories">categories</label>
-                <input class="form-control" type="text" formControlName="code" id="categories"
-                       placeholder="eg. Off-White"/>
+                <choices [isMultiple]="true" id="categories" [choices]="category_set"  [formControlName]="'categories'" class="choices form-control" [isCombo]="true"></choices>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <label for="price">price</label>
-                <input class="form-control" type="number" formControlName="price" id=""
+                <input class="form-control" type="number" formControlName="price" id="price"
                        placeholder="12.5"/>
               </div>
               <div class="col-md-6 col-sm-12">

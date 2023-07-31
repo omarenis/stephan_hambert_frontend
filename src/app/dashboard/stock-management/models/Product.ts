@@ -28,5 +28,6 @@ export const productObject: {[key: string]: Object<Product>} = {
   tva: { type: 'float', required: true },
   image: {type: 'file', required: true},
   ingredients: {type: 'string', required: true},
-  category: {type: 'foreign_key', required: true}
+  category_set: {type: 'many_to_many', required: true},
+  collection: {type: 'foreign_key', required: true}
 }
