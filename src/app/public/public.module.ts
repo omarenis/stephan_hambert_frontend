@@ -21,9 +21,9 @@ import {VerificationComponent} from './auth/verification/verification.component'
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MousePositionDirective} from "./mouse-position.directive";
-import { CollectionsComponent } from './collections/collections.component';
-import { PhilosophieComponent } from './philosophie/philosophie.component';
-
+import {CollectionsComponent} from './collections/collections.component';
+import {PhilosophieComponent} from './philosophie/philosophie.component';
+import {Angular2PhotoswipeModule} from "angular2_photoswipe";
 
 const routes: Route[] = [
   {
@@ -92,7 +92,8 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     CarouselModule,
     NgOptimizedImage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Angular2PhotoswipeModule
   ]
 })
 export class PublicModule {

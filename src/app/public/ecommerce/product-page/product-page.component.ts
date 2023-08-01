@@ -9,37 +9,38 @@ import {Comment} from "../../../dashboard/crm/models/Comment";
 import {DOCUMENT} from "@angular/common";
 import Options from 'photoswipe';
 import Item from 'photoswipe';
+
 export interface PSUIOptions extends Options {
-    addCaptionHTMLFn?: (item: PSItem, captionEl: HTMLElement, isFake?: boolean) => boolean;
-    shareEl?: boolean;
+  addCaptionHTMLFn?: (item: PSItem, captionEl: HTMLElement, isFake?: boolean) => boolean;
+  shareEl?: boolean;
 }
 
 class WebKitPoint {
 }
 
 export interface PSItem extends Item {
-    bounds?: PSItemBounds;
-    imageAppended?: boolean;
-    img?: HTMLImageElement;
-    initialPosition?: WebKitPoint;
-    loaded?: boolean;
-    loading?: boolean;
-    // pid?: number;
-    title?: string;
-    msrc?: string;
+  bounds?: PSItemBounds;
+  imageAppended?: boolean;
+  img?: HTMLImageElement;
+  initialPosition?: WebKitPoint;
+  loaded?: boolean;
+  loading?: boolean;
+  // pid?: number;
+  title?: string;
+  msrc?: string;
 }
 
 export interface DynamicPSItem {
-    smallImage?: PSItem;
-    mediumImage?: PSItem;
-    largeImage?: PSItem;
-    originalImage: PSItem;
+  smallImage?: PSItem;
+  mediumImage?: PSItem;
+  largeImage?: PSItem;
+  originalImage: PSItem;
 }
 
 export interface PSItemBounds {
-    center: WebKitPoint;
-    max: WebKitPoint;
-    min: WebKitPoint;
+  center: WebKitPoint;
+  max: WebKitPoint;
+  min: WebKitPoint;
 }
 
 @Component({
@@ -61,12 +62,12 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit() {
-      const photoswipeCss = document.createElement('link');
-      photoswipeCss.rel = 'stylesheet';
-      photoswipeCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css';
-      document.head.append(photoswipeCss);
+    const photoswipeCss = document.createElement('link');
+    photoswipeCss.rel = 'stylesheet';
+    photoswipeCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css';
+    document.head.append(photoswipeCss);
     const photoswipeScript = document.createElement('script');
-    photoswipeScript.src =  'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js';
+    photoswipeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js';
     photoswipeScript.type = 'text/javascript';
     photoswipeScript.defer = true;
 
@@ -255,6 +256,8 @@ export class ProductPageComponent implements OnInit {
         id: 1
       }
     ];
+
+
     this.activatedRouter.params.subscribe(params => {
       if (params['id'] !== undefined) {
         this.productService.get(this.actionUrl, Number(params['id'])).subscribe(

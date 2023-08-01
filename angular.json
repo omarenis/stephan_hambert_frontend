@@ -32,11 +32,6 @@
               },
               "src/favicon.ico",
               "src/assets",
-              {
-                "glob": "**/*.@(svg|png|gif)",
-                "input": "node_modules/photoswipe/src/css/default-skin",
-                "output": "/assets/media"
-              },
               "src/manifest.webmanifest"
             ],
             "styles": [
