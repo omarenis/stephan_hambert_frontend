@@ -12,7 +12,9 @@ export interface Collection extends Statistics {
     image: string | File;
     label: string;
     description: string;
+    citation: string;
     otherinformationcollection_set?: OtherInformationCollection[];
+    id ?: number;
 }
 
 export const collectionObject = {
