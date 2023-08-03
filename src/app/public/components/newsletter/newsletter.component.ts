@@ -20,6 +20,12 @@ export class NewsletterComponent implements OnInit {
 
     this.formGroup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email])
-    })
+    });
+  }
+
+  submit($event: Event)
+  {
+    $event.preventDefault();
+
   }
 }
