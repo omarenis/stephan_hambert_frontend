@@ -29,7 +29,6 @@
     "@fullcalendar/daygrid": "^6.1.8",
     "@nguniversal/express-engine": "^15.2.0",
     "@tinymce/tinymce-angular": "^7.0.0",
-    "angular2_photoswipe": "^10.0.1",
     "angularx-flatpickr": "^7.2.0",
     "apexcharts": "^3.37.3",
     "crypto-js": "^4.1.1",
