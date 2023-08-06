@@ -20,7 +20,6 @@ export class CollectionsComponent implements OnInit {
         this.collections = result;
       }
     });
-
     this.collections = [
       {
         label: 'Collection 777',

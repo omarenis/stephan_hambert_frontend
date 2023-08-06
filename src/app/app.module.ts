@@ -4,7 +4,6 @@ import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {HttpClientModule} from "@angular/common/http";
 import {Route, RouterModule} from "@angular/router";
-import {ProfileComponent} from './screens/shared/profile/profile.component';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -23,7 +22,6 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
   ],
   imports: [
     HttpClientModule,
@@ -36,8 +34,6 @@ const routes: Route[] = [
       registrationStrategy: 'registerWhenStable:30000'
     }),
     RouterModule.forRoot(routes),
-    NgOptimizedImage,
-    ReactiveFormsModule,
   ],
   providers: [
 

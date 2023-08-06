@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractRestService} from "../../../services/genericservice";
+import {environment} from "../../../../environments/environment";
 
 interface Inscription {
   email: string;
@@ -14,7 +16,7 @@ interface Inscription {
 
 export class NewsletterComponent implements OnInit {
   formGroup !: FormGroup;
-  constructor() {
+  constructor(private inscriptionService: AbstractRestService<Inscription>) {
   }
   ngOnInit() {
 
@@ -26,6 +28,15 @@ export class NewsletterComponent implements OnInit {
   submit($event: Event)
   {
     $event.preventDefault();
+    this.inscriptionService.create(`${environment.url}/newsletter/inscriptions`, {
+      email: this.formGroup.value.email
+    }).subscribe({
+      next: () => {
 
+      },
+      error: () => {
+
+      }
+    })
   }
 }

@@ -4,6 +4,7 @@ import { AppComponent } from './app/app.component';
 import {Route, RouterModule} from "@angular/router";
 import { CustomersComponent } from './components/customers/customers.component';
 import { IndexComponent } from './index/index.component';
+import {TINYMCE_SCRIPT_SRC} from "@tinymce/tinymce-angular";
 
 
 const routes: Route[]  = [
@@ -34,8 +35,7 @@ const routes: Route[]  = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [
-
-  ]
-})
+providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+]})
 export class DashboardModule { }

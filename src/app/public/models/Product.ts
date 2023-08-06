@@ -1,7 +1,7 @@
-interface Prtoduct {
-  title: string;
-  description: string;
-  slug: string;
-  category: string;
-  id ?: string;
+export interface Product {
+    title: string;
+    description: string;
+    slug: string;
+    collection: string;
+    id?: number;
 }

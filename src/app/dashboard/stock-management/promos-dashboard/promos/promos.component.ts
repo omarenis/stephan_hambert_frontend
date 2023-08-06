@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
 import {Promo, promoObject} from "../../models/Promo";
 import {environment} from "../../../../../environments/environment";
@@ -11,6 +11,8 @@ import {CrudConsumer} from "../../../../services/CrudConsumer";
 })
 export class PromosComponent extends CrudConsumer<Promo> {
   err !: string;
+  @ViewChild('model') modelForm !: ElementRef;
+
   constructor(protected override service: AbstractRestService<Promo>) {
     super(service, `${environment.url}/promos`, {
       headers: {},
@@ -18,7 +20,20 @@ export class PromosComponent extends CrudConsumer<Promo> {
     }, promoObject, true);
   }
 
-  submit($event: any) {
+  submit($event: Event) {
+    this.service.create(`${environment.url}/promos`, <Promo>{
+      label: this.formCreationEditGroup.value.label,
+      datetime_end: this.formCreationEditGroup.value.datetime_end,
+      datetime_start: this.formCreationEditGroup.value?.datetime_start,
+      percentage: this.formCreationEditGroup.value?.datetime_end
+    }).subscribe({
+      next: (promo: Promo) => {
+        this.data.unshift(promo);
+        this.modelForm.nativeElement.click();
+      },
+      error: () => {
 
+      }
+    });
   }
 }

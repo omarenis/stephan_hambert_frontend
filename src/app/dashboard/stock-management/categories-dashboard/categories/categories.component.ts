@@ -25,7 +25,7 @@ export class CategoriesComponent extends CrudConsumer<Category>{
   submit(event: Event) {
     this.service.create(this.actionUrl, this.formCreationEditGroup.value).subscribe({
       next: (response: Category) => {
-        this.data.push(response);
+        this.data.unshift(response);
         this.modelForm.nativeElement.click();
       },
       error: (err) => {

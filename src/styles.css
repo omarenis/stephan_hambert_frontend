@@ -1,3 +1,14 @@
+@import "ngx-lightbox/lightbox.css";
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("./assets/fonts/Proxima Nova Font.otf");
+}
+
+* {
+    font-family: "Proxima Nova", serif;
+}
+
 .choices {
     position: relative;
     display: flex;
@@ -9,9 +20,6 @@
 .choices:focus {
     outline: none;
 }
-
-.choices > select
-
 
 
 .choices:last-child {
@@ -38,7 +46,7 @@
     border-color: #9ca0a0 !important;
 }
 
-choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropdown {
+.choices[role="combobox"][data-type*="select-one"].is-open .choices__list--dropdown {
     transform: translateY(-35px);
 }
 
@@ -55,14 +63,13 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 .choices[data-type*="select-one"] .choices__input {
     display: block;
     width: 100%;
-    padding: 10px;
     border-bottom: 1px solid #DDDDDD;
     background-color: #FFFFFF;
     height: 35px;
     max-height: 35px;
     margin: 0;
     background-position: 98.5% 7px;
-    padding-right: 35px;
+    padding: 10px 35px 10px 10px;
     background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iODZjZjM1MDItZTRlMy00MmE2LWE0MGMtZjk2MjI0M2UzODkzIiBmaWxsPSIjY2NjZWNlIiBkYXRhLW5hbWU9IkxheWVyIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Qm94PSIwIDAgMjAgMjAiPjx0aXRsZT5TZWFyY2hfPC90aXRsZT48cGF0aCBkPSJNMTksMTguMzNMMTQuNCwxMy43YTcuNjgsNy42OCwwLDEsMC0uNzEuNzFMMTguMzMsMTlBMC41LDAuNSwwLDAsMCwxOSwxOC4zM1ptLTEwLjM4LTNhNi42Niw2LjY2LDAsMSwxLDYuNjYtNi42NkE2LjY2LDYuNjYsMCwwLDEsOC42NiwxNS4zMVoiLz48L3N2Zz4=");
     background-repeat: no-repeat;
     transition: all 5s;
@@ -70,10 +77,6 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 
 .choices[data-type*="select-one"].is-open .choices__input {
     border: 1px solid #04bee8;
-}
-
-.choices[data-type*="select-one"].is-open .choices__input {
-    border-color: #04bee8;
 }
 
 .choices[data-type*="select-one"] .choices__button {
@@ -95,7 +98,7 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 }
 
 .choices[data-type*="select-one"] .choices__button:focus {
-    box-shadow: 0px 0px 0px 2px #00BCD4;
+    box-shadow: 0 0 0 2px #00BCD4;
 }
 
 .choices[data-type*="select-one"]:after {
@@ -120,7 +123,7 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 }
 
 .choices[data-type*="select-one"][dir="rtl"]:after {
-    left: 11.5px;
+    left: 12px;
     right: auto;
 }
 
@@ -163,7 +166,7 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
     vertical-align: top;
     width: 100%;
     background-color: #ffffff;
-    padding: 7.5px 7.5px 3.75px;
+    padding: 8px 8px 4px;
     border: 1px solid #DDDDDD;
     border-radius: 2px;
     font-size: 14px;
@@ -230,7 +233,7 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 
 [dir="rtl"] .choices__list--multiple .choices__item {
     margin-right: 0;
-    margin-left: 3.75px;
+    margin-left: 4px;
 }
 
 .choices__list--multiple .choices__item:hover {
@@ -252,7 +255,7 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 }
 
 .choices__list--dropdown {
-    box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
     display: none;
     z-index: 1;
     position: absolute;
@@ -424,122 +427,117 @@ choices [role="combobox"][data-type*="select-one"].is-open .choices__list--dropd
 
 /* You can add global styles to this file, and also import other style files */
 .icon {
-  width: 3em;
-  height: 3em;
+    width: 3em;
+    height: 3em;
 }
 
 /*set the defautl background color of the header section*/
 .pa-header {
-  background: rgba(0, 0, 0, 0.68);
-  -webkit-transition: background-color 0.5s ease-out;
-  -moz-transition: background-color 0.5s ease-out;
-  -o-transition: background-color 0.5s ease-out;
-  transition: background-color 0.5s ease-out;
+    background: rgba(0, 0, 0, 0.68);
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
 }
 
 /*set the background color of the fixed header when scrolling*/
 .pa-fixed-header {
-  background-color: #000000 !important;
-  -webkit-transition: background-color 0.5s ease-out;
-  -moz-transition: background-color 0.5s ease-out;
-  -o-transition: background-color 0.5s ease-out;
-  transition: background-color 0.5s ease-out;
+    background-color: #000000 !important;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
 }
 
 .right {
-  cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWwxOCAxNi4yMzZMMSAzNCIgc3Ryb2tlPSIjMjUyNTI1IiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=") 10 17, pointer;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWwxOCAxNi4yMzZMMSAzNCIgc3Ryb2tlPSIjMjUyNTI1IiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=") 10 17, pointer;
 }
 
 .left {
-  cursor: url("/assets/arrows/arrow-left.svg") 10 17, pointer;
+    cursor: url("/assets/arrows/arrow-left.svg") 10 17, pointer;
 }
 
 .border-radius-0 {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .tableWrap {
-  height: 70vh;
-  overflow: auto;
+    height: 70vh;
+    overflow: auto;
 }
 
 .tableWrap > table {
-  width: 100%;
+    width: 100%;
 }
 
 .tableWrap > table > thead tr th {
-  background: white;
-  position: sticky;
-  opacity: 1;
-  top: 0;
+    background: white;
+    position: sticky;
+    opacity: 1;
+    top: 0;
 }
 
 a {
-  cursor: pointer;
-}
-
-.owl-stage {
+    cursor: pointer;
 }
 
 .text-black {
-  color: black;
+    color: black;
 }
 
 legend {
-  display: none;
+    display: none;
 }
 
 .carousel-indicators > button {
-  width: 10px;
-  height: 10px;
-  border: 0;
-  border-radius: 10px;
-  background-color: white;
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .slider {
-  display: block;
-  align-content: center;
-  height: 40vh !important;
+    display: block;
+    align-content: center;
+    height: 40vh !important;
 }
 
 #section {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 #readMore {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .card-description {
-  color: #000;
-  text-align: center;
-  font-size: 20px;
-  font-family: Proxima Nova, serif;
-  line-height: 25px;
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+    font-family: Proxima Nova, serif;
+    line-height: 25px;
 }
 
 .nav-link.active {
-  text-align: center;
-  text-underline: black;
+    text-align: center;
+    text-underline: black;
+    border-color: transparent;
 }
 
 .tab-content {
-  border: 0;
-  background-color: white;
-}
-
-.nav-link.active {
-  border-color: transparent;
+    border: 0;
+    background-color: white;
 }
 
 .link {
-  color: #000;
-  text-align: center;
-  font-size: 20px;
-  font-family: Proxima Nova;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-underline-offset: 4px;
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+    font-family: Proxima Nova, serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-underline-offset: 4px;
 }
+
