@@ -1,12 +1,29 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {ProfileComponent} from './profile/profile.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        ProfileComponent
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgOptimizedImage,
+    ],
+    exports: [
+        ReactiveFormsModule,
+        CommonModule,
+        NgOptimizedImage,
+    ]
 })
-export class SharedModule { }
+export class SharedModule {
+    static forRoot(): ModuleWithProviders<any> {
+        return {
+            ngModule: SharedModule,
+            providers: []
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import { CustomerProfile } from "../../crm/models/User"
+import {OrderLine} from "./OrderLine";
 
 export interface Order
 {
@@ -8,6 +9,7 @@ export interface Order
   tva: number;
   shipping_method: string;
   created_at: Date;
+  orderline_set ?: OrderLine[];
 }
 
 export const order = {

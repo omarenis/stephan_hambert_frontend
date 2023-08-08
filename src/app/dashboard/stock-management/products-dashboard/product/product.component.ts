@@ -5,11 +5,21 @@ import {AbstractRestService} from "../../../../services/genericservice";
 import {createFormCreationEditGroup} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
 import {Category} from "../../models/Category";
+import {environment} from "../../../../../environments/environment";
+import {Collection} from "../../models/Collection";
+interface Olfaction
+{
+
+}
+interface Choice {
+  value: string;
+  label: string;
+}
 
 const additionalData = {
-  product: {type: 'foreign_key', required: true },
-  first_image: {type: 'file', required: true },
-  second_image: {type: 'file', required: true },
+  product: {type: 'foreign_key', required: true},
+  first_image: {type: 'file', required: true},
+  second_image: {type: 'file', required: true},
   third_image: {type: 'file', required: true}
 }
 
@@ -19,43 +29,56 @@ const additionalData = {
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit{
-  essentialInformationFormGroup !: FormGroup;
-  isCompleted: any;
+export class ProductComponent implements OnInit {
   formGroup !: FormGroup;
-  additionalData !: FormGroup;
   steps !: string[];
   currentStep !: number;
-  categories !: Category[];
+  category_set !: Category[];
+  collections !: Collection[];
   promos !: Promo[];
-  constructor(private essentialInformationService: AbstractRestService<Product>, private additionalInformation: AbstractRestService<>) {
+  choices !: Choice[];
+
+  constructor(private essentialInformationService: AbstractRestService<Product>, private categoryService: AbstractRestService<Category>,
+              private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
+              private olfactiion: AbstractRestService<Olfaction>) {
   }
 
   ngOnInit() {
     this.formGroup = createFormCreationEditGroup(productObject);
     this.currentStep = 0;
     this.steps = ['product information', 'history', 'olfactive'];
-
+    this.categoryService.list(`${environment.url}/categories`).subscribe({
+      next: (response: Category[]) => {
+        this.category_set = response;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+    this.collectionService.list(`${environment.url}/collections`).subscribe({
+      next: (response: Collection[]) => {
+        this.collections = response;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+    this.promoService.list(`${environment.url}/promos`).subscribe({
+      next: (promos: Promo[]) => {
+        this.promos = promos;
+      }
+    });
+    this.choices = [];
+    for (const category of this.category_set) {
+      this.choices.push(<Choice>{
+        value: category.id?.toString(),
+        label: category.title
+      });
+    }
   }
 
-  onStep2Next($event: any) {
-    console.log($event);
-  }
-
-  nextStep($event: any) {
-
-  }
-
-  onComplete($event: any) {
-
-  }
-
-  finishFunction() {
-
-
-  }
-
-  readImage($event: Event) {
+  addOrEditProductEssentialInformation()
+  {
 
   }
 
@@ -63,4 +86,8 @@ export class ProductComponent implements OnInit{
 
   }
 
+  readImage($event: Event) {
+
+  }
 }
+
