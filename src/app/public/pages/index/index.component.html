@@ -11,7 +11,7 @@
   <div class="carousel-inner">
     <div class="carousel-item" [ngClass]="{'active': step === 0}">
       <div class="page-header min-vh-100"
-           style="background-image: url('/src/assets/img/carousel1.jpg');">
+           style="background-image: url('assets/img/carousel1.jpg');">
         <span class="mask"></span>
         <div class="container">
           <div class="row">
@@ -28,7 +28,7 @@
     </div>
     <div class="carousel-item" [ngClass]="{'active': step === 1}" id="hello">
       <div class="page-header min-vh-100 m-"
-           style="background-image: url('/src/assets/img/carousel2.png');">
+           style="background-image: url('assets/img/carousel2.png');">
         <span class="mask"></span>
         <div class="container">
           <div class="row">
@@ -98,76 +98,13 @@
          tabindex="0">
       <div app-carousel [products]="products"></div>
     </div>
-    <owl-carousel-o [options]="carousel" class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                    aria-labelledby="profile-tab" tabindex="1">
-      <ng-container *ngFor="let product of products; let i=index">
-        <ng-template class="slide" [id]="i.toString()" carouselSlide>
-          <div class="card ms-2 me-2 p-2" appMousePosition>
-            <img ngSrc="{{product.image}}" class="card-img" [width]="100" [height]="250" alt="..." loading="lazy">
-            <div class="mt-2">
-              <h5 class="card-title text-center">Card title</h5>
-              <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in to
-                additional
-                content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ng-container>
-    </owl-carousel-o>
-    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="2">
-      <owl-carousel-o [options]="carousel">
-        <ng-container *ngFor="let product of products; let i=index">
-          <div class="slide bg-white" [id]="i.toString()" carouselSlide>
-            <div class="card ms-2 " appMousePosition>
-              <img ngSrc="{{product.image}}" class="card-img" [width]="100" [height]="250" alt="..." loading="lazy">
-              <div class="mt-2">
-                <h5 class="card-title text-center">Card title</h5>
-                <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in to
-                  additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-center">
-                  <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </owl-carousel-o>
-    </div>
-    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="presents-tab" tabindex="3">
-      <div style="width: 300px; border: 1px solid rebeccapurple">
-        <owl-carousel-o [options]="carousel">
-          <ng-container *ngFor="let product of products; let i=index">
-            <ng-template class="slide" [id]="i.toString()" carouselSlide>
-              <div class="card ms-2 me-2 p-2" appMousePosition [id]="i / (products.length / 2)">
-                <img ngSrc="{{product.image}}" class="card-img min-height-100" [width]="250" [height]="450" alt="..."
-                     loading="lazy">
-                <div class="mt-2">
-                  <h5 class="card-title text-center">Card title</h5>
-                  <p class="card-text text-center">This is a wider card with supporting text below as a natural lead-in
-                    to
-                    additional
-                    content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-center">
-                    <button class="btn btn-dark" style="background-color: #272727">Découvrir</button>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-          </ng-container>
-        </owl-carousel-o>
-      </div>
-    </div>
   </div>
   <div class="d-flex justify-content-center">
     <a class="link text-center text-decoration-underline mt-5"> Voir tous les parfums </a>
   </div>
 </section>
 <div class="card min-height-100 mt-5 bg-transparent" id="section">
-  <img ngSrc="/src/assets/img/stephane.png" [width]="width" [height]="height" class="card-img w-100"
+  <img ngSrc="assets/img/stephane.png" [width]="width" [height]="height" class="card-img w-100"
        style="border-radius: 0; min-width: 100%"
        alt="...">
   <div class="card-img-overlay container-fluid mt-12 pt-7">
@@ -202,7 +139,7 @@
   </article>
 </section>
 <div class="card min-height-100 border-radius-0" id="">
-  <img ngSrc="/src/assets/img/stephane2.png" [width]="width" [height]="height" class="card-img border-radius-0 min-vw-100"
+  <img ngSrc="assets/img/stephane2.png" [width]="width" [height]="height" class="card-img border-radius-0 min-vw-100"
        alt="...">
   <div class="card-img-overlay container-fluid mt-12 pt-7">
     <div class="d-flex flex-column align-items-end pe-5">

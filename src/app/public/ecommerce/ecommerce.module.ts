@@ -1,24 +1,39 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {BillingComponent} from "./billing/billing.component";
 import {CartComponent} from "./cart/cart.component";
 import {CheckoutComponent} from "./checkout/checkout.component";
 import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductPageComponent} from "./product-page/product-page.component";
-import {SharedModule} from "../shared/shared.module";
-import { SharedModule as GlobalSharedModule } from "../../shared/shared.module";
+import {ComponentsModule} from "../components/components.module";
+import {LightboxModule} from "ngx-lightbox";
+import {Route, RouterModule} from "@angular/router";
 
+const routes: Route[] = [
+  {
+    path: 'products', component: ProductListComponent,
+  },
+  {
+    path: 'products/:id', component: ProductPageComponent
+  },
+  {
+    path: 'checkout', component: CheckoutComponent
+  },
+  {
+    path: 'billing', component: BillingComponent
+  }
+]
 @NgModule({
   declarations: [
     BillingComponent,
-    CartComponent,
     CheckoutComponent,
     ProductListComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    CartComponent,
   ],
   imports: [
-    GlobalSharedModule.forRoot(),
-    SharedModule
-  ]
+    ComponentsModule.forRoot(),
+    LightboxModule,
+    RouterModule.forChild(routes)
+  ],
 })
 export class EcommerceModule { }

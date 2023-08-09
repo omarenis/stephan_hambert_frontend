@@ -22,10 +22,10 @@ export class PromosComponent extends CrudConsumer<Promo> {
 
   submit($event: Event) {
     this.service.create(`${environment.url}/promos`, <Promo>{
-      label: this.formCreationEditGroup.value.label,
+      title: this.formCreationEditGroup.value.title,
       datetime_end: this.formCreationEditGroup.value.datetime_end,
       datetime_start: this.formCreationEditGroup.value?.datetime_start,
-      percentage: this.formCreationEditGroup.value?.datetime_end
+      percentage: this.formCreationEditGroup.value?.percentage
     }).subscribe({
       next: (promo: Promo) => {
         this.data.unshift(promo);

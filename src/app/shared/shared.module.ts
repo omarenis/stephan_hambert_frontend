@@ -10,7 +10,6 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     ReactiveFormsModule,
     NgOptimizedImage,
-
   ],
   exports: [
     ReactiveFormsModule,

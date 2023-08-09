@@ -14,7 +14,7 @@ export class ProductsTableComponent implements OnInit {
   @Output() sensOperation: EventEmitter<Operation> = new EventEmitter<Operation>();
   ngOnInit() {
     this.products.map<Product>(item => {
-      item.promo = typeof item.promo !== 'number' && typeof item.promo !== 'string' ? item.promo.label : item.promo.toString();
+      item.promo = typeof item.promo !== 'number' && typeof item.promo !== 'string' ? item.promo.title : item.promo.toString();
       return item;
     })
   }

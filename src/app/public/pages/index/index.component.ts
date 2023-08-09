@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {OwlOptions} from "ngx-owl-carousel-o";
 import {Product} from "../../../dashboard/stock-management/models/Product";
 import {AbstractRestService} from "../../../services/genericservice";
 import {Collection} from "../../../dashboard/stock-management/models/Collection";
@@ -24,7 +23,6 @@ step !: number;
   initialValue !: number;
   order = 0;
   transitionStep !: boolean;
-  carousel !: OwlOptions;
   products !: Product[];
   width !: number;
   height !: number;
@@ -47,25 +45,6 @@ step !: number;
     this.position = 'initial';
     this.step = 0;
     this.document.body.classList.add('overflow-x-hidden');
-    this.carousel = {
-      loop: true,
-      dots: false,
-      navSpeed: 800,
-      center: true,
-      items: 3,
-      responsive: {
-        0: {
-          items: 1,
-        },
-        400: {
-          items: 1
-        },
-        740: {
-          items: 3
-        },
-      },
-      nav: true
-    }
     this.products = [{
       title: '',
       code: '',
