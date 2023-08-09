@@ -29,7 +29,6 @@ export class CategoriesComponent extends CrudConsumer<Category>{
         this.modelForm.nativeElement.click();
       },
       error: (err) => {
-        console.log(err);
         this.err = err.err.message;
       }
     });
