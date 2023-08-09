@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {Product, productObject} from "../../models/Product";
+import {Product, ProductEssentialInformation, productObject} from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {createFormCreationEditGroup} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
@@ -37,10 +37,11 @@ export class ProductComponent implements OnInit {
   collections !: Collection[];
   promos !: Promo[];
   choices !: Choice[];
-
-  constructor(private essentialInformationService: AbstractRestService<Product>, private categoryService: AbstractRestService<Category>,
+  product !: Product;
+  method !: string;
+  constructor(private essentialInformationService: AbstractRestService<ProductEssentialInformation>, private categoryService: AbstractRestService<Category>,
               private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
-              private olfactiion: AbstractRestService<Olfaction>) {
+              private olfaction: AbstractRestService<Olfaction>) {
   }
 
   ngOnInit() {
@@ -90,4 +91,3 @@ export class ProductComponent implements OnInit {
 
   }
 }
-

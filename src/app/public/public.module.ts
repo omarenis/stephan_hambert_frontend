@@ -6,7 +6,7 @@
   import {ContactComponent} from './components/contact/contact.component';
   import {NewsletterComponent} from './components/newsletter/newsletter.component';
   import {CarouselComponent} from './components/carousel/carousel.component';
-  import {IndexComponent} from './index/index.component';
+  import {IndexComponent} from './pages/index/index.component';
   import {ProductListComponent} from "./ecommerce/product-list/product-list.component";
   import {ProductPageComponent} from "./ecommerce/product-page/product-page.component";
   import {CartComponent} from "./ecommerce/cart/cart.component";
@@ -19,13 +19,12 @@
   import {LockComponent} from './auth/lock/lock.component';
   import {VerificationComponent} from './auth/verification/verification.component';
   import {CarouselModule} from "ngx-owl-carousel-o";
-  import {ReactiveFormsModule} from "@angular/forms";
   import {MousePositionDirective} from "./mouse-position.directive";
-  import {CollectionsComponent} from './collections/collections.component';
-  import {PhilosophieComponent} from './philosophie/philosophie.component';
+  import {CollectionsComponent} from './pages/collections/collections.component';
+  import {PhilosophieComponent} from './pages/philosophie/philosophie.component';
   import {LightboxModule} from "ngx-lightbox";
   import {SharedModule} from "../shared/shared.module";
-  import {ProfileComponent} from "../shared/profile/profile.component";
+  import {ProfileComponent} from "../components/profile/profile.component";
 
   const routes: Route[] = [
     {

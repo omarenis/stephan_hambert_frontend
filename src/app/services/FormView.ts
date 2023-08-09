@@ -1,7 +1,7 @@
-import {Component, Inject, inject, OnDestroy, OnInit} from "@angular/core";
+import {Component, Inject, inject, OnInit} from "@angular/core";
 import {AbstractRestService} from "./genericservice";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Object as GenericObject, ObjectType} from '../models/generic';
+import {Object as GenericObject} from '../models/generic';
 import {FormGroup} from "@angular/forms";
 import {createFormCreationEditGroup, setFormGroupValues} from "../models/forms";
 
@@ -11,13 +11,13 @@ import {createFormCreationEditGroup, setFormGroupValues} from "../models/forms";
 export abstract class FormView<T> implements OnInit {
   public formGroup !: FormGroup;
   protected actionUrl: string;
-  protected object: { [key: string]: GenericObject<T> };
+  protected object: { [key: string]: GenericObject };
   protected foreignKeyInstanceList  !: { [key: string]: object[] };
   protected foreignKeyServices !: { [key: string]: AbstractRestService<object> };
-
+  protected method!: string;
   protected constructor(protected service: AbstractRestService<T>, protected router: Router,
                         protected activatedRoute: ActivatedRoute,
-                        @Inject({}) object: { [key: string]: GenericObject<T> },
+                        @Inject({}) object: { [key: string]: GenericObject },
                         @Inject('') actionUrl: string) {
     this.actionUrl = actionUrl;
     this.object = object;
@@ -26,14 +26,17 @@ export abstract class FormView<T> implements OnInit {
   ngOnInit(): void {
     this.foreignKeyInstanceList = {};
     Object.keys(this.object).forEach(key => {
-      if (this.object[key].type === 'foreign_key') {
-        this.foreignKeyServices[key] = inject(AbstractRestService<Function>);
+      if (this.object[key].type === 'foreign_key' || this.object[key].type == 'one_to_one') {
+        if (this.object[key].objectToMap !== undefined) {
+          const Type = this.object[key].objectToMap;
+          console.log(Type);
+          this.foreignKeyServices[key] = inject(AbstractRestService<typeof Type>)
+        }
       }
     });
     this.formGroup = createFormCreationEditGroup(this.object);
     console.log(this.formGroup);
     this.activatedRoute.params.subscribe(params => {
-      console.log(Number(params['id']));
       if (params['id'] !== null) {
         this.service.get(this.actionUrl, Number(params['id'])).subscribe({
           next: (instance: T): void => {

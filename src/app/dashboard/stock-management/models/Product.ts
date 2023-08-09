@@ -20,7 +20,35 @@ export interface Product {
 }
 
 
-export const productObject: {[key: string]: Object<Product>} = {
+export interface ProductEssentialInformation
+{
+  title: string;
+  code: string;
+  slug: string;
+  description: string;
+  price: number;
+  current_quantity: number;
+  tva: number;
+  image: string | File;
+  promo: Promo | number | string;
+  collection: Collection | number | string;
+  id ?: number;
+}
+
+export interface Olfaction
+{
+  product: number | Product | string;
+  title: string;
+  description: string;
+  image: string | File;
+}
+
+export interface History
+{
+
+}
+
+export const productObject: {[key: string]: Object} = {
   title: { type: 'string', required: true },
   code: { type: 'string', required: true },
   description: {type: 'string', required: true},

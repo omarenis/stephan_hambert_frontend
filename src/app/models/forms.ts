@@ -14,7 +14,7 @@ export function getDefaultValue(type: string): false | '' | 0 {
   return "";
 }
 
-export function createFormCreationEditGroup(object: { [key: string]: GenericObject<any> }): FormGroup {
+export function createFormCreationEditGroup(object: { [key: string]: GenericObject }): FormGroup {
   const formGroup: FormGroup = new FormGroup({});
   Object.keys(object).forEach(key => {
     formGroup.addControl(key, new FormControl(getDefaultValue(object[key].type), object[key].required ? [Validators.required] : []))
@@ -22,7 +22,7 @@ export function createFormCreationEditGroup(object: { [key: string]: GenericObje
   return formGroup;
 }
 
-export function createFilterFormGroup(object: { [key: string]: GenericObject<any> }): FormGroup {
+export function createFilterFormGroup(object: { [key: string]: GenericObject }): FormGroup {
   let formControls: { [key: string]: FormControl } = {};
   Object.keys(object).forEach((key) => {
     formControls[key] = new FormControl(getDefaultValue(object[key].type));

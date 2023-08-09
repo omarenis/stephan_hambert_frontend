@@ -1,7 +1,7 @@
 <div class="multisteps-form" #multistepForm>
   <div class="multisteps-form__progress">
     <button *ngFor="let step of steps; let i = index" class="multisteps-form__progress-btn" title="{{ step }}"
-            [class.js-active]="i <= currentStep" (click)="currentStep = i">
+            [class.js-active]="i <= currentStep" (click)="currentStep = i" [disabled]="product">
       <span class="text-white">{{ step }}</span>
     </button>
   </div>
@@ -29,12 +29,6 @@
                 <label for="collection">Collection</label>
                 <input class="form-control" type="text" formControlName="collection" id="collection"
                        placeholder="eg. Off-White"/>
-              </div>
-              <div class="col-md-6 col-sm-12">
-                <label for="categories">categories</label>
-                <choices [isMultiple]="true" id="categories" [choices]="[]"
-                         [formControlName]="'categories'" class="choices form-control"
-                         [isCombo]="true"></choices>
               </div>
             </div>
             <div class="row">

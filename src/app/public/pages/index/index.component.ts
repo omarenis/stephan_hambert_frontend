@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Product} from "../../dashboard/stock-management/models/Product";
-import {AbstractRestService} from "../../services/genericservice";
-import {Collection} from "../../dashboard/stock-management/models/Collection";
+import {Product} from "../../../dashboard/stock-management/models/Product";
+import {AbstractRestService} from "../../../services/genericservice";
+import {Collection} from "../../../dashboard/stock-management/models/Collection";
 import {DOCUMENT} from "@angular/common";
-import {ComponentNotifyService} from "../../services/component-ntify.service";
+import {ComponentNotifyService} from "../../../services/component-ntify.service";
 import {FormGroup} from "@angular/forms";
 
 @Component({

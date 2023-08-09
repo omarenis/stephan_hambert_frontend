@@ -17,17 +17,17 @@ export abstract class CrudConsumer<T> implements OnInit {
   protected options !: Option;
   protected getObjectsSubscriber !: () => Subscription;
   protected actionUrl !: string;
-  protected object !: { [key: string]: GenericObject<T> };
+  protected object !: { [key: string]: GenericObject };
   protected hasFormIntegrated: boolean;
   protected formCreationEditGroup !: FormGroup;
   protected constructor(protected service: AbstractRestService<T>, @Inject('') actionUrl: string,
                         @Inject({}) options: Option,
-                        @Inject({}) object: { [key: string]: GenericObject<T> },
+                        @Inject({}) object: { [key: string]: GenericObject },
                         @Inject(undefined) hasFormIntegrated ?: boolean) {
     this.actionUrl = actionUrl;
     this.options = options;
     this.object = object;
-    this.hasFormIntegrated = hasFormIntegrated !== undefined ? hasFormIntegrated : false;
+    this.hasFormIntegrated = hasFormIntegrated ?? false;
   }
 
   getData(params ?: object): void {

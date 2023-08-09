@@ -7,27 +7,26 @@ import {AlertComponent} from '../alert/alert.component';
 import {SharedModule as GlobalSharedModule} from "../../shared/shared.module";
 
 @NgModule({
-    declarations: [
-        AlertComponent
-    ],
-    imports: [
-        CommonModule,
-        EditorModule,
-        FlatpickrModule.forRoot(),
-        GlobalSharedModule.forRoot()
-    ],
-    exports: [
-        FullCalendarModule,
-        FlatpickrModule,
-        NgOptimizedImage,
-        GlobalSharedModule
-    ]
+  declarations: [
+    AlertComponent
+  ],
+  imports: [
+    FullCalendarModule,
+    FlatpickrModule.forRoot(),
+    GlobalSharedModule.forRoot()
+  ],
+  exports: [
+    FullCalendarModule,
+    FlatpickrModule,
+    NgOptimizedImage,
+    GlobalSharedModule
+  ]
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders<any> {
-        return {
-            ngModule: SharedModule,
-            providers: []
-        }
+  static forRoot(): ModuleWithProviders<any> {
+    return {
+      ngModule: SharedModule,
+      providers: []
     }
+  }
 }

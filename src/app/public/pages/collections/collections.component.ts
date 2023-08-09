@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractRestService} from "../../services/genericservice";
-import {Collection} from "../../dashboard/stock-management/models/Collection";
-import {environment} from "../../../environments/environment";
+import {AbstractRestService} from "../../../services/genericservice";
+import {Collection} from "../../../dashboard/stock-management/models/Collection";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-collections',

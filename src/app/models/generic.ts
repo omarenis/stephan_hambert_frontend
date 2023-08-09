@@ -3,8 +3,9 @@ export interface Option {
   params: object;
 }
 export type ObjectType<T> = {new (): T } | Function;
-export interface Object<T> {
+export interface Object {
   type: string;
   required: boolean;
   urlGetMapper ?: string;
+  objectToMap ?: object | Function
 }
