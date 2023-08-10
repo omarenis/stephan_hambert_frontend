@@ -14,6 +14,7 @@ import {SharedModule} from "../shared/shared.module";
 import {EditorModule} from "@tinymce/tinymce-angular";
 import {ProductsComponent} from "./products-dashboard/products/products.component";
 import {ProductComponent} from "./products-dashboard/product/product.component";
+import {FormsModule} from "@angular/forms";
 const routes: Route[] = [
   {
     path: '', component: AppComponent
@@ -58,11 +59,12 @@ const routes: Route[] = [
     ProductsComponent,
     ProductComponent
   ],
-  imports: [
-    EditorModule,
-    RouterModule.forChild(routes),
-    SharedModule.forRoot(),
+    imports: [
+        EditorModule,
+        RouterModule.forChild(routes),
+        SharedModule.forRoot(),
+        FormsModule,
 
-  ]
+    ]
 })
 export class StockManagementModule {}
