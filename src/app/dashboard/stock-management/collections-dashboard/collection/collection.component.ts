@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
-import {Collection, collectionObject} from "../../models/Collection";
+import {Collection, collectionObject, OtherInformationCollection} from "../../models/Collection";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {FormView} from "../../../../services/FormView";
@@ -12,9 +12,11 @@ import {FormView} from "../../../../services/FormView";
 })
 export class CollectionComponent extends FormView<Collection>  {
  imagePath: any;
+ otherInformation !: OtherInformationCollection[];
   constructor(protected override service: AbstractRestService<Collection>,
-              protected override  router: Router, protected override activatedRoute: ActivatedRoute) {
-    super(service, router, activatedRoute, collectionObject, `${environment.url}/collections`);
+              protected override  router: Router, protected override activatedRoute: ActivatedRoute, private otherInformationService:   AbstractRestService<OtherInformationCollection>) {
+    super(service, router, activatedRoute, collectionObject, `${environment.url}/collections`, 'multipart/form-data');
+    this.steps = ['collection essential information'];
   }
 
   readImage($event: Event) {
@@ -23,10 +25,9 @@ export class CollectionComponent extends FormView<Collection>  {
   }
 
   submit(event: Event) {
-    event.preventDefault();
-    console.log(this.formGroup.invalid);
-    console.log(this.formGroup.value);
+    console.log(this.foreignKeyInstanceList);
   }
 
   protected readonly window = window;
+  steps !: string[];
 }

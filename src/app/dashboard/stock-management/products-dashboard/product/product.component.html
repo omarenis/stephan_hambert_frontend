@@ -27,8 +27,9 @@
             <div class="row">
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="collection">Collection</label>
-                <input class="form-control" type="text" formControlName="collection" id="collection"
-                       placeholder="eg. Off-White"/>
+                <select id="collection" class="form-select">
+                  <option [selected]="" *ngFor="let collection of collections"></option>
+                </select>
               </div>
             </div>
             <div class="row">

@@ -48,14 +48,6 @@ export class ProductComponent implements OnInit {
     this.formGroup = createFormCreationEditGroup(productObject);
     this.currentStep = 0;
     this.steps = ['product information', 'history', 'olfactive'];
-    this.categoryService.list(`${environment.url}/categories`).subscribe({
-      next: (response: Category[]) => {
-        this.category_set = response;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
         this.collections = response;

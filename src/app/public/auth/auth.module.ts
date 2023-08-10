@@ -17,9 +17,14 @@ const routes: Route[] = [
   },
   {
     path: 'reset-password', component: ResetPasswordComponent
+  },
+  {
+    path: 'verification', component: VerificationComponent
+  },
+  {
+    path: 'lock', component: LockComponent
   }
-]
-
+];
 
 @NgModule({
   declarations: [
@@ -35,5 +40,4 @@ const routes: Route[] = [
     GlobalSharedComponent.forRoot()
   ]
 })
-export class AuthModule {
-}
+export class AuthModule {}
