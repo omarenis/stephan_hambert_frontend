@@ -37,3 +37,18 @@ export function  setFormGroupValues(instance: { [key: string]: string | number |
     }
   })
 }
+
+
+export function serializeDataByType<T>(_object: T, typeForm: string): T | FormData
+{
+  let result: FormData | T = _object;
+  if(typeForm !== 'application/json')
+  {
+    result = new FormData();
+    const data = (_object as {[key: string]: Blob  | string });
+    Object.keys(data).forEach(key => {
+      (<FormData> result).append(key,  data[key]);
+    });
+  }
+  return result;
+}

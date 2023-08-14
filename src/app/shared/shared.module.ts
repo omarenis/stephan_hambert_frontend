@@ -1,6 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -10,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     ReactiveFormsModule,
     NgOptimizedImage,
+      HttpClientModule
   ],
   exports: [
     ReactiveFormsModule,

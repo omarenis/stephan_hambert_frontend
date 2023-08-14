@@ -1,4 +1,4 @@
-import 'zone.js/node';
+import "zone.js/node";
 
 import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
@@ -7,7 +7,6 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 import * as compression from 'compression';
 import { AppServerModule } from './src/main.server';
-
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -38,7 +37,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] !== undefined && process.env['PORT'] !== null ? process.env['PORT'] : 4000;
 
   // Start up the Node server
   const server = app();
@@ -51,8 +50,7 @@ function run(): void {
 // '__non_webpack_require__' is a proxy to Node 'require'
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
-const mainModule = __non_webpack_require__.main;
-const moduleFilename = mainModule && mainModule.filename || '';
+const mainModule = __non_webpack_require__.main, moduleFilename = mainModule?.filename || '';
 if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }

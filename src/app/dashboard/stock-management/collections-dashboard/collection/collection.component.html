@@ -1,8 +1,18 @@
 <div class="multisteps-form" #multistepForm>
   <div class="multisteps-form__progress">
-    <button *ngFor="let step of steps; let i = index" class="multisteps-form__progress-btn" title="{{ step }}"
-            [class.js-active]="i <= currentStep" (click)="currentStep = i" [disabled]="">
-      <span class="text-white">{{ step }}</span>
+    <button class="multisteps-form__progress-btn"
+            [class.js-active]="0 <= currentStep" (click)="currentStep = 0" [disabled]="">
+      <span class="text-white" i18n>collection</span>
+    </button>
+    <button class="multisteps-form__progress-btn"
+            [class.js-active]="1 <= currentStep" (click)="getAllOtherInformationsForCollection()"
+            [disabled]="this.itemId === undefined || this.itemId === null">
+      <span class="text-white" i18n>Other Informations</span>
+    </button>
+    <button class="multisteps-form__progress-btn"
+            [class.js-active]="2 <= currentStep" (click)="getQuoteForCollection()"
+            [disabled]="this.itemId === undefined || this.itemId === null">
+      <span class="text-white" i18n>Citation</span>
     </button>
   </div>
   <div class="multisteps-form__form bg-white p-5 mt-5">
@@ -10,42 +20,45 @@
       <form class="p-3 mt-lg-4 m-auto w-100" data-animation="FadeIn"
             [formGroup]="formGroup" (ngSubmit)="submit($event)">
         <div class="row w-100">
-          <div class="col-8">
-            <h5 class="font-weight-bolder">Other Information about collections</h5>
-            <div class="row">
-              <div class="col-sm-12">
-                <label>label</label>
-                <input class="form-control" type="text" formControlName="label" placeholder="eg. Off-White"/>
-              </div>
+          <div class="col-md-8 col-sm-12">
+            <h5 class="font-weight-bolder" i18n>Essential Information about collection</h5>
+            <div class="d-flex ps-4 pe-4">
+              <label class="col-form-label me-5">Title</label>
+              <input class="form-control" type="text" formControlName="title"/>
             </div>
             <div class="row mb-5">
               <div class="d-flex flex-column">
                 <label class="mt-4">Description</label>
                 <editor
-                  [formControlName]="'description'"
+                  [formControlName]="'content'"
                   [init]="{
-    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help'
+                  menubar: 'format',
+                  selector: 'textarea',
+    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+      'forecolor backcolor emoticons | help',
   }"
                 ></editor>
               </div>
             </div>
             <div class="button-row d-flex w-100 align-items-center justify-content-between mt-2">
-              <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" type="reset" title="Next">
+              <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" type="reset" title="Next" i18n>
                 annuler
               </button>
               <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" [disabled]="formGroup.invalid"
-                      type="submit" title="Next">
+                      type="submit" title="Next" i18n>
                 valider
               </button>
             </div>
           </div>
-          <div class="col-4 d-flex align-items-center flex-column">
-            <img ngSrc="/assets/img/login.jpg" [width]="40" [height]="50" style="width: 100%; height: 33vh" class="mt-5"
-                 alt="collection image" height="732" width="1000"/>
+          <div class="col-md-4 col-sm-12 d-flex align-items-center flex-column">
+            <img [ngSrc]="imagePath === undefined ? '/assets/img/login.jpg' : imagePath" [width]="732" [height]="1000"
+                 style="width: 100%; min-height: 150px; max-height: 50vh" class="mt-5"
+                 alt="collection image"/>
             <label for="image" class="btn bg-gradient-primary mt-3">
               <span>upload the image of the product</span>
-              <input style="display: none" (change)="readImage($event)" accept="image/*" type="file" id="image"
-                     formControlName="image"/>
+              <input style="display: none" (change)="readImage($event, -1)" #fileInput accept="image/*" type="file"
+                     id="image"/>
             </label>
           </div>
         </div>
@@ -57,21 +70,24 @@
     >
       <div class="h-75" style="overflow-y: scroll">
         <ng-container *ngIf="otherInformations !== []">
-          <form class="p-3 mt-lg-4 m-auto w-100" data-animation="FadeIn" *ngFor="let otherInformation of otherInformations; let i = index" [formGroup]="otherInformation"
+          <form class="p-3 mt-lg-4 m-auto w-100" data-animation="FadeIn"
+                *ngFor="let otherInformation of otherInformations; let i = index" [formGroup]="otherInformation"
                 (ngSubmit)="submit($event)">
+            <input type="hidden" formControlName="collection"/>
+            <input type="hidden" formControlName="id" *ngIf="otherInformation.controls['id'] !== undefined"/>
             <div class="m-auto">
               <div class="row w-100">
                 <h5 class="font-weight-bolder">Collection Information</h5>
                 <div class="col-8">
                   <div class="row">
                     <div class="col-sm-12">
-                      <label>label</label>
+                      <label i18n>Title of collection</label>
                       <input class="form-control" type="text" formControlName="title" placeholder="eg. Off-White"/>
                     </div>
                   </div>
                   <div class="row mb-5">
                     <div class="d-flex flex-column">
-                      <label class="mt-4">Description</label>
+                      <label class="mt-4" i18n>Description</label>
                       <editor
                         [formControlName]="'description'"
                         [init]="{
@@ -81,11 +97,11 @@
                     </div>
                   </div>
                   <div class="button-row d-flex w-100 align-items-center justify-content-between mt-2">
-                    <button class="btn bg-gradient-danger w-25 js-btn-next text-white" type="reset" title="Next"
+                    <button class="btn bg-gradient-danger w-25 js-btn-next text-white" type="reset" title="Next" i18n
                             (click)="removeOtherInformation(i)">
                       supprimer le block
                     </button>
-                    <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white"
+                    <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" i18n
                             [disabled]="formGroup.invalid"
                             type="submit" title="Next">
                       valider
@@ -93,23 +109,34 @@
                   </div>
                 </div>
                 <div class="col-4 d-flex align-items-center flex-column">
-                  <img ngSrc="/assets/img/login.jpg" [width]="40" [height]="50" style="width: 100%; height: 33vh"
+                  <img [ngSrc]="otherInformationImages[i]" [width]="40" [height]="50" style="width: 100%; height: 33vh"
                        class="mt-5"
                        alt="collection image" height="732" width="1000"/>
-                  <label for="imageHistory" class="btn bg-gradient-primary mt-3">
-                    <span>upload the image of the product</span>
-                    <input style="display: none" (change)="readImage($event)" accept="image/*" type="file"
-                           id="imageHistory"
-                           formControlName="image"/>
+                  <label [for]="'otherInformation'+i.toString()" class="btn bg-gradient-primary mt-3">
+                    <span i18n>upload the image of the product</span>
+                    <input style="display: none" (change)="readImage($event, i)" accept="image/*" type="file"
+                           [id]="'otherInformation'+i.toString()"/>
                   </label>
                 </div>
               </div>
             </div>
-          <hr class="border border-danger border-2 opacity-50" />
+            <hr class="border border-danger border-2 opacity-50"/>
           </form>
         </ng-container>
-        <button class="btn btn-outline-info w-100 text-center" (click)="addOtherInformationToCollection()">+</button>
+        <button class="btn btn-outline-info w-100 text-center" (click)="addOtherInformationSectionToCollection()">+
+        </button>
       </div>
     </div>
+  </div>
+</div>
+<div class="toast show showing" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="..." class="rounded me-2" alt="...">
+    <strong class="me-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
   </div>
 </div>

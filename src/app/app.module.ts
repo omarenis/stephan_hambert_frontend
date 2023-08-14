@@ -2,11 +2,10 @@ import {NgModule, isDevMode} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {HttpClientModule} from "@angular/common/http";
+import '@angular/localize/init';
 import {Route, RouterModule} from "@angular/router";
-import {NgOptimizedImage} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientModule} from "@angular/common/http";
 const routes: Route[] = [
   {
     path: '', component: AppComponent
@@ -24,7 +23,7 @@ const routes: Route[] = [
     AppComponent,
   ],
   imports: [
-    HttpClientModule,
+      HttpClientModule,
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
