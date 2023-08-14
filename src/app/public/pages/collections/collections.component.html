@@ -1,14 +1,14 @@
 <article class="">
-  <section class="card mb-3 container-xl container-fluid">
+  <section class="card mb-3 container-xl container-fluid" *ngFor="let collection of collections">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="/src/assets/img/stephane.png" class="img-fluid rounded-start" alt="...">
+        <img [ngSrc]="environment.url.replace('/api', '') + collection.image.toString()" class="img-fluid rounded-start" alt="..." height="1118" width="1736">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
+          <h5 class="card-title">{{collection.title}}</h5>
+          <div class="card-text" [innerHTML]="collection.content">
+          </div>
           <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
         </div>
       </div>

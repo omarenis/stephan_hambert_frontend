@@ -50,7 +50,7 @@ export class ProductPageComponent implements OnInit {
         this.products = [{
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -62,7 +62,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -74,7 +74,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -86,7 +86,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -98,7 +98,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -110,7 +110,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -122,7 +122,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            description: '',
+            content: '',
             price: 0,
             current_quantity: 0,
             tva: 0,

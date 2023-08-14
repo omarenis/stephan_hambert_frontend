@@ -22,14 +22,14 @@ export class CollectionsComponent implements OnInit {
     });
     this.collections = [
       {
-        label: 'Collection 777',
+        title: 'Collection 777',
         image: '',
         total_gain: 0,
         number_purchases: 0,
         number_products: 0,
         id: 1,
         citation: "",
-        description: 'helezmezbfmkzebfmkezjbmkezjbzme',
+        content: 'helezmezbfmkzebfmkezjbmkezjbzme',
         otherinformationcollection_set: [
           {
             title: 'other infirmation1',
@@ -48,14 +48,14 @@ export class CollectionsComponent implements OnInit {
         ]
       },
       {
-        label: 'Collection 777',
+        title: 'Collection 777',
         image: '',
         total_gain: 0,
         number_purchases: 0,
         number_products: 0,
         id: 2,
         citation: '',
-        description: 'helezmezbfmkzebfmkezjbmkezjbzme',
+        content: 'helezmezbfmkzebfmkezjbmkezjbzme',
         otherinformationcollection_set: [
           {
             title: 'other infirmation1',
@@ -75,4 +75,6 @@ export class CollectionsComponent implements OnInit {
       },
     ]
   }
+
+  protected readonly environment = environment;
 }

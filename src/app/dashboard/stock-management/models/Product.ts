@@ -7,7 +7,7 @@ export interface Product {
   title: string;
   code: string;
   slug: string;
-  description: string;
+  content: string;
   price: number;
   current_quantity: number;
   tva: number;
@@ -25,7 +25,7 @@ export interface ProductEssentialInformation
   title: string;
   code: string;
   slug: string;
-  description: string;
+  content: string;
   price: number;
   current_quantity: number;
   tva: number;
@@ -39,7 +39,7 @@ export interface Olfaction
 {
   product: number | Product | string;
   title: string;
-  description: string;
+  content: string;
   image: string | File;
 }
 
@@ -51,7 +51,7 @@ export interface History
 export const productObject: {[key: string]: Object} = {
   title: { type: 'string', required: true },
   code: { type: 'string', required: true },
-  description: {type: 'string', required: true},
+  content: {type: 'string', required: true},
   price: {type: 'float', required: true},
   current_quantity: {type: 'number', required: true},
   tva: { type: 'float', required: true },

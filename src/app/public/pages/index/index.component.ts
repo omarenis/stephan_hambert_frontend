@@ -15,7 +15,7 @@ export class IndexComponent implements OnInit {
 step !: number;
   collections !: ({
     image: string;
-    description: string;
+    content: string;
     label: string;
     id: number
   })[];
@@ -48,7 +48,7 @@ step !: number;
     this.products = [{
       title: '',
       code: '',
-      description: '',
+      content: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -60,7 +60,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      description: '',
+      content: '',
       slug: 'original',
       price: 0,
       current_quantity: 0,
@@ -72,7 +72,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      description: '',
+      content: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -84,7 +84,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      description: '',
+      content: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -97,7 +97,7 @@ step !: number;
       title: '',
       code: '',
       slug: '',
-      description: '',
+      content: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -108,7 +108,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      description: '',
+      content: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -120,7 +120,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      description: '',
+      content: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -134,13 +134,13 @@ step !: number;
     this.collections = [{
       image: '/assets/img/collections/collection_777.png',
       label: 'LA COLLECTION 777',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
+      content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
       id: 0
     },
       {
         image: '/assets/img/collections/collection_serpent.png',
         label: 'LA COLLECTION SERPENT',
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
+        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
         id: 0
       }]
   }

@@ -62,10 +62,9 @@
         <td class=" text-center">
           <div class="d-flex align-content-center">
             <img
-              ngSrc=""
+              [ngSrc]="environment.url.replace('/api', '') + collection.image.toString()"
               class="avatar avatar-md me-3" alt="table image" [width]="40" [height]="40">
-            <h5 class="mb-0 text-sm">{{collection.label}}</h5>
-
+            <h5 class="mb-0 text-sm">{{collection.title}}</h5>
           </div>
         <td class="align-items-center text-center">
           <p class="text-sm text-secondary">

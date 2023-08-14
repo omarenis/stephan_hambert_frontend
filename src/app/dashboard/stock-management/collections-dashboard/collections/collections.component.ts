@@ -18,4 +18,6 @@ constructor(protected override service: AbstractRestService<Collection>, private
     }, {
     });
   }
+
+    protected readonly environment = environment;
 }

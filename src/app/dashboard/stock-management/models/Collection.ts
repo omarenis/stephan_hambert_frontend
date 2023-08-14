@@ -10,8 +10,8 @@ export interface OtherInformationCollection {
 
 export interface Collection extends Statistics {
     image: string | File;
-    label: string;
-    description: string;
+    title: string;
+    content: string;
     citation: string;
     otherinformationcollection_set?: OtherInformationCollection[];
     id ?: number;
