@@ -61,13 +61,6 @@ export class ProductComponent implements OnInit {
         this.promos = promos;
       }
     });
-    this.choices = [];
-    for (const category of this.category_set) {
-      this.choices.push(<Choice>{
-        value: category.id?.toString(),
-        label: category.title
-      });
-    }
   }
 
   addOrEditProductEssentialInformation()

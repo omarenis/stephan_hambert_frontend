@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 
@@ -20,6 +21,7 @@ export class SecureStorageService {
     'LSHtJBsSdXgWrXsQgIECQQCqDTPc5RgCkiBlJfPXq0fSLNFylVbAFQGxcVSJWbcl' +
     '+A7se4LKOcD5ls24tQ14n9hJ3WdCR2nAIuP/oIoVsIYx';
 
+  constructor(private httpClient: HttpClient){}
   public getToken(token: string): string {
     return CryptoJS.AES.decrypt(token, this.key).toString(CryptoJS.enc.Utf8);
   }
