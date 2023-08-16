@@ -35,6 +35,12 @@ export class CategoriesComponent extends CrudConsumer<Category>{
   }
 
   action($event: Operation) {
-    this.service.delete(this.actionUrl, Number())
+    console.log();
+    if($event.operation == 'delete')
+    {
+      this.service.delete(this.actionUrl, Number($event.data['id'])).then((response) => {
+
+      })
+    }
   }
 }

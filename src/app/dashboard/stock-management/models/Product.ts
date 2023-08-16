@@ -66,4 +66,13 @@ export const historyObject: {[key: string]: Object} = {
     title: {type: 'string', required: true},
     image: {type: 'file', required: true},
     content: {type: 'string', required: true},
+  product: {type: 'number', required: true}
+}
+
+
+export const olfactionObject : {[key: string]: Object} = {
+    title: {type: 'string', required: true},
+    image: {type: 'file', required: true},
+    content: {type: 'string', required: true},
+  product: {type: 'number', required: true}
 }

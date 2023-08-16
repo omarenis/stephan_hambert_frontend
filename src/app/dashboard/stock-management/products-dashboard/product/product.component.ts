@@ -33,7 +33,10 @@ const additionalData = {
 })
 export class ProductComponent implements OnInit {
   formGroup !: FormGroup;
+  olfactionFormGroup !: FormGroup;
   imagePath !: string;
+  historyImagePath !: string;
+  olfactionImagePath !: string;
   steps !: string[];
   currentStep !: number;
   category_set !: Category[];
@@ -54,6 +57,7 @@ export class ProductComponent implements OnInit {
     this.historyFormGroup = createFormCreationEditGroup(historyObject);
     this.currentStep = 0;
     this.steps = ['product information', 'history', 'olfactive'];
+
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
         this.collections = response;
@@ -78,20 +82,22 @@ export class ProductComponent implements OnInit {
 
   }
 
-  uploadImage(result: string, files: Blob[], i: number) {
-    console.log(i);
-    if (i === -1) {
+  uploadImage(result: string, files: Blob[], imageToChange: string) {
+    if (imageToChange === 'productImage') {
       this.imagePath = result;
       this.formGroup.controls['image'].setValue(files[0]);
+    } else if (imageToChange === 'historyImage') {
+      this.historyImagePath = result;
+      this.historyFormGroup.controls['image'].setValue(files[0]);
     } else {
-      this.imagePath = result;
-      this.formGroup.controls['image'].setValue(files[0]);
+      this.olfactionImagePath = result;
+      this.olfactionFormGroup
     }
   }
 
-  readImage(event: any, i: number) {
+  readImage(event: any, imageToChange: string) {
     readFileFromInput(<HTMLInputElement>event.target, (result: string, files: Blob[]) => {
-      this.uploadImage(result, files, i);
+      this.uploadImage(result, files, imageToChange);
     });
   }
 }
