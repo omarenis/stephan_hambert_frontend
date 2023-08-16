@@ -13,7 +13,7 @@ interface Inscription {
   styleUrls: ['./newsletter.component.css']
 })
 
-
+ 
 export class NewsletterComponent implements OnInit {
   formGroup !: FormGroup;
   constructor(private inscriptionService: AbstractRestService<Inscription>) {

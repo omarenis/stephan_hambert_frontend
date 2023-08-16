@@ -1,16 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {Product, ProductEssentialInformation, productObject} from "../../models/Product";
+import {historyObject, Product, ProductEssentialInformation, productObject} from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {createFormCreationEditGroup} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
 import {Category} from "../../models/Category";
 import {environment} from "../../../../../environments/environment";
 import {Collection} from "../../models/Collection";
-interface Olfaction
-{
+import {readFileFromInput} from "../../../../services/extra";
+
+interface Olfaction {
 
 }
+
 interface Choice {
   value: string;
   label: string;
@@ -31,6 +33,7 @@ const additionalData = {
 })
 export class ProductComponent implements OnInit {
   formGroup !: FormGroup;
+  imagePath !: string;
   steps !: string[];
   currentStep !: number;
   category_set !: Category[];
@@ -39,6 +42,8 @@ export class ProductComponent implements OnInit {
   choices !: Choice[];
   product !: Product;
   method !: string;
+  historyFormGroup !: FormGroup;
+
   constructor(private essentialInformationService: AbstractRestService<ProductEssentialInformation>, private categoryService: AbstractRestService<Category>,
               private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
               private olfaction: AbstractRestService<Olfaction>) {
@@ -46,11 +51,13 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = createFormCreationEditGroup(productObject);
+    this.historyFormGroup = createFormCreationEditGroup(historyObject);
     this.currentStep = 0;
     this.steps = ['product information', 'history', 'olfactive'];
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
         this.collections = response;
+        console.log(this.collections);
       },
       error: (err) => {
         console.log(err);
@@ -63,8 +70,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  addOrEditProductEssentialInformation()
-  {
+  addOrEditProductEssentialInformation() {
 
   }
 
@@ -72,7 +78,20 @@ export class ProductComponent implements OnInit {
 
   }
 
-  readImage($event: Event) {
+  uploadImage(result: string, files: Blob[], i: number) {
+    console.log(i);
+    if (i === -1) {
+      this.imagePath = result;
+      this.formGroup.controls['image'].setValue(files[0]);
+    } else {
+      this.imagePath = result;
+      this.formGroup.controls['image'].setValue(files[0]);
+    }
+  }
 
+  readImage(event: any, i: number) {
+    readFileFromInput(<HTMLInputElement>event.target, (result: string, files: Blob[]) => {
+      this.uploadImage(result, files, i);
+    });
   }
 }

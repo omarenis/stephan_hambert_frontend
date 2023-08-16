@@ -6,6 +6,7 @@ import {CarouselComponent} from "./carousel/carousel.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {SharedModule} from "../../shared/shared.module";
 import {MousePositionDirective} from "./mouse-position.directive";
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MousePositionDirective} from "./mouse-position.directive";
   imports: [
     SharedModule.forRoot(),
     CarouselModule,
+    RouterLink
   ],
   exports: [
     SharedModule,
