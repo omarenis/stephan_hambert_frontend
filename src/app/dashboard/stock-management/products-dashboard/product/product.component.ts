@@ -1,6 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {historyObject, Product, ProductEssentialInformation, productObject} from "../../models/Product";
+import {
+  historyObject,
+  olfactionObject,
+  Product,
+  ProductEssentialInformation,
+  productObject
+} from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
 import {createFormCreationEditGroup} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
@@ -49,12 +55,13 @@ export class ProductComponent implements OnInit {
 
   constructor(private essentialInformationService: AbstractRestService<ProductEssentialInformation>, private categoryService: AbstractRestService<Category>,
               private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
-              private olfaction: AbstractRestService<Olfaction>) {
+              private olfactionService: AbstractRestService<Olfaction>) {
   }
 
   ngOnInit() {
     this.formGroup = createFormCreationEditGroup(productObject);
     this.historyFormGroup = createFormCreationEditGroup(historyObject);
+    this.olfactionFormGroup = createFormCreationEditGroup(olfactionObject);
     this.currentStep = 0;
     this.steps = ['product information', 'history', 'olfactive'];
 
@@ -91,8 +98,12 @@ export class ProductComponent implements OnInit {
       this.historyFormGroup.controls['image'].setValue(files[0]);
     } else {
       this.olfactionImagePath = result;
-      this.olfactionFormGroup
     }
+  }
+
+  getOlfactionData(): void
+  {
+
   }
 
   readImage(event: any, imageToChange: string) {
