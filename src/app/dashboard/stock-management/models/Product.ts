@@ -14,7 +14,8 @@ export interface Product {
   image: string | File;
   promo: Promo | number | string;
   collection: Collection | number | string;
-  category_set?: Category[];
+  history ?: number | History;
+  olfaction ?: number | Olfaction;
   number_purchases?: number;
   id?: number;
 }
