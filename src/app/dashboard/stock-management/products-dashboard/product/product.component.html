@@ -1,8 +1,16 @@
 <div class="multisteps-form" #multistepForm>
   <div class="multisteps-form__progress">
-    <button *ngFor="let step of steps; let i = index" class="multisteps-form__progress-btn" title="{{ step }}"
-            [class.js-active]="i <= currentStep" (click)="currentStep = i" [disabled]="product">
-      <span class="text-white">{{ step }}</span>
+    <button class="multisteps-form__progress-btn" title="0"
+            [class.js-active]="0 <= currentStep" (click)="currentStep = 0" [disabled]="product">
+      <span class="text-white" i18n>essential information</span>
+    </button>
+    <button class="multisteps-form__progress-btn" title="1"
+            [class.js-active]="1 <= currentStep" (click)="currentStep = 1" [disabled]="product">
+      <span class="text-white">olfaction</span>
+    </button>
+    <button class="multisteps-form__progress-btn" title="2"
+            [class.js-active]="2 <= currentStep" (click)="currentStep = 2" [disabled]="product">
+      <span class="text-white" i18n>hisotry</span>
     </button>
   </div>
   <div class="multisteps-form__form bg-white p-5 mt-5">
@@ -28,7 +36,8 @@
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="collection">Collection</label>
                 <select id="collection" class="form-select">
-                  <option [selected]="product.collection" *ngFor="let collection of collections">{{collection.title}}</option>
+                  <option [selected]="product.collection"
+                          *ngFor="let collection of collections">{{collection.title}}</option>
                 </select>
               </div>
             </div>
@@ -59,10 +68,11 @@
         </div>
         <div class="row mb-5">
           <div class="d-flex flex-column">
-            <label class="mt-4">Description</label>
+            <label class="mt-4" for="description">Description</label>
             <editor
+              id="description"
               [formControlName]="'description'"
-                  [init]="{
+              [init]="{
                   menubar: false,
                   base_url: '/tinymce', suffix: '.min',
                   selector: 'textarea',
@@ -87,7 +97,8 @@
       class="card multisteps-form__panel multisteps-form__content"
       [class.js-active]="currentStep === 1" data-animation="FadeIn"
     >
-      <form class="p-3 m-auto w-100 mt-lg-4" data-animation="FadeIn" style="min-width: 90%" [formGroup]="historyFormGroup"
+      <form class="p-3 m-auto w-100 mt-lg-4" data-animation="FadeIn" style="min-width: 90%"
+            [formGroup]="historyFormGroup"
             (ngSubmit)="submit($event)">
         <div class="m-auto row w-100">
           <div class="row">
@@ -103,8 +114,8 @@
                 <div class="d-flex flex-column">
                   <label class="mt-4">Content</label>
                   <editor
-                    [formControlName]="'description'"
-                  [init]="{
+                    [formControlName]="'content'"
+                    [init]="{
                   menubar: false,
                   base_url: '/tinymce', suffix: '.min',
                   selector: 'textarea',
@@ -131,7 +142,7 @@
               <label for="imageHistory" class="btn bg-gradient-primary mt-3">
                 <span>upload the image of the product</span>
                 <input style="display: none" (change)="readImage($event, 'imageHistory')" accept="image/*" type="file"
-                       id="imageHistory" />
+                       id="imageHistory"/>
               </label>
             </div>
           </div>

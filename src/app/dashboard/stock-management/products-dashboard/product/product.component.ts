@@ -14,9 +14,13 @@ import {Category} from "../../models/Category";
 import {environment} from "../../../../../environments/environment";
 import {Collection} from "../../models/Collection";
 import {readFileFromInput} from "../../../../services/extra";
+import {ActivatedRoute} from "@angular/router";
 
 interface Olfaction {
-
+  title: string;
+  image: string | Blob;
+  content: string;
+  id?: number;
 }
 
 interface Choice {
@@ -45,7 +49,6 @@ export class ProductComponent implements OnInit {
   olfactionImagePath !: string;
   steps !: string[];
   currentStep !: number;
-  category_set !: Category[];
   collections !: Collection[];
   promos !: Promo[];
   choices !: Choice[];
@@ -55,7 +58,7 @@ export class ProductComponent implements OnInit {
 
   constructor(private essentialInformationService: AbstractRestService<ProductEssentialInformation>, private categoryService: AbstractRestService<Category>,
               private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
-              private olfactionService: AbstractRestService<Olfaction>) {
+              private olfactionService: AbstractRestService<Olfaction>, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -68,10 +71,8 @@ export class ProductComponent implements OnInit {
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
         this.collections = response;
-        console.log(this.collections);
       },
       error: (err) => {
-        console.log(err);
       }
     });
     this.promoService.list(`${environment.url}/promos`).subscribe({
@@ -79,14 +80,26 @@ export class ProductComponent implements OnInit {
         this.promos = promos;
       }
     });
+    this.activatedRoute.params.subscribe((params) => {
+      if (!isNaN(Number(params['id']))) {
+        this.essentialInformationService.get(`${environment.url}/produccts`, Number(params['id'])).subscribe({
+          next: (product: Product) => {
+            this.product = product;
+          },
+          error: () => {
+            console.log('Error')
+          }
+        })
+      }
+    })
   }
 
   addOrEditProductEssentialInformation() {
-
+    console.log('hello');
   }
 
   submit($event: any) {
-
+    console.log("hello");
   }
 
   uploadImage(result: string, files: Blob[], imageToChange: string) {
@@ -98,12 +111,21 @@ export class ProductComponent implements OnInit {
       this.historyFormGroup.controls['image'].setValue(files[0]);
     } else {
       this.olfactionImagePath = result;
+      this.olfactionFormGroup.controls['image'].setValue(files[0]);
     }
   }
 
-  getOlfactionData(): void
-  {
-
+  getOlfactionData(): void {
+    if (this.olfactionFormGroup.controls['title'].getRawValue() === null) {
+      if (isNaN(Number(this.product.olfaction))) {
+        return;
+      }
+      this.olfactionService.get(`${environment.url}/olfactions/`, Number(this.product.olfaction)).subscribe({
+        next: (olfaction: Olfaction) => {
+          this.olfactionFormGroup.controls['title'].setValue(olfaction.title)
+        }
+      })
+    }
   }
 
   readImage(event: any, imageToChange: string) {

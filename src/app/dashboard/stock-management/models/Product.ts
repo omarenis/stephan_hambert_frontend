@@ -1,4 +1,3 @@
-import {Category} from "./Category";
 import {Promo} from "./Promo";
 import {Object} from "../../../models/generic";
 import {Collection} from "./Collection";
@@ -14,8 +13,8 @@ export interface Product {
   image: string | File;
   promo: Promo | number | string;
   collection: Collection | number | string;
-  history ?: number | History;
-  olfaction ?: number | Olfaction;
+  history?: number | History;
+  olfaction?: number | Olfaction;
   number_purchases?: number;
   id?: number;
 }
@@ -63,17 +62,17 @@ export const productObject: { [key: string]: Object } = {
 }
 
 
-export const historyObject: {[key: string]: Object} = {
-    title: {type: 'string', required: true},
-    image: {type: 'file', required: true},
-    content: {type: 'string', required: true},
+export const historyObject: { [key: string]: Object } = {
+  title: {type: 'string', required: true},
+  image: {type: 'file', required: true},
+  content: {type: 'string', required: true},
   product: {type: 'number', required: true}
 }
 
 
-export const olfactionObject : {[key: string]: Object} = {
-    title: {type: 'string', required: true},
-    image: {type: 'file', required: true},
-    content: {type: 'string', required: true},
+export const olfactionObject: { [key: string]: Object } = {
+  title: {type: 'string', required: true},
+  image: {type: 'file', required: true},
+  content: {type: 'string', required: true},
   product: {type: 'number', required: true}
 }
