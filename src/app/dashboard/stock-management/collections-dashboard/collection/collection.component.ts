@@ -32,6 +32,7 @@ export class CollectionComponent extends FormView<Collection> {
     private readonly pathOtherInformationCollection = `${environment.url}/stock-management/other_information_for_collection`;
     private collectionId !: number;
     otherInformationImages !: string[];
+  private error !: string;
 
     constructor(protected override service: AbstractRestService<Collection>,
                 protected override router: Router, protected override activatedRoute: ActivatedRoute, private otherInformationService: AbstractRestService<OtherInformationCollection>) {
@@ -103,11 +104,11 @@ export class CollectionComponent extends FormView<Collection> {
         }, 'multipart/form-data');
         const subscriber = this.otherInformations[i].controls.collection !== undefined ? this.otherInformationService.put(this.pathOtherInformationCollection, Number(this.otherInformations[i].controls.collection?.value), data) : this.otherInformationService.create(this.pathOtherInformationCollection, data);
         subscriber.subscribe({
-            next: () => {
-
+            next: async () => {
+              await this.router.navigate(['/stock-management/collections'])
             },
-            error: () => {
-
+            error: (error) => {
+              this.error =
             }
         })
     }
