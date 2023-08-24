@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Object as GenericObject} from '../models/generic';
 import {FormGroup} from "@angular/forms";
 import {createFormCreationEditGroup, serializeDataByType, setFormGroupValues} from "../models/forms";
+import {environment} from "../../environments/environment";
 
 @Component({
     template: ""
@@ -11,6 +12,7 @@ import {createFormCreationEditGroup, serializeDataByType, setFormGroupValues} fr
 export abstract class FormView<T> implements OnInit {
     public formGroup !: FormGroup;
     protected actionUrl: string;
+    protected serverUrl = environment.url;
     protected object: { [key: string]: GenericObject };
     protected foreignKeyInstanceList  !: { [key: string]: object[] };
     protected foreignKeyServices !: { [key: string]: AbstractRestService<object> };

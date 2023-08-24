@@ -20,4 +20,11 @@ constructor(protected override service: AbstractRestService<Collection>, private
   }
 
     protected readonly environment = environment;
+
+  async edit(id: number | undefined) {
+    if(id === undefined){
+      return;
+    }
+    await  this.router.navigate(['/dashboard/stock-management/collections', id]);
+  }
 }
