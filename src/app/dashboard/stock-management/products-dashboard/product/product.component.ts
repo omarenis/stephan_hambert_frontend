@@ -8,12 +8,12 @@ import {
   productObject
 } from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
-import {createFormCreationEditGroup} from "../../../../models/forms";
+import {createFormCreationEditGroup, setFormGroupValues} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
 import {Category} from "../../models/Category";
 import {environment} from "../../../../../environments/environment";
 import {Collection} from "../../models/Collection";
-import {readFileFromInput} from "../../../../services/extra";
+import {readFileFromInput, setFormGroupValue} from "../../../../services/extra";
 import {ActivatedRoute} from "@angular/router";
 
 interface Olfaction {
@@ -82,9 +82,9 @@ export class ProductComponent implements OnInit {
     });
     this.activatedRoute.params.subscribe((params) => {
       if (!isNaN(Number(params['id']))) {
-        this.essentialInformationService.get(`${environment.url}/produccts`, Number(params['id'])).subscribe({
+        this.essentialInformationService.get(`${environment.url}/products`, Number(params['id'])).subscribe({
           next: (product: Product) => {
-            this.product = product;
+            setFormGroupValue<ProductEssentialInformation>(this.formGroup, productObject,  product);
           },
           error: () => {
             console.log('Error')
@@ -93,7 +93,6 @@ export class ProductComponent implements OnInit {
       }
     })
   }
-
   addOrEditProductEssentialInformation() {
     console.log('hello');
   }
@@ -122,9 +121,11 @@ export class ProductComponent implements OnInit {
       }
       this.olfactionService.get(`${environment.url}/olfactions/`, Number(this.product.olfaction)).subscribe({
         next: (olfaction: Olfaction) => {
-          this.olfactionFormGroup.controls['title'].setValue(olfaction.title)
+          this.olfactionFormGroup.controls['title'].setValue(olfaction.title);
+          this.olfactionFormGroup.controls['image'].setValidators([]);
+          this.olfactionFormGroup.controls['content'].setValue(olfaction.content);
         }
-      })
+      });
     }
   }
 
