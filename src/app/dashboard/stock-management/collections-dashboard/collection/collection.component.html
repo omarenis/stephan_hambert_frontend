@@ -5,7 +5,7 @@
       <span class="text-white" i18n>collection</span>
     </button>
     <button class="multisteps-form__progress-btn"
-            [class.js-active]="1 <= currentStep" (click)="getAllOtherInformationsForCollection()"
+            [class.js-active]="1 <= currentStep" (click)="getAllOtherInformationForCollection()"
             [disabled]="this.itemId === undefined || this.itemId === null">
       <span class="text-white" i18n>Other Informations</span>
     </button>
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="col-md-4 col-sm-12 d-flex align-items-center flex-column">
-            <img [ngSrc]="imagePath === undefined ? '/assets/img/login.jpg' : imagePath" [width]="732" [height]="1000"
+            <img [ngSrc]="imagePath === undefined && itemId === undefined ? '/assets/img/login.jpg' : environment.url.replace('/api', '') + imagePath" [width]="732" [height]="1000"
                  style="min-height: 300px; max-height: 300px; width: 250px" class="mt-5"
                  alt="collection image"/>
             <label for="image" class="btn bg-gradient-primary mt-3">
@@ -68,9 +68,9 @@
       [class.js-active]="currentStep === 1" data-animation="FadeIn"
     >
       <div class="h-75" style="overflow-y: scroll">
-        <ng-container *ngIf="otherInformations !== []">
+        <ng-container *ngIf="otherInformation !== []">
           <form class="p-3 mt-lg-4 m-auto w-100" data-animation="FadeIn"
-                *ngFor="let otherInformation of otherInformations; let i = index" [formGroup]="otherInformation"
+                *ngFor="let otherInformation of otherInformation; let i = index" [formGroup]="otherInformation"
                 (ngSubmit)="submit($event)">
             <input type="hidden" formControlName="collection"/>
             <input type="hidden" formControlName="id" *ngIf="otherInformation.controls['id'] !== undefined"/>
