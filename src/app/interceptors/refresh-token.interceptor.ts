@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor, HttpErrorResponse, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent
 } from '@angular/common/http';
-import {catchError, Observable, Observer, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {SecureStorageService} from "../services/secure-storage.service";
 
 @Injectable()
@@ -21,6 +21,6 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
       }
     })
-    return next.handle(request).pipe(catchError((err: any, caught: Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<unknown> | HttpUserEvent<unknown>>) => observable);
+    return next.handle(request);
   }
 }

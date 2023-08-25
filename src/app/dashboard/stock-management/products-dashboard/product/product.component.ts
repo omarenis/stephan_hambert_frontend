@@ -8,7 +8,7 @@ import {
   productObject
 } from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
-import {createFormCreationEditGroup, setFormGroupValues} from "../../../../models/forms";
+import {createFormCreationEditGroup} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
 import {Category} from "../../models/Category";
 import {environment} from "../../../../../environments/environment";

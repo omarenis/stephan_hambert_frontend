@@ -9,10 +9,10 @@ import {SharedModule} from "../shared/shared.module";
 
 const routes: Route[] = [
   {
-    path: 'customers', component: CustomerComponent
+    path: 'customers', component: CustomersComponent
   },
   {
-    path: 'customers/:id', component: CustomersComponent
+    path: 'customers/:id', component:   CustomerComponent
   },
   {
     path: 'messages', component: MessagesComponent
@@ -21,7 +21,8 @@ const routes: Route[] = [
 @NgModule({
   declarations: [
     CustomerComponent,
-    CustomersComponent
+    CustomersComponent,
+    MessagesComponent
   ],
   imports: [
     CommonModule,
