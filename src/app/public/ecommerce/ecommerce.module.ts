@@ -16,6 +16,9 @@ const routes: Route[] = [
     path: 'products/:id', component: ProductPageComponent
   },
   {
+    path: 'cart', component: CartComponent
+  },
+  {
     path: 'checkout', component: CheckoutComponent
   },
   {

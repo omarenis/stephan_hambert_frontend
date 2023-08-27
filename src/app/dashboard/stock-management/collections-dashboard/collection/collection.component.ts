@@ -28,10 +28,12 @@ export class CollectionComponent extends FormView<Collection> {
   otherInformation !: FormGroup<OtherInformationFormGroup>[];
   steps !: string[];
   currentStep !: number;
-  private readonly path = `${environment.url}/stock-management/collections`;
-  private readonly pathOtherInformationCollection = `${environment.url}/stock-management/other_information_for_collection`;
-  private collectionId !: number;
   otherInformationImages !: string[];
+  protected readonly environment = environment;
+  protected readonly Number = Number;
+  private readonly path = `${environment.url}/stock-management/collections`;
+  private readonly pathOtherInformationCollection = `${environment.url}/stock-management/other-information-for-collection`;
+  private collectionId !: number;
   private error !: string;
 
   constructor(protected override service: AbstractRestService<Collection>,
@@ -46,6 +48,7 @@ export class CollectionComponent extends FormView<Collection> {
   uploadImage(result: string, files: Blob[], i: number) {
     console.log(i);
     if (i === -1) {
+      console.log(result);
       this.imagePath = result;
       this.formGroup.controls['image'].setValue(files[0]);
     } else {
@@ -66,7 +69,7 @@ export class CollectionComponent extends FormView<Collection> {
       return;
     }
     this.otherInformationService.list(this.pathOtherInformationCollection, {
-      'collection': this.itemId
+      'collection': this.item.id
     }).subscribe({
       next: (otherInformationForCollection_set: OtherInformationCollection[]) => {
         otherInformationForCollection_set.forEach(otherInformationForCollection => {
@@ -79,6 +82,7 @@ export class CollectionComponent extends FormView<Collection> {
               id: new FormControl(otherInformationForCollection.id, [Validators.required])
             }
           ));
+          this.otherInformationImages.push(environment.originBackend + otherInformationForCollection.image);
         });
       }
     });
@@ -89,23 +93,22 @@ export class CollectionComponent extends FormView<Collection> {
       title: new FormControl('', [Validators.required]),
       content: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
-      collection: new FormControl(this.itemId, [Validators.required])
+      collection: new FormControl(this.item.id, [Validators.required])
     }));
     this.otherInformationImages.push('');
   }
 
   addOtherInformationToCollection($event: Event, i: number, id: number): void {
-    const data = serializeDataByType({
+    const data = serializeDataByType<OtherInformationCollection>({
       title: this.otherInformation[i].controls.title.value,
-      collection: this.collectionId,
-      content: "",
-      id: 0,
+      collection: Number(this.item.id),
+      content: this.otherInformation[i].controls.content.value,
       image: this.otherInformation[i].controls.image.value,
     }, 'multipart/form-data');
-    const subscriber = this.otherInformation[i].controls.collection !== undefined ? this.otherInformationService.put(this.pathOtherInformationCollection, Number(this.otherInformation[i].controls.collection?.value), data) : this.otherInformationService.create(this.pathOtherInformationCollection, data);
+    const subscriber = this.otherInformation[i].controls.id !== undefined ? this.otherInformationService.put(this.pathOtherInformationCollection, Number(this.otherInformation[i].controls.collection?.value), data) : this.otherInformationService.create(this.pathOtherInformationCollection, data);
     subscriber.subscribe({
-      next: async () => {
-        await this.router.navigate(['/stock-management/collections'])
+      next: async (response) => {
+        console.log(response);
       },
       error: (error) => {
         console.log(error);
@@ -125,20 +128,22 @@ export class CollectionComponent extends FormView<Collection> {
 
   override submit(event: Event) {
     event.preventDefault();
-    if(this.itemId !== null)
-    {
-      console.log(this.itemId);
-      return;
+    const data = serializeDataByType<Collection>(this.formGroup.value, 'multipart/form-data');
+    if (this.item !== undefined) {
+      this.service.put(`${environment.url}/collections`, Number(this.item.id), data).subscribe({
+        next: (response) => {
+          this.imagePath = environment.originBackend + response.image
+        }
+      });
     }
-    throw this.service.create(`${environment.url}/collections`, serializeDataByType(this.formGroup.value, 'multipart/form-data')).subscribe({
+    this.service.create(`${environment.url}/collections`, data).subscribe({
       next: (collection: Collection) => {
         if (collection.id !== undefined) {
-          this.itemId = collection.id;
-          console.log(collection.id);
+          this.item = collection;
         }
       },
       error: (err) => {
-        console.log(err);
+        console.log(err.message);
       }
     })
   }
@@ -146,6 +151,4 @@ export class CollectionComponent extends FormView<Collection> {
   getQuoteForCollection() {
 
   }
-
-  protected readonly environment = environment;
 }

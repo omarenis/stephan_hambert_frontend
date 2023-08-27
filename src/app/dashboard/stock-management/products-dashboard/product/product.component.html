@@ -36,7 +36,8 @@
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="collection">Collection</label>
                 <select id="collection" class="form-select">
-                  <option [selected]="product.collection"
+                  <option [selected]="formGroup.controls['collection'].getRawValue() === ''">select collection</option>
+                  <option [value]="collection.id" [selected]="formGroup.controls['collection'].getRawValue() === collection.id"
                           *ngFor="let collection of collections">{{collection.title}}</option>
                 </select>
               </div>

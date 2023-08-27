@@ -6,6 +6,7 @@ export const readFileFromInput = (element: HTMLInputElement, callback: Function)
     callback(reader.result, element.files);
   });
   if (element.files !== null) {
+    console.log(element.files);
     reader.readAsDataURL(element.files[0]);
   }
 }

@@ -3,5 +3,6 @@ export interface Product {
     description: string;
     slug: string;
     collection: string;
+    image: string;
     id?: number;
 }

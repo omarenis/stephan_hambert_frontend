@@ -18,7 +18,7 @@ export abstract class FormView<T> implements OnInit {
     protected foreignKeyServices !: { [key: string]: AbstractRestService<object> };
     protected method: string;
     protected enctype !: string;
-    protected itemId !: number;
+    protected item !: T;
 
     protected constructor(protected service: AbstractRestService<T>, protected router: Router,
                           protected activatedRoute: ActivatedRoute,
@@ -49,11 +49,11 @@ export abstract class FormView<T> implements OnInit {
         console.log(this.formGroup);
         this.activatedRoute.params.subscribe(params => {
             if (params['id'] !== "create") {
-                this.itemId = Number(params['id']);
                 this.service.get(this.actionUrl, Number(params['id'])).subscribe({
                     next: (instance: T): void => {
                         setFormGroupValues((instance as { [key: string]: string | number | boolean }), this.formGroup);
-                    },
+                        this.item = instance;
+                        },
                     error: () => {
 
                     }

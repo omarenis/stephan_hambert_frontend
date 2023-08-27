@@ -70,6 +70,7 @@ export class ProductComponent implements OnInit {
 
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
+        console.log(response);
         this.collections = response;
       },
       error: (err) => {
