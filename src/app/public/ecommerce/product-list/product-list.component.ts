@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from "../../../dashboard/stock-management/models/Product";
 import {environment} from "../../../../environments/environment";
-import {AbstractRestService} from "../../../services/genericservice";
-
+import {HttpClient} from "@angular/common/http";
+import {Collection} from "../../../models/Collection";
+interface Response {
+  products: Product[];
+  collections: Collection[];
+}
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
@@ -10,103 +14,32 @@ import {AbstractRestService} from "../../../services/genericservice";
 })
 export class ProductListComponent implements OnInit {
     products !: Product[];
+    collections !: Collection[];
     protected readonly window = window;
-    private actionUrl = `${environment.url}/products`
+    private actionUrl = `${environment.url}/public/products`
 
-    constructor(private productService: AbstractRestService<Product>) {
+    constructor(private service: HttpClient) {
     }
 
     ngOnInit(): void {
-        this.productService.list(this.actionUrl).subscribe({
-            next: (products: Product[]) => {
-                this.products = products;
+        this.service.get<Response>(this.actionUrl).subscribe({
+            next: (response: Response) => {
+                this.products = response.products;
+                this.collections = response.collections;
             }
         });
-        this.products = [
-            {
-                slug: 'fùmfkznfmzlknfmzlkfn',
-                title: 'Original',
-                code: 'flkfbljfblzkfjbzlkjbf',
-                content: 'zefljfblzkjfblzkjfbzlkjfbzlkjfb',
-                price: 15.02,
-                current_quantity: 4,
-                tva: 0.19,
-                image: '/assets/img/products/product1.png',
-                collection: '',
-                promo: 0,
-                number_purchases: 5,
-                id: 1,
-            },
-            {
-                slug: 'fùmfkznfmzlknfmzlkfn',
-                title: 'Original',
-                code: 'flkfbljfblzkfjbzlkjbf',
-                content: 'zefljfblzkjfblzkjfbzlkjfbzlkjfb',
-                price: 15.02,
-                current_quantity: 4,
-                tva: 0.19,
-                image: '/assets/img/products/product1.png',
-                collection: '',
-                promo: 0,
-                number_purchases: 5,
-                id: 1,
-            },
-            {
-                slug: 'fùmfkznfmzlknfmzlkfn',
-                title: 'Original',
-                code: 'flkfbljfblzkfjbzlkjbf',
-                content: 'zefljfblzkjfblzkjfbzlkjfbzlkjfb',
-                price: 15.02,
-                current_quantity: 4,
-                tva: 0.19,
-                image: '/assets/img/products/product1.png',
-                promo: 0,
-                number_purchases: 5,
-                collection: '',
-                id: 1,
-            },
-            {
-                slug: 'fùmfkznfmzlknfmzlkfn',
-                title: 'Original',
-                code: 'flkfbljfblzkfjbzlkjbf',
-                content: 'zefljfblzkjfblzkjfbzlkjfbzlkjfb',
-                price: 15.02,
-                current_quantity: 4,
-                collection: '',
-                tva: 0.19,
-                image: '/assets/img/products/product1.png',
-                promo: 0,
-                number_purchases: 5,
-                id: 1,
-            },
-            {
-                slug: 'fùmfkznfmzlknfmzlkfn',
-                title: 'Original',
-                code: 'flkfbljfblzkfjbzlkjbf',
-                content: 'zefljfblzkjfblzkjfbzlkjfbzlkjfb',
-                price: 15.02,
-                current_quantity: 4,
-                tva: 0.19,
-                image: '/assets/img/products/product1.png',
-                collection: '',
-                promo: 0,
-                number_purchases: 5,
-                id: 1,
-            },
-            {
-                slug: 'fùmfkznfmzlknfmzlkfn',
-                title: 'Original',
-                code: 'flkfbljfblzkfjbzlkjbf',
-                content: 'zefljfblzkjfblzkjfbzlkjfbzlkjfb',
-                price: 15.02,
-                current_quantity: 4,
-                tva: 0.19,
-                image: '/assets/img/products/product1.png',
-                collection: '',
-                promo: 0,
-                number_purchases: 5,
-                id: 1,
-            },
-        ]
     }
+
+  filterData(id: number | undefined) {
+    if(id !== null)
+    {
+      this.service.get<Response>(this.actionUrl, id !== -1 ? {params: {collection: Number(id)}}: undefined).subscribe({
+            next: (response: Response) => {
+                this.products = response.products;
+            }
+        });
+    }
+  }
+
+  protected readonly environment = environment;
 }

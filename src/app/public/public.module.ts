@@ -1,8 +1,9 @@
   import {NgModule} from '@angular/core';
   import {Route, RouterModule} from "@angular/router";
   import {AppComponent} from './app/app.component';
-  import {ProfileComponent} from "../components/profile/profile.component";
   import {CommonModule} from "@angular/common";
+  import {ComponentsModule} from "./components/components.module";
+import { ProfileComponent } from './profile/profile.component';
 
   const routes: Route[] = [
     {
@@ -27,10 +28,11 @@
   @NgModule({
     declarations: [
       AppComponent,
-      ProfileComponent
+      ProfileComponent,
     ],
     imports: [
       CommonModule,
+      ComponentsModule,
       RouterModule.forChild(routes),
     ]
   })

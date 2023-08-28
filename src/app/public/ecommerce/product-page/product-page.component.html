@@ -17,18 +17,16 @@
     <div class="row g-0">
       <div class="col-md-6">
         <img class="w-100 mx-auto col-md-6 col-sm-12"
-             ngSrc="/assets/img/products/product_image_1.png"
+             [ngSrc]="product.image.toString()"
              alt="chair" [width]="599" [height]="759">
       </div>
       <div class="col-md-6 d-block align-self-center">
         <div class="card-body">
-          <h5 class="card-title" style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif">GOD OF
-            FIRE</h5>
+          <h5 class="card-title" style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif">{{product.title}}</h5>
           <h5 class="mb-5" style="font-weight: 300; font-size: 22px">$1,419</h5>
-          <p style="">
-            Le parfum qui sent super bon un truc de deux lignes un truc de deux lignesun truc de deux lignesun truc de
-            deux lignesun truc de deux lignes
-          </p>
+          <div [innerHTML]="product.description">
+
+          </div>
           <a style="font-weight: 400;font-size: 20px; color: #858585; text-underline: #858585">Plus d’informations</a>
           <div class="row mt-4">
             <div class="col-lg-5 d-flex align-items-center ">
@@ -71,7 +69,7 @@
         <div class="row g-0">
           <div class="col-md-6">
             <img class="w-100 mx-auto col-md-6 col-sm-12"
-                 ngSrc="/assets/img/products/product_image_1.png"
+                 [ngSrc]="product.image.toString()"
                  alt="chair" [width]="599" [height]="759">
           </div>
           <div class="col-md-6 d-block align-self-center">

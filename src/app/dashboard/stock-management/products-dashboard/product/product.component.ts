@@ -8,13 +8,13 @@ import {
   productObject
 } from "../../models/Product";
 import {AbstractRestService} from "../../../../services/genericservice";
-import {createFormCreationEditGroup} from "../../../../models/forms";
+import {createFormCreationEditGroup, serializeDataByType} from "../../../../models/forms";
 import {Promo} from "../../models/Promo";
 import {Category} from "../../models/Category";
 import {environment} from "../../../../../environments/environment";
-import {Collection} from "../../models/Collection";
 import {readFileFromInput, setFormGroupValue} from "../../../../services/extra";
 import {ActivatedRoute} from "@angular/router";
+import {Collection} from "../../../../models/Collection";
 
 interface Olfaction {
   title: string;
@@ -70,7 +70,6 @@ export class ProductComponent implements OnInit {
 
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
-        console.log(response);
         this.collections = response;
       },
       error: (err) => {
@@ -85,21 +84,34 @@ export class ProductComponent implements OnInit {
       if (!isNaN(Number(params['id']))) {
         this.essentialInformationService.get(`${environment.url}/products`, Number(params['id'])).subscribe({
           next: (product: Product) => {
-            setFormGroupValue<ProductEssentialInformation>(this.formGroup, productObject,  product);
+            this.product = product;
+            this.imagePath = environment.originBackend + product.image;
+            setFormGroupValue<ProductEssentialInformation>(this.formGroup, productObject, product);
           },
           error: () => {
-            console.log('Error')
           }
         })
       }
     })
   }
-  addOrEditProductEssentialInformation() {
-    console.log('hello');
+
+  addOrEditProductEssentialInformation(event: Event) {
+    event.preventDefault();
   }
 
-  submit($event: any) {
-    console.log("hello");
+  submit($event: Event) {
+    $event.preventDefault();
+    console.log(this.formGroup.value);
+    const data = serializeDataByType<Product>(this.formGroup.value, 'multipart/form-data');
+    const observable = this.product !== undefined ? this.essentialInformationService.put(`${environment.url}/products`, Number(this.product.id), data) : this.essentialInformationService.create(`${environment.url}/products`, data);
+    observable.subscribe({
+      next: (product: ProductEssentialInformation) => {
+        this.product = product;
+        this.imagePath = environment.originBackend + product.image;
+      }, error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
   uploadImage(result: string, files: Blob[], imageToChange: string) {
@@ -116,7 +128,7 @@ export class ProductComponent implements OnInit {
   }
 
   getOlfactionData(): void {
-    if (this.olfactionFormGroup.controls['title'].getRawValue() === null) {
+    if (this.olfactionFormGroup.controls['title'].value === null) {
       if (isNaN(Number(this.product.olfaction))) {
         return;
       }
@@ -134,5 +146,9 @@ export class ProductComponent implements OnInit {
     readFileFromInput(<HTMLInputElement>event.target, (result: string, files: Blob[]) => {
       this.uploadImage(result, files, imageToChange);
     });
+  }
+
+  getHistory() {
+
   }
 }

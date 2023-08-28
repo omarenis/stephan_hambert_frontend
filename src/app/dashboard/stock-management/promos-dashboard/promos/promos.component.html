@@ -42,6 +42,10 @@
         <th scope="col" (click)="orderBy('title')"
             class="text-uppercase text-secondary text-xxs font-weight-bolder text-center">titre de promo
         </th>
+                <th scope="col" (click)="orderBy('code')"
+            class="text-uppercase text-secondary text-xxs font-weight-bolder text-center">
+                  code de promo
+        </th>
         <th scope="col" (click)="orderBy('datetime_start')"
             class="text-uppercase text-secondary text-xxs font-weight-bolder text-center">date début de promo
         </th>
@@ -71,8 +75,11 @@
         <td class="text-sm text-secondary mb-0 text-center">
           {{promo.id}}
         </td>
-        <td class="text-sm text-secondary mb-0 text-center">
+                <td class="text-sm text-secondary mb-0 text-center">
           {{promo.title}}
+        </td>
+        <td class="text-sm text-secondary mb-0 text-center">
+          {{promo.code}}
         </td>
         <td class="text-sm text-secondary mb-0 text-center">
           {{promo.datetime_start | date}}

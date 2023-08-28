@@ -35,8 +35,28 @@
 
 .nav-pills > .nav-item > .nav-link {
   color: #858585;
+  font-family: Proxima Nova;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
 }
 
 .nav-pills > .nav-item > .nav-link.active {
   color: #000;
+}
+
+.product-title {
+  font-family: Proxima Nova;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: 0;
+  text-align: center;
+}
+.product-image
+{
+  max-width: 220px;
+  max-height: 250px;
 }

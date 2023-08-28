@@ -1,0 +1,97 @@
+<div class="container-fluid container-xl">
+  <div class="card mt-4" id="basic-info">
+    <div class="card-header">
+      <h5>Basic Info</h5>
+    </div>
+    <div class="card-body pt-0">
+      <div class="row">
+        <div class="col-md-8 col-sm-12 row">
+          <div class="col-md-6 col-sm-12">
+            <label class="form-label">First Name</label>
+            <div class="input-group">
+              <input id="firstName" name="firstName" class="form-control" type="text" placeholder="Alec"
+                     required="required">
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <label class="form-label">Last Name</label>
+            <div class="input-group">
+              <input id="lastName" name="lastName" class="form-control" type="text" placeholder="Thompson"
+                     required="required">
+            </div>
+          </div>
+          <div class="col-12">
+            <label class="form-label mt-4" i18n>Gender</label>
+            <select class="form-control" name="choices-gender" id="choices-gender">
+              <option value="M" i18n>Male</option>
+              <option value="F" i18n>Female</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label class="form-label mt-4">Your location</label>
+            <div class="input-group">
+              <input id="location" name="location" class="form-control" type="text" placeholder="Sydney, A">
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="form-label mt-4">Phone Number</label>
+            <div class="input-group">
+              <input id="phone" name="phone" class="form-control" type="number" placeholder="+40 735 631 620">
+            </div>
+          </div>
+        </div>
+          <div class="col-md-4 col-sm-12 d-flex align-items-center flex-column">
+            <img [ngSrc]="imagePath === undefined && user === undefined ? '/assets/img/login.jpg' : (imagePath !== undefined ? imagePath : environment.url.replace('/api', '') + this.user.customerprofile?.photo)" [width]="732" [height]="1000"
+                 style="min-height: 300px; max-height: 300px; width: 250px" class="mt-5"
+                 alt="collection image"/>
+            <label for="image" class="btn bg-gradient-primary mt-3">
+              <span>upload the image of the product</span>
+              <input style="display: none" (change)="readImage($event)" #fileInput accept="image/*" type="file"
+                     id="image"/>
+            </label>
+          </div>
+      </div>
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+  <div class="card mt-4" id="password">
+    <div class="card-header">
+      <h5>Change Password</h5>
+    </div>
+    <div class="card-body pt-0">
+      <label class="form-label">Current password</label>
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="Current password">
+      </div>
+      <label class="form-label">New password</label>
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="New password">
+      </div>
+      <label class="form-label">Confirm new password</label>
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="Confirm password">
+      </div>
+      <h5 class="mt-5">Password requirements</h5>
+      <p class="text-muted mb-2">
+        Please follow this guide for a strong password:
+      </p>
+      <ul class="text-muted ps-4 mb-0 float-start">
+        <li>
+          <span class="text-sm">One special characters</span>
+        </li>
+        <li>
+          <span class="text-sm">Min 6 characters</span>
+        </li>
+        <li>
+          <span class="text-sm">One number (2 are recommended)</span>
+        </li>
+        <li>
+          <span class="text-sm">Change it often</span>
+        </li>
+      </ul>
+      <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update password</button>
+    </div>
+  </div>
+</div>

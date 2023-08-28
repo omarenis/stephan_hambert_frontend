@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Product} from "../../../dashboard/stock-management/models/Product";
 import {AbstractRestService} from "../../../services/genericservice";
-import {Collection} from "../../../dashboard/stock-management/models/Collection";
 import {DOCUMENT} from "@angular/common";
 import {ComponentNotifyService} from "../../../services/component-ntify.service";
 import {FormGroup} from "@angular/forms";
+import {Collection} from "../../../models/Collection";
 
 @Component({
   selector: 'app-index',
@@ -48,7 +48,7 @@ step !: number;
     this.products = [{
       title: '',
       code: '',
-      content: '',
+      description: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -60,7 +60,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      content: '',
+      description: '',
       slug: 'original',
       price: 0,
       current_quantity: 0,
@@ -72,7 +72,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      content: '',
+      description: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -84,7 +84,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      content: '',
+      description: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -97,7 +97,7 @@ step !: number;
       title: '',
       code: '',
       slug: '',
-      content: '',
+      description: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -108,7 +108,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      content: '',
+      description: '',
       price: 0,
       current_quantity: 0,
       tva: 0,
@@ -120,7 +120,7 @@ step !: number;
     }, {
       title: '',
       code: '',
-      content: '',
+      description: '',
       price: 0,
       current_quantity: 0,
       tva: 0,

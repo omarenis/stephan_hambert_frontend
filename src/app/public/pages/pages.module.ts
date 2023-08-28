@@ -4,6 +4,7 @@ import {PhilosophieComponent} from "./philosophie/philosophie.component";
 import {CollectionsComponent} from "./collections/collections.component";
 import {Route, RouterModule} from "@angular/router";
 import {ComponentsModule} from "../components/components.module";
+import { HistoireComponent } from './histoire/histoire.component';
 
 const routes: Route[] = [
   {
@@ -17,6 +18,9 @@ const routes: Route[] = [
   },
   {
     path: 'collections', component: CollectionsComponent
+  },
+  {
+    path: 'historique', component: HistoireComponent
   }
 ];
 
@@ -24,7 +28,8 @@ const routes: Route[] = [
   declarations: [
     IndexComponent,
     PhilosophieComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    HistoireComponent
   ],
   imports: [
     RouterModule.forChild(routes),

@@ -20,7 +20,7 @@ export class ProductPageComponent implements OnInit {
     products !: Product[];
     carousel !: OwlOptions;
     comments !: Comment[];
-    private actionUrl = `${environment.url}/products`;
+    private actionUrl = `${environment.url}/public/products`;
 
     constructor(private productService: AbstractRestService<Product>, private router: Router,
                 private activatedRouter: ActivatedRoute, private notifyService: ComponentNotifyService,
@@ -50,7 +50,7 @@ export class ProductPageComponent implements OnInit {
         this.products = [{
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -62,7 +62,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -74,7 +74,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -86,7 +86,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -98,7 +98,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -110,7 +110,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -122,7 +122,7 @@ export class ProductPageComponent implements OnInit {
         }, {
             title: '',
             code: '',
-            content: '',
+            description: '',
             price: 0,
             current_quantity: 0,
             tva: 0,
@@ -140,7 +140,9 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     customerprofile: null,
-                    email: ''
+                    email: '',
+                                    last_login: '',
+                  date_joined: '',
                 },
                 product: 1,
                 rating: 5,
@@ -154,6 +156,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
+                                    last_login: '',
+                  date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -168,6 +172,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
+                                    last_login: '',
+                  date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -182,6 +188,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
+                                    last_login: '',
+                  date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -196,6 +204,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
+                  last_login: '',
+                  date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -208,11 +218,11 @@ export class ProductPageComponent implements OnInit {
 
         this.activatedRouter.params.subscribe(params => {
             if (params['id'] !== undefined) {
-                this.productService.get(this.actionUrl, Number(params['id'])).subscribe(
+                this.productService.get(this.actionUrl, params['id']).subscribe(
                     {
                         next: (product: Product) => {
                             this.product = product;
-                            console.log(product);
+                            this.product.image = environment.originBackend + this.product.image;
                         },
                         error: (err) => {
                             console.log(err);

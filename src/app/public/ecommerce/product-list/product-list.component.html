@@ -1,70 +1,33 @@
 <img ngSrc="/assets/img/product-list-image/product-list-oùmage.png" [width]="window.innerWidth"
      [height]="window.innerHeight" class="h-100 w-100" alt="" style="">
-<h1 class="product-list-title">
+<h3 class="product-list-title">
   FRAGRANCES
-</h1>
+</h3>
 <ul class="nav nav-pills mb-3 d-flex justify-content-center bg-white" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
-            role="tab" aria-controls="pills-home" aria-selected="true">HISTOIRE
+            role="tab" aria-controls="pills-home" aria-selected="true" (click)="filterData(-1)">TOUS
     </button>
   </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
-            role="tab" aria-controls="pills-profile" aria-selected="false">NOTES OLFACTIVES
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button"
-            role="tab" aria-controls="pills-contact" aria-selected="false">AVIS
-    </button>
-  </li>
+  <ng-container *ngIf="collections !== undefined">
+    <li class="nav-item" role="presentation" *ngFor="let collection of collections">
+      <button class="nav-link  text-capitalize" id="pills-profile-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-home" (click)="filterData(collection.id)" type="button"
+              role="tab" aria-controls="pills-profile" aria-selected="false">{{collection.title.toUpperCase()}}
+      </button>
+    </li>
+  </ng-container>
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-    <section class="container-xl container-fluid row mx-auto">
+    <section class="container-xl container-fluid row mx-auto" *ngIf="products !== undefined">
       <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
         <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
-          <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
+          <img class="card-img-top align-self-center product-image" [ngSrc]="environment.originBackend + product.image"
+               [width]="100" [height]="200"
                [alt]="'product number' + product.id?.toString()">
           <div class="card-body">
-            <h4 class="product-list-title">
-              {{product.title}}
-            </h4>
-            <p class="product-price">
-              {{product.price}}
-            </p>
-          </div>
-        </a>
-      </article>
-    </section>
-  </div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-    <section class="container-xl container-fluid row mx-auto">
-      <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
-        <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
-          <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
-               [alt]="'product number' + product.id?.toString()">
-          <div class="card-body">
-            <h4 class="product-list-title">
-              {{product.title}}
-            </h4>
-            <p class="product-price">
-              {{product.price}}
-            </p>
-          </div>
-        </a>
-      </article>
-    </section>
-  </div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
-    <section class="container-xl container-fluid row mx-auto">
-      <article class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
-        <a class="card card-plain" [routerLink]="'/public/ecommerce/products/' + product.slug">
-          <img class="card-img-top align-self-center" ngSrc="{{product.image}}" [width]="393" [height]="300"
-               [alt]="'product number' + product.id?.toString()">
-          <div class="card-body">
-            <h4 class="product-list-title">
+            <h4 class="product-title">
               {{product.title}}
             </h4>
             <p class="product-price">

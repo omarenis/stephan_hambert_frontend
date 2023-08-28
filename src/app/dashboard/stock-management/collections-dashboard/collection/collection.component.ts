@@ -1,13 +1,13 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
-import {Collection, collectionObject, OtherInformationCollection} from "../../models/Collection";
+import {collectionObject} from "../../models/Collection";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {FormView} from "../../../../services/FormView";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {serializeDataByType} from "../../../../models/forms";
 import {readFileFromInput} from "../../../../services/extra";
-
+import {Collection, OtherInformationCollection} from "../../../../models/Collection";
 
 interface OtherInformationFormGroup {
   title: FormControl,

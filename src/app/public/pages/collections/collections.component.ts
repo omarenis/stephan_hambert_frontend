@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractRestService} from "../../../services/genericservice";
-import {Collection} from "../../../dashboard/stock-management/models/Collection";
 import {environment} from "../../../../environments/environment";
+import {Collection} from "../../../models/Collection";
 
 @Component({
   selector: 'app-collections',
@@ -18,6 +18,7 @@ export class CollectionsComponent implements OnInit {
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (result) => {
         this.collections = result;
+        console.log(result);
       }
     });
     this.collections = [

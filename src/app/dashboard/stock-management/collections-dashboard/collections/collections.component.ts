@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {AbstractRestService} from "../../../../services/genericservice";
-import {Collection} from "../../models/Collection";
 import {Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {CrudConsumer} from "../../../../services/CrudConsumer";
+import {Collection} from "../../../../models/Collection";
 
 @Component({
   selector: 'app-collections',

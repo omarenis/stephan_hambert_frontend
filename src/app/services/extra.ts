@@ -12,12 +12,12 @@ export const readFileFromInput = (element: HTMLInputElement, callback: Function)
 }
 
 export  const setFormGroupValue = <T extends {[key: string]: any }>(formGroup: FormGroup, fieldMap: {[key: string]: {type: string, required: boolean}}, data: T): void => {
-  Object.keys(data).forEach((key) => {
+  Object.keys(fieldMap).forEach((key) => {
     if(fieldMap[key].type === 'image' || fieldMap[key].type === 'file')
     {
       formGroup.controls[key].setValidators([]);
     } else {
-      formGroup.controls[key].setValue(data[key])
+      formGroup.controls[key].setValue(data[key]);
     }
   })
 }

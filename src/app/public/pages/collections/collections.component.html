@@ -1,15 +1,14 @@
 <article class="">
   <section class="card mb-3 container-xl container-fluid" *ngFor="let collection of collections">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img [ngSrc]="environment.url.replace('/api', '') + collection.image.toString()" class="img-fluid rounded-start" alt="..." height="1118" width="1736">
+    <div class="row g-0" >
+      <div class="col-md-4 col-sm-12">
+        <img [ngSrc]="environment.originBackend + collection.image.toString()" class="img-fluid rounded-start" alt="..." height="1118" width="1736">
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12">
         <div class="card-body">
-          <h5 class="card-title">{{collection.title}}</h5>
+          <h5 class="card-title text-">{{collection.title}}</h5>
           <div class="card-text" [innerHTML]="collection.content">
           </div>
-          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
         </div>
       </div>
     </div>

@@ -31,6 +31,14 @@ export class LoginComponent {
         localStorage.setItem('refresh', token.refresh);
         localStorage.setItem("is_superuser", JSON.stringify(token.is_superuser));
         localStorage.setItem('username', token.username);
+        localStorage.setItem('userId', token.userId.toString());
+        if(token.is_superuser)
+        {
+          this.router.navigate(['/dashboard/stock-management/products']).then(() => {})
+        }
+        else {
+          this.router.navigate(['/public']).then(() => {})
+        }
       },
       error: (err) => {
         this.error = err.error.message;

@@ -1,15 +1,15 @@
 <div class="multisteps-form" #multistepForm>
   <div class="multisteps-form__progress">
     <button class="multisteps-form__progress-btn" title="0"
-            [class.js-active]="0 <= currentStep" (click)="currentStep = 0" [disabled]="product">
+            [class.js-active]="0 <= currentStep" (click)="currentStep = 0" [disabled]="product === undefined">
       <span class="text-white" i18n>essential information</span>
     </button>
     <button class="multisteps-form__progress-btn" title="1"
-            [class.js-active]="1 <= currentStep" (click)="currentStep = 1" [disabled]="product">
+            [class.js-active]="1 <= currentStep" (click)="getOlfactionData()" [disabled]="product === undefined">
       <span class="text-white">olfaction</span>
     </button>
     <button class="multisteps-form__progress-btn" title="2"
-            [class.js-active]="2 <= currentStep" (click)="currentStep = 2" [disabled]="product">
+            [class.js-active]="2 <= currentStep" (click)="getHistory()" [disabled]="product === undefined">
       <span class="text-white" i18n>hisotry</span>
     </button>
   </div>
@@ -35,35 +35,45 @@
             <div class="row">
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="collection">Collection</label>
-                <select id="collection" class="form-select">
+                <select id="collection" class="form-select" formControlName="collection">
                   <option [selected]="formGroup.controls['collection'].getRawValue() === ''">select collection</option>
-                  <option [value]="collection.id" [selected]="formGroup.controls['collection'].getRawValue() === collection.id"
+                  <option [value]="collection.id"
+                          [selected]="formGroup.controls['collection'].value === collection.id?.toString()"
                           *ngFor="let collection of collections">{{collection.title}}</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-12 mb-4">
+                <label for="promos">Promo</label>
+                <select id="promos" class="form-select" formControlName="promo">
+                  <option [selected]="formGroup.controls['promo'].getRawValue() === ''">select Promo</option>
+                  <option [value]="promo.id" [selected]="formGroup.controls['promo'].getRawValue() === promo.id"
+                          *ngFor="let promo of promos">{{promo.title}}</option>
                 </select>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 col-sm-12">
+                <label for="quantity">quantity</label>
+                <input class="form-control" type="number" formControlName="current_quantity" id="quantity"
+                       placeholder="12"/>
+              </div>
+              <div class="col-md-6 col-sm-12">
                 <label for="price">price</label>
                 <input class="form-control" type="number" formControlName="price" id="price"
                        placeholder="12.5"/>
               </div>
-              <div class="col-md-6 col-sm-12">
-                <label for="promo">promo</label>
-                <input class="form-control" type="text" formControlName="code" id="promo"
-                       placeholder="eg. Off-White"/>
-              </div>
             </div>
           </div>
           <div class="col-4 d-flex align-items-center flex-column">
-            <img ngSrc="/assets/img/login.jpg" [width]="40" [height]="50" style="width: 100%; min-height: 300px"
+            <img [ngSrc]="imagePath !== undefined ? imagePath : '/assets/img/login.jpg'" [width]="40" [height]="50"
+                 style="width: 100%; min-height: 300px"
                  class="mt-5"
-                 alt="collection image" height="732" width="1000"/>
+                 alt="product image" height="732" width="1000"/>
             <label for="image" class="btn bg-gradient-primary mt-3">
               <span>upload the image of the product</span>
               <input style="display: none" (change)="readImage($event, 'productImage')" accept="image/*" type="file"
                      id="image"
-                     formControlName="image"/>
+              />
             </label>
           </div>
         </div>
@@ -138,8 +148,7 @@
             </div>
             <div class="col-4 d-flex align-items-center flex-column">
               <img ngSrc="/assets/img/login.jpg" [width]="40" [height]="50" style="width: 100%; min-height: 150px"
-                   class="mt-5"
-                   alt="collection image" height="732" width="1000"/>
+                   class="mt-5" alt="collection image" height="732" width="1000"/>
               <label for="imageHistory" class="btn bg-gradient-primary mt-3">
                 <span>upload the image of the product</span>
                 <input style="display: none" (change)="readImage($event, 'imageHistory')" accept="image/*" type="file"

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../models/Product";
 import {Operation} from "../../../../models/forms";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: '[app-products-table]',
@@ -32,6 +33,13 @@ export class ProductsTableComponent implements OnInit {
 
   delete(id: number)
   {
-
+    this.sensOperation.emit({
+      operation: 'delete',
+      data: {
+        id: id
+      }
+    });
   }
+
+  protected readonly environment = environment;
 }
