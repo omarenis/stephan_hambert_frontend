@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="product != undefined">
   <article class="card-plain mx-auto d-flex flex-row align-items-center">
     <div class="d-block" style="max-width: 144px;">
       <img class="w-100 mx-auto col-md-6 col-sm-12"
@@ -17,26 +17,24 @@
     <div class="row g-0">
       <div class="col-md-6">
         <img class="w-100 mx-auto col-md-6 col-sm-12"
-             [ngSrc]="product.image.toString()"
+             [ngSrc]="product.image"
              alt="chair" [width]="599" [height]="759">
       </div>
       <div class="col-md-6 d-block align-self-center">
         <div class="card-body">
-          <h5 class="card-title" style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif">{{product.title}}</h5>
-          <h5 class="mb-5" style="font-weight: 300; font-size: 22px">$1,419</h5>
-          <div [innerHTML]="product.description">
-
+          <h5 class="card-title" style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif; color: black">{{product.title}}</h5>
+          <h5 class="" style="font-weight: 300; font-size: 22px; margin-bottom: 43px">$1,419</h5>
+          <div [innerHTML]="product.description" class="text-black">
           </div>
-          <a style="font-weight: 400;font-size: 20px; color: #858585; text-underline: #858585">Plus d’informations</a>
           <div class="row mt-4">
             <div class="col-lg-5 d-flex align-items-center ">
               <label class="col-md-6 text-center">Quantity</label>
-              <input class="form-control col-md-6" name="choices-quantity" id="choices-quantity" type="number"/>
+              <input class="form-control col-md-6" name="choices-quantity" id="choices-quantity" [(ngModel)]="quantity" type="number"/>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col-lg-5">
-              <button class="btn btn-primary mb-0 mt-lg-auto w-100 border-radius-0" type="button" name="button">Add to
+              <button class="btn btn-primary mb-0 mt-lg-auto w-100 border-radius-0" type="button" name="button" (click)="addToCart()">Add to
                 cart
               </button>
             </div>
@@ -66,47 +64,17 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
          tabindex="0">
       <article class="card-plain mx-auto d-flex flex-row align-items-center">
-        <div class="row g-0">
+        <div class="row g-5">
           <div class="col-md-6">
             <img class="w-100 mx-auto col-md-6 col-sm-12"
-                 [ngSrc]="product.image.toString()"
-                 alt="chair" [width]="599" [height]="759">
+                 [ngSrc]="historyImage !== undefined ? historyImage.toString() : ''"
+                 alt="chair" [width]="500" [height]="700">
           </div>
           <div class="col-md-6 d-block align-self-center">
             <div class="card-body">
               <h5 class="card-title history-title"
-                  style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif">Histoire du parfum </h5>
-              <p style="">
-                Le Dieu du feu s'inspire de la légende de Xiuhtecuhtli, le Dieu du feu, du jour et de la lumière dans la
-                mythologie aztèque.
-                Créateur de toute vie, il est la mère et le père de tous les dieux. Il est la personnification de la
-                lumière dans l'obscurité, de la chaleur dans la froideur et de la vie dans la mort.
-                En tant que patron de rois et de guerriers, il est montré portant un serpent turquoise autour de lui et
-                portant une couronne et des ornements faits de pierres bleues turquoise. </p>
-
-              <h5 class="card-title history-title" style="
-font-family: Lucida Fax;
-font-size: 32px;
-font-weight: 400;
-line-height: 25px;
-letter-spacing: 0em;
-text-align: left;
-   margin-top: 34px;
-">Inspiration </h5>
-              <p style="
-
-font-family: Proxima Nova;
-font-size: 20px;
-font-weight: 400;
-line-height: 25px;
-letter-spacing: 0em;
-text-align: left;
-margin-bottom: 18px;
-">
-                Symbole de puissance et de sagesse, God of Fire est un parfum exquis où des notes fraîches et exotiques
-                cachent un caractère chaleureux exceptionnel.
-                Sa force incroyable, l'amène à gouverner les volcans, son cœur d'Oud brûle intensément comme une
-                expérience chamanique, vous laissant régénéré et plein de confiance. </p>
+                  style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif">Histoire du parfum</h5>
+              <div style="" [innerHTML]="product.history?.content"></div>
             </div>
           </div>
         </div>
@@ -117,53 +85,14 @@ margin-bottom: 18px;
         <div class="row g-0">
           <div class="col-md-6">
             <img class="w-100 mx-auto col-md-6 col-sm-12"
-                 ngSrc="/assets/img/img.png"
+                 [ngSrc]="olfactionImage !== undefined  ? olfactionImage.toString() : ''"
                  alt="chair" [width]="664" [height]="633">
           </div>
           <div class="col-md-6 d-block align-self-center">
             <div class="card-body  ps-4">
               <h5 class="card-title history-title"
                   style="font-size: 70px; font-weight: 400; font-family: Lucida Fax,serif"> Notes olfactives </h5>
-              <ul class="d-block  list-unstyled">
-                <li>
-                  <p class="">
-                    <span class="text-bold">Fulgurance :</span> <br/>
-                    <span>Mangue, citron, baies roses, </span>
-                  </p>
-                </li>
-                <li>
-                  <p class=""><span class="text-bold">gingembre Métamorphose :</span> <br/>
-                    <span>Coumarine bleue, jasmin, </span>
-                </li>
-                <li>
-                  <p class=""><span class="text-bold">bois sec Quintessence :</span> <br/>
-                    <span>Oud, Nagarmotha, Musk, Amber </span>
-                  </p>
-                </li>
-              </ul>
-              <h5 class="card-title history-title" style="
-font-family: Lucida Fax,serif;
-font-size: 32px;
-font-weight: 400;
-line-height: 25px;
-letter-spacing: 0em;
-text-align: left;
-   margin-top: 34px;
-">Ingrédients </h5>
-              <p style="
-
-font-family: Proxima Nova,serif;
-font-size: 20px;
-font-weight: 400;
-line-height: 25px;
-letter-spacing: 0em;
-text-align: left;
-margin-bottom: 18px;
-">
-                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant
-                impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
-                imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de
-                texte. </p>
+              <div [innerHTML]="product.olfaction?.content"></div>
             </div>
           </div>
         </div>

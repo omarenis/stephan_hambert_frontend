@@ -1,16 +1,38 @@
 <article class="">
-  <section class="card mb-3 container-xl container-fluid" *ngFor="let collection of collections">
-    <div class="row g-0" >
-      <div class="col-md-4 col-sm-12">
-        <img [ngSrc]="environment.originBackend + collection.image.toString()" class="img-fluid rounded-start" alt="..." height="1118" width="1736">
-      </div>
-      <div class="col-md-8 col-sm-12">
-        <div class="card-body">
-          <h5 class="card-title text-">{{collection.title}}</h5>
-          <div class="card-text" [innerHTML]="collection.content">
+  <section class=" mb-3 container-fluid" *ngFor="let collection of collections">
+    <ng-container *ngIf="collection !== undefined">
+      <div class="card container-xl container-fluid p-2 w-100">
+        <div class="row g-5 align-items-center ">
+          <div class="col-md-4 col-sm-12">
+            <img [ngSrc]="environment.originBackend + collection.image.toString()"
+                 class="img-fluid rounded-start img-collection" alt="..." height="1118" width="1736">
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div class="card-body">
+              <h5 class="title-collection">{{collection.title}}</h5>
+              <div class="text-black" [innerHTML]="collection.content">
+              </div>
+            </div>
           </div>
         </div>
+        <ng-container *ngIf="collection?.additionalinformationcollection_set !== undefined">
+          <div class="row g-5 align-items-center" [ngClass]="{'flex-row-reverse': i % 2 == 0}"
+               *ngFor="let otherInformation of collection.additionalinformationcollection_set; let i = index">
+            <div class="col-md-4 col-sm-12">
+              <img [ngSrc]="environment.originBackend + otherInformation.image.toString()"
+                   class="img-fluid rounded-start img-collection" alt="..." height="1118" width="1736">
+            </div>
+            <div class="col-md-8 col-sm-12">
+              <div class="card-body">
+                <h5 class="title-collection">{{collection.title}}</h5>
+                <div class="text-black" [innerHTML]="otherInformation.content">
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </div>
-    </div>
+    </ng-container>
   </section>
 </article>
+

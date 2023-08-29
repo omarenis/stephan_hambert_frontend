@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractRestService} from "../../../services/genericservice";
 import {environment} from "../../../../environments/environment";
 import {Collection} from "../../../models/Collection";
+import {co} from "@fullcalendar/core/internal-common";
+import {isColPropsEqual} from "@fullcalendar/core/internal";
 
 @Component({
   selector: 'app-collections',
@@ -15,66 +17,18 @@ export class CollectionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.collectionService.list(`${environment.url}/collections`).subscribe({
-      next: (result) => {
+    this.collectionService.list(`${environment.url}/public/collections`).subscribe({
+      next: (result: Collection[]) => {
         this.collections = result;
         console.log(result);
+        this.collections.map(collection =>  {
+          if(collection.additionalinformationcollection_set === undefined)
+          {
+            collection.additionalinformationcollection_set =  [];
+          }
+        })
       }
     });
-    this.collections = [
-      {
-        title: 'Collection 777',
-        image: '',
-        total_gain: 0,
-        number_purchases: 0,
-        number_products: 0,
-        id: 1,
-        citation: "",
-        content: 'helezmezbfmkzebfmkezjbmkezjbzme',
-        otherinformationcollection_set: [
-          {
-            title: 'other infirmation1',
-            content: 'eljfbelkjbeklfjbezfkjbzekjbez',
-            collection: 1,
-            id: 1,
-            image: ''
-          },
-          {
-            title: 'other infirmation1',
-            content: 'eljfbelkjbeklfjbezfkjbzekjbez',
-            collection: 1,
-            id: 1,
-            image: ''
-          }
-        ]
-      },
-      {
-        title: 'Collection 777',
-        image: '',
-        total_gain: 0,
-        number_purchases: 0,
-        number_products: 0,
-        id: 2,
-        citation: '',
-        content: 'helezmezbfmkzebfmkezjbmkezjbzme',
-        otherinformationcollection_set: [
-          {
-            title: 'other infirmation1',
-            content: 'eljfbelkjbeklfjbezfkjbzekjbez',
-            collection: 1,
-            id: 1,
-            image: ''
-          },
-          {
-            title: 'other infirmation1',
-            content: 'eljfbelkjbeklfjbezfkjbzekjbez',
-            collection: 1,
-            id: 1,
-            image: ''
-          }
-        ]
-      },
-    ]
   }
 
   protected readonly environment = environment;

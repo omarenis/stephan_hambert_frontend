@@ -6,3 +6,25 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
+.img-collection {
+  width: 500px;
+  height: 400px;
+  top: 291px;
+  left: 95px;
+
+}
+
+p {
+  color: black;
+}
+
+.title-collection {
+  font-family: Proxima Nova;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #858585;;
+}

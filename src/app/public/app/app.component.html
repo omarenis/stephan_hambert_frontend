@@ -1,7 +1,7 @@
 <header class=" align-items-center align-content-center"
         [ngClass]="{ 'fixed-top': isIndex,'bg-transparent': !scrolled && isIndex, 'bg-black': scrolled && isIndex}">
   <div class="d-flex w-100 bg-transparent align-items-center container">
-    <a href="" class="mx-auto" style="padding-left: 8%">
+    <a href="" class="mx-auto" style="padding-left: 8%" >
       <svg width="195" height="145" viewBox="0 0 195 145" fill="none" xmlns="http://www.w3.org/2000/svg"
            xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-left: auto" *ngIf="isIndex">
         <rect width="195" height="145" fill="url(#pattern0)"/>
@@ -40,7 +40,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">
+        <a class="nav-link" routerLink="/public/ecommerce/cart">
           <svg width="16" height="20" viewBox="0 0 16 20" [attr.fill]="'none'" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="5.30005" width="14.2" height="14.2" [attr.stroke]="isIndex ? 'white': 'black'"/>
             <path d="M3.79999 5.43333C3.79999 3.95556 4.55999 1 7.59999 1C11.4 1 11.4 4.8 11.4 5.43333"

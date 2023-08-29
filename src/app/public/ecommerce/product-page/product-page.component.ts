@@ -1,13 +1,16 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, forwardRef, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {Product} from "../../../dashboard/stock-management/models/Product";
 import {environment} from "../../../../environments/environment";
 import {AbstractRestService} from "../../../services/genericservice";
 import {ComponentNotifyService} from "../../../services/component-ntify.service";
 import {Comment} from "../../../dashboard/crm/models/Comment";
 import {DOCUMENT} from "@angular/common";
 import {Lightbox} from "ngx-lightbox";
+import {Product} from "../../models/Product";
+import {json} from "express";
+import {productObject} from "../../../dashboard/stock-management/models/Product";
+import {OrderLine} from "../models/OrderLine";
 
 
 @Component({
@@ -20,7 +23,10 @@ export class ProductPageComponent implements OnInit {
     products !: Product[];
     carousel !: OwlOptions;
     comments !: Comment[];
+    quantity !: number;
     private actionUrl = `${environment.url}/public/products`;
+    historyImage !: string | undefined;
+    olfactionImage !: string | undefined;
 
     constructor(private productService: AbstractRestService<Product>, private router: Router,
                 private activatedRouter: ActivatedRoute, private notifyService: ComponentNotifyService,
@@ -28,6 +34,7 @@ export class ProductPageComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.quantity = 0;
         this.carousel = {
             loop: true,
             dots: false,
@@ -49,88 +56,53 @@ export class ProductPageComponent implements OnInit {
         }
         this.products = [{
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             slug: '',
             image: '/assets/img/products/product1.png',
             collection: '',
-            promo: 0,
-            number_purchases: 0,
         }, {
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             slug: '',
             image: '/assets/img/products/product2.png',
             collection: '',
-            promo: 0,
-            number_purchases: 0,
         }, {
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             image: '/assets/img/products/product3.png',
             collection: '',
-            promo: 0,
             slug: '',
-            number_purchases: 0,
         }, {
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             slug: '',
             image: '/assets/img/products/product4.png',
             collection: '',
-            promo: 0,
-            number_purchases: 0,
         }, {
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             image: '/assets/img/products/product5.png',
             collection: '',
-            promo: 0,
             slug: '',
-            number_purchases: 0,
         }, {
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             image: '/assets/img/products/product6.png',
             collection: '',
             slug: '',
-            promo: 0,
-            number_purchases: 0,
         }, {
             title: '',
-            code: '',
             description: '',
             price: 0,
-            current_quantity: 0,
-            tva: 0,
             image: '/assets/img/products/product7.png',
             collection: '',
-            promo: 0,
             slug: '',
-            number_purchases: 0,
         }];
 
         this.comments = [
@@ -141,8 +113,8 @@ export class ProductPageComponent implements OnInit {
                     username: 'John',
                     customerprofile: null,
                     email: '',
-                                    last_login: '',
-                  date_joined: '',
+                    last_login: '',
+                    date_joined: '',
                 },
                 product: 1,
                 rating: 5,
@@ -156,8 +128,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
-                                    last_login: '',
-                  date_joined: '',
+                    last_login: '',
+                    date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -172,8 +144,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
-                                    last_login: '',
-                  date_joined: '',
+                    last_login: '',
+                    date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -188,8 +160,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
-                                    last_login: '',
-                  date_joined: '',
+                    last_login: '',
+                    date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -204,8 +176,8 @@ export class ProductPageComponent implements OnInit {
                     last_name: 'John',
                     username: 'John',
                     email: '',
-                  last_login: '',
-                  date_joined: '',
+                    last_login: '',
+                    date_joined: '',
                     customerprofile: null,
                 },
                 product: 1,
@@ -222,6 +194,12 @@ export class ProductPageComponent implements OnInit {
                     {
                         next: (product: Product) => {
                             this.product = product;
+                            console.log(product);
+                            if (product.image) {
+                                product.image = product.image.toString();
+                                this.historyImage = environment.originBackend + product.history?.image.toString();
+                                this.olfactionImage = environment.originBackend + product.olfaction?.image.toString();
+                            }
                             this.product.image = environment.originBackend + this.product.image;
                         },
                         error: (err) => {
@@ -231,5 +209,34 @@ export class ProductPageComponent implements OnInit {
                 )
             }
         })
+    }
+
+    addToCart() {
+        let orderlinesString = localStorage.getItem(`orderlines`);
+        if (orderlinesString === null) {
+            orderlinesString = "[]";
+        }
+        let orderlines: OrderLine[] = Array.from(JSON.parse(orderlinesString));
+        if (orderlines !== null) {
+            let edited = false;
+            orderlines.map((item) => {
+                if (item.product.id == this.product.id) {
+                    item.quantity = this.quantity;
+                    item.totalHt = this.product.price * this.quantity;
+                }
+                edited = true;
+                return item;
+            });
+            if (!edited) {
+
+                orderlines.push({
+                    product: this.product,
+                    quantity: this.quantity,
+                    totalHt: this.quantity * this.product.price,
+                });
+            }
+        }
+
+        localStorage.setItem('orderlines', JSON.stringify(orderlines))
     }
 }

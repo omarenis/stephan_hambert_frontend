@@ -105,7 +105,7 @@ export class CollectionComponent extends FormView<Collection> {
       content: this.otherInformation[i].controls.content.value,
       image: this.otherInformation[i].controls.image.value,
     }, 'multipart/form-data');
-    const subscriber = this.otherInformation[i].controls.id !== undefined ? this.otherInformationService.put(this.pathOtherInformationCollection, Number(this.otherInformation[i].controls.collection?.value), data) : this.otherInformationService.create(this.pathOtherInformationCollection, data);
+    const subscriber = this.otherInformation[i].controls.id !== undefined ? this.otherInformationService.put(this.pathOtherInformationCollection, Number(this.otherInformation[i].controls['id']?.value), data) : this.otherInformationService.create(this.pathOtherInformationCollection, data);
     subscriber.subscribe({
       next: async (response) => {
         console.log(response);
@@ -118,7 +118,7 @@ export class CollectionComponent extends FormView<Collection> {
 
   removeOtherInformation(i: number) {
     if (typeof this.otherInformation[i].controls.collection !== "undefined") {
-      this.otherInformationService.delete(this.pathOtherInformationCollection, Number(this.otherInformation[i].controls?.collection?.value)).then(() => {
+      this.otherInformationService.delete(this.pathOtherInformationCollection, Number(this.otherInformation[i].controls?.collection?.value)).subscribe(() => {
         this.otherInformation.splice(i, 1);
       })
     } else {
@@ -133,8 +133,12 @@ export class CollectionComponent extends FormView<Collection> {
       this.service.put(`${environment.url}/collections`, Number(this.item.id), data).subscribe({
         next: (response) => {
           this.imagePath = environment.originBackend + response.image
+        },
+        error : ( err) => {
+          console.log(err);
         }
       });
+      return ;
     }
     this.service.create(`${environment.url}/collections`, data).subscribe({
       next: (collection: Collection) => {

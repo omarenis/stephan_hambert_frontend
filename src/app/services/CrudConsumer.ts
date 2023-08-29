@@ -57,11 +57,16 @@ export abstract class CrudConsumer<T> implements OnInit {
     });
     this.getData();
   }
-  delete(id: number | undefined): void
+  delete(id: number | undefined, i ?: number): void
   {
     if(id !== undefined)
     {
-    this.service.delete(this.actionUrl, id, this.options).then(( )=> {});
+    this.service.delete(this.actionUrl, id, this.options).subscribe(()=> {
+      if(i !== undefined)
+      {
+        this.data.splice(i, 1);
+      }
+    });
     }
   }
 

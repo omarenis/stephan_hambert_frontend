@@ -6,7 +6,7 @@ export interface OrderLine
 {
     product: Product;
     quantity: number;
-    date_order: Date | string;
+    date_order ?: Date | string;
     totalHt: number;
     order ?: number | Order;
 }

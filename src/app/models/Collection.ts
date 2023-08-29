@@ -13,6 +13,6 @@ export interface Collection extends Statistics {
     title: string;
     content: string;
     citation: string;
-    otherinformationcollection_set?: OtherInformationCollection[];
+    additionalinformationcollection_set : OtherInformationCollection[] | [];
     id ?: number;
 }

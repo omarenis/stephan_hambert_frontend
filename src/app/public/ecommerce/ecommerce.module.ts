@@ -7,6 +7,7 @@ import {ProductPageComponent} from "./product-page/product-page.component";
 import {ComponentsModule} from "../components/components.module";
 import {LightboxModule} from "ngx-lightbox";
 import {Route, RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 const routes: Route[] = [
   {
@@ -33,10 +34,11 @@ const routes: Route[] = [
     ProductPageComponent,
     CartComponent,
   ],
-  imports: [
-    ComponentsModule.forRoot(),
-    LightboxModule,
-    RouterModule.forChild(routes)
-  ],
+    imports: [
+        ComponentsModule.forRoot(),
+        LightboxModule,
+        RouterModule.forChild(routes),
+        FormsModule
+    ],
 })
 export class EcommerceModule { }

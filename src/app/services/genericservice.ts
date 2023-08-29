@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subscriber, Subscription} from "rxjs";
 
 
 @Injectable({
@@ -26,40 +26,8 @@ export abstract class AbstractRestService<T> {
     return this.http.put<T>(`${url}/${id}`, object, options);
   }
 
-  async delete(url: string, id: number, options ?: object): Promise<void> {
-    await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able the element!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
-    }).then((result: any) => {
-      if (result.value) {
-        this.http.delete<void>(`${url}/${id}`, options).subscribe({
-          next: () => {
-            Swal.fire(
-              'Deleted!',
-              'Your imaginary file has been deleted.',
-              'success'
-            );
-          },
-          error: () => {
-            Swal.fire(
-              'Cancelled',
-              'Your imaginary file is safe :)',
-              'error'
-            );
-          }
-        });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        );
-      }
-    })
+  delete(url: string, id: number, options ?: object): Observable<void> {
+    return  this.http.delete<void>(`${url}/${id}`, options);
   }
 }
 

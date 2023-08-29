@@ -13,31 +13,24 @@ export class CartComponent implements OnInit{
   cartFormGroup !: FormGroup;
   paymentFormGroup !: FormGroup;
   ngOnInit() {
+    console.log(localStorage.getItem('orderlines'));
     this.paymentFormGroup = new FormGroup({
       firstname: new FormGroup('', [Validators.required]),
       lastname: new FormGroup('', [Validators.required]),
       phone: new FormGroup('', [Validators.required]),
       email: new FormGroup('', [Validators.required]),
-      
-    })
-    this.orderLines = [
-      {
-        product: {
-          title: 'Crying of Evil',
-          description: '',
-          image: '/assets/img/products/product1.png',
-          slug: '(',
-          collection: ''
-        },
-        quantity: 0,
-        totalHt: 0,
-        date_order: '',
-      }
-    ];
+
+    });
+    const orderlinesString = localStorage.getItem('orderlines');
+    if(orderlinesString !== null)
+    {
+      this.orderLines = JSON.parse(orderlinesString);
+    }
   }
 
-  addQuantityToProduct(i: number)
+  addQuantityToProduct(event: Event, i: number)
   {
+    event.preventDefault();
     this.orderLines[i].quantity ++;
   }
 
@@ -47,4 +40,5 @@ export class CartComponent implements OnInit{
   }
 
   protected readonly environment = environment;
+  protected readonly event = event;
 }

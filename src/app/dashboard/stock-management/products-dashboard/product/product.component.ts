@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {FormGroup, Validators} from "@angular/forms";
 import {
   History,
   historyObject, Olfaction,
@@ -138,8 +138,9 @@ export class ProductComponent implements OnInit {
       this.olfactionService.get(`${environment.url}/stock-management/olfactions`, Number(this.product.olfaction)).subscribe({
         next: (olfaction: Olfaction) => {
           this.olfactionFormGroup.controls['title'].setValue(olfaction.title);
-          this.olfactionFormGroup.controls['image'].setValidators([]);
+          this.olfactionFormGroup.controls['image'].removeValidators([Validators.required]);
           this.olfactionFormGroup.controls['content'].setValue(olfaction.content);
+          this.olfactionFormGroup.removeValidators([Validators.required]);
           this.olfactionImagePath = environment.originBackend + olfaction.image;
         }
       });
