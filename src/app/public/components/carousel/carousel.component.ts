@@ -19,6 +19,7 @@ export class CarouselComponent implements OnInit {
       dots: false,
       navSpeed: 800,
       center: true,
+      nav: false,
       items: this.numberItems,
       responsive: {
         0: {
@@ -31,7 +32,6 @@ export class CarouselComponent implements OnInit {
           items: this.numberItems
         },
       },
-      nav: true
     }
   }
 }

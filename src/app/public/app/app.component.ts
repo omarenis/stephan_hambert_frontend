@@ -10,7 +10,7 @@ import {ComponentNotifyService} from "../../services/component-ntify.service";
 export class AppComponent implements OnInit{
 scrolled !: boolean;
   isIndex !: boolean;
-
+  isConnected !: boolean;
   constructor(@Inject(DOCUMENT) private document: Document, private notificationService: ComponentNotifyService, private detection: ChangeDetectorRef) {
     console.log("hel")
   }
@@ -23,6 +23,7 @@ scrolled !: boolean;
 
   ngOnInit(): void {
     this.scrolled = false;
+    this.isConnected  = localStorage.getItem('userId') !== null;
     if (this.document.body.classList.contains('g-sidebar-show')) {
       this.document.body.classList.remove('bg-sidebar-show')
     }

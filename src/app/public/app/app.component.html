@@ -28,7 +28,7 @@
     </a>
     <ul class="nav mb-2">
       <li class="nav-item">
-        <a class="nav-link">
+        <a class="nav-link" [routerLink]="isConnected ? '/public/profile' : '/public/auth/login'">
           <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Group 3">
               <circle id="Ellipse 1" cx="9.3302" cy="4.75" r="4.25" [attr.stroke]="isIndex ? 'white': 'black'"/>
@@ -66,10 +66,10 @@
           <a class="nav-link " [ngClass]="{'text-white': isIndex, 'text-black-50': !isIndex}">Fragrances</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" [ngClass]="{'text-white': isIndex, 'text-black-50': !isIndex}">La Maison SHL</a>
+          <a class="nav-link"  [ngClass]="{'text-white': isIndex, 'text-black-50': !isIndex}">La Maison SHL</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" [ngClass]="{'text-white': isIndex, 'text-black-50': !isIndex}" >Boutiques</a>
+          <a class="nav-link" href="/public" [ngClass]="{'text-white': isIndex, 'text-black-50': !isIndex}" >Boutiques</a>
         </li>
       </ul>
     </div>

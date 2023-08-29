@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {
-  historyObject,
+  History,
+  historyObject, Olfaction,
   olfactionObject,
   Product,
   ProductEssentialInformation,
@@ -15,13 +16,6 @@ import {environment} from "../../../../../environments/environment";
 import {readFileFromInput, setFormGroupValue} from "../../../../services/extra";
 import {ActivatedRoute} from "@angular/router";
 import {Collection} from "../../../../models/Collection";
-
-interface Olfaction {
-  title: string;
-  image: string | Blob;
-  content: string;
-  id?: number;
-}
 
 interface Choice {
   value: string;
@@ -47,18 +41,20 @@ export class ProductComponent implements OnInit {
   imagePath !: string;
   historyImagePath !: string;
   olfactionImagePath !: string;
-  steps !: string[];
   currentStep !: number;
+  collectionSelected !: Collection | number | string;
   collections !: Collection[];
   promos !: Promo[];
   choices !: Choice[];
   product !: Product;
   method !: string;
   historyFormGroup !: FormGroup;
+  message !: string;
 
   constructor(private essentialInformationService: AbstractRestService<ProductEssentialInformation>, private categoryService: AbstractRestService<Category>,
               private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
-              private olfactionService: AbstractRestService<Olfaction>, private activatedRoute: ActivatedRoute) {
+              private olfactionService: AbstractRestService<Olfaction>, private activatedRoute: ActivatedRoute,
+              private historyService: AbstractRestService<History>) {
   }
 
   ngOnInit() {
@@ -66,7 +62,6 @@ export class ProductComponent implements OnInit {
     this.historyFormGroup = createFormCreationEditGroup(historyObject);
     this.olfactionFormGroup = createFormCreationEditGroup(olfactionObject);
     this.currentStep = 0;
-    this.steps = ['product information', 'history', 'olfactive'];
 
     this.collectionService.list(`${environment.url}/collections`).subscribe({
       next: (response: Collection[]) => {
@@ -86,7 +81,12 @@ export class ProductComponent implements OnInit {
           next: (product: Product) => {
             this.product = product;
             this.imagePath = environment.originBackend + product.image;
+            this.collectionSelected = this.product.collection;
+            console.log(this.product);
+            this.historyFormGroup.controls['product'].setValue(product.id);
+            this.olfactionFormGroup.controls['product'].setValue(product.id);
             setFormGroupValue<ProductEssentialInformation>(this.formGroup, productObject, product);
+            this.formGroup.controls['image'].setValidators([]);
           },
           error: () => {
           }
@@ -106,7 +106,10 @@ export class ProductComponent implements OnInit {
     const observable = this.product !== undefined ? this.essentialInformationService.put(`${environment.url}/products`, Number(this.product.id), data) : this.essentialInformationService.create(`${environment.url}/products`, data);
     observable.subscribe({
       next: (product: ProductEssentialInformation) => {
+        this.message = `the product is successfully ${this.product !== undefined ? 'modified' : 'created'}`
         this.product = product;
+        this.historyFormGroup.controls['product'].setValue(product.id);
+        this.olfactionFormGroup.controls['product'].setValue(product.id);
         this.imagePath = environment.originBackend + product.image;
       }, error: (err) => {
         console.log(err);
@@ -120,23 +123,24 @@ export class ProductComponent implements OnInit {
       this.formGroup.controls['image'].setValue(files[0]);
     } else if (imageToChange === 'historyImage') {
       this.historyImagePath = result;
+      console.log(this.historyImagePath);
       this.historyFormGroup.controls['image'].setValue(files[0]);
     } else {
+      console.log(result);
       this.olfactionImagePath = result;
       this.olfactionFormGroup.controls['image'].setValue(files[0]);
     }
   }
 
   getOlfactionData(): void {
-    if (this.olfactionFormGroup.controls['title'].value === null) {
-      if (isNaN(Number(this.product.olfaction))) {
-        return;
-      }
-      this.olfactionService.get(`${environment.url}/olfactions/`, Number(this.product.olfaction)).subscribe({
+    this.currentStep = 2;
+    if (this.product.olfaction !== null) {
+      this.olfactionService.get(`${environment.url}/stock-management/olfactions`, Number(this.product.olfaction)).subscribe({
         next: (olfaction: Olfaction) => {
           this.olfactionFormGroup.controls['title'].setValue(olfaction.title);
           this.olfactionFormGroup.controls['image'].setValidators([]);
           this.olfactionFormGroup.controls['content'].setValue(olfaction.content);
+          this.olfactionImagePath = environment.originBackend + olfaction.image;
         }
       });
     }
@@ -149,6 +153,45 @@ export class ProductComponent implements OnInit {
   }
 
   getHistory() {
+    this.currentStep = 1;
+    if (this.product.history !== undefined && this.product.history !== null) {
+      this.historyService.get(`${environment.url}/stock-management/histories`, Number(this.product.history)).subscribe({
+        next: (response: History) => {
+          this.historyFormGroup.controls['title'].setValue(response.title);
+          this.historyFormGroup.controls['content'].setValue(response.content);
+          this.historyImagePath = environment.originBackend + response.image;
+          this.historyFormGroup.controls['image'].setValidators([]);
+        },
+        error: () => {
+        }
+      });
+    }
+  }
 
+  createOrEditHistory(event: Event) {
+    event.preventDefault();
+    console.log(this.historyFormGroup.value);
+    const data = serializeDataByType<History | FormData>(this.historyFormGroup.value, 'multipart/form-data');
+    const subscriber = typeof this.product.history === 'number' ? this.historyService.put(`${environment.url}/stock-management/histories`, Number(this.product.history), data) : this.historyService.create(`${environment.url}/stock-management/histories`, data);
+    subscriber.subscribe({
+      next: (response) => {
+        setFormGroupValue(this.historyFormGroup, historyObject, response);
+        this.historyImagePath = environment.originBackend + response.image;
+      }
+    })
+  }
+
+  protected readonly Number = Number;
+
+  createOrEditOlfaction(event: Event) {
+    event.preventDefault();
+    const data: FormData | Olfaction = serializeDataByType<Olfaction | FormData>(this.olfactionFormGroup.value, 'multipart/form-data');
+    const subscriber = typeof this.product.olfaction === 'number' ? this.olfactionService.put(`${environment.url}/stock-management/olfactions`, Number(this.product.olfaction), data) : this.historyService.create(`${environment.url}/stock-management/olfactions`, data);
+    subscriber.subscribe({
+      next: (response) => {
+        setFormGroupValue(this.historyFormGroup, historyObject, response);
+        this.olfactionImagePath = environment.originBackend + response.image;
+      }
+    })
   }
 }

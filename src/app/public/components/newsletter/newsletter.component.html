@@ -3,12 +3,12 @@
   <p class="text-center mx-auto" style="width: 25%; margin-top: 5px">
     Sign up to our newsletter and be the first to know about our news and updates.
   </p>
-  <form class="d-flex justify-content-center mt-2 w-100" [formGroup]="formGroup" (ngSubmit)="submit($event)">
+  <form class="d-flex justify-content-center align-items-end mt-2 w-100" [formGroup]="formGroup" (ngSubmit)="submit($event)">
     <div class="form-group mx-sm-3">
       <label for="email" class="sr-only">Email adresse</label>
       <input type="email" class="form-control" id="email" placeholder="Email Address" formControlName="email">
     </div>
-    <button type="submit" class="btn text-white mb-2">S’inscrire
+    <button type="submit" class="btn text-white">S’inscrire
     </button>
   </form>
 </div>

@@ -5,6 +5,7 @@ import {PartnersComponent} from './partners/partners.component';
 import {PartnerComponent} from './partner/partner.component';
 import {FooterOptionsComponent} from "./footer-options/footer-options.component";
 import {SharedModule} from "../shared/shared.module";
+import { PresentsComponent } from './presents/presents.component';
 
 
 const routes: Route[] = [
@@ -25,6 +26,7 @@ const routes: Route[] = [
     PartnersComponent,
     PartnerComponent,
     FooterOptionsComponent,
+    PresentsComponent,
   ],
   imports: [
     SharedModule.forRoot()

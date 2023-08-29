@@ -14,10 +14,13 @@ export class ProductsTableComponent implements OnInit {
   @Input() editable !: boolean;
   @Output() sensOperation: EventEmitter<Operation> = new EventEmitter<Operation>();
   ngOnInit() {
-    this.products.map<Product>(item => {
+    if(this.products !== undefined)
+    {
+          this.products.map<Product>(item => {
       item.promo = typeof item.promo !== 'number' && typeof item.promo !== 'string' ? item.promo.title : item.promo.toString();
       return item;
     })
+    }
   }
 
   orderBy(field: string)
@@ -41,5 +44,16 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
+  edit(id: number)
+  {
+    this.sensOperation.emit({
+      operation: 'navigate',
+      data: {
+        id: id
+      }
+    })
+  }
   protected readonly environment = environment;
+  protected readonly Number = Number;
+  protected readonly encodeURIComponent = encodeURIComponent;
 }

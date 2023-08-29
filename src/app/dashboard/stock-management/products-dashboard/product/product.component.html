@@ -5,12 +5,12 @@
       <span class="text-white" i18n>essential information</span>
     </button>
     <button class="multisteps-form__progress-btn" title="1"
-            [class.js-active]="1 <= currentStep" (click)="getOlfactionData()" [disabled]="product === undefined">
-      <span class="text-white">olfaction</span>
+            [class.js-active]="1 <= currentStep" (click)="getHistory()" [disabled]="product === undefined">
+      <span class="text-white">History</span>
     </button>
     <button class="multisteps-form__progress-btn" title="2"
-            [class.js-active]="2 <= currentStep" (click)="getHistory()" [disabled]="product === undefined">
-      <span class="text-white" i18n>hisotry</span>
+            [class.js-active]="2 <= currentStep" (click)="getOlfactionData()" [disabled]="product === undefined">
+      <span class="text-white" i18n>Olfaction</span>
     </button>
   </div>
   <div class="multisteps-form__form bg-white p-5 mt-5">
@@ -21,6 +21,7 @@
           <div class="col-8">
             <div class="row">
               <h5 class="font-weight-bolder">Product Information</h5>
+              <p class="alert alert-success" *ngIf="this.message !== undefined">{{this.message}}</p>
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="title">label</label>
                 <input class="form-control" type="text" formControlName="title" id="title"
@@ -38,7 +39,7 @@
                 <select id="collection" class="form-select" formControlName="collection">
                   <option [selected]="formGroup.controls['collection'].getRawValue() === ''">select collection</option>
                   <option [value]="collection.id"
-                          [selected]="formGroup.controls['collection'].value === collection.id?.toString()"
+                          [selected]="collection !== undefined && collectionSelected === collection"
                           *ngFor="let collection of collections">{{collection.title}}</option>
                 </select>
               </div>
@@ -110,7 +111,8 @@
     >
       <form class="p-3 m-auto w-100 mt-lg-4" data-animation="FadeIn" style="min-width: 90%"
             [formGroup]="historyFormGroup"
-            (ngSubmit)="submit($event)">
+            (ngSubmit)="createOrEditHistory($event)">
+        <input type="hidden" formControlName="product" [value]="product.id" *ngIf="product !== undefined">
         <div class="m-auto row w-100">
           <div class="row">
             <h5 class="font-weight-bolder">History Information</h5>
@@ -147,12 +149,68 @@
               </div>
             </div>
             <div class="col-4 d-flex align-items-center flex-column">
-              <img ngSrc="/assets/img/login.jpg" [width]="40" [height]="50" style="width: 100%; min-height: 150px"
+              <img [ngSrc]="historyImagePath === undefined ? '/assets/img/login.jpg' : historyImagePath" [width]="40" [height]="150" style="width: 100%; min-height: 500px"
                    class="mt-5" alt="collection image" height="732" width="1000"/>
               <label for="imageHistory" class="btn bg-gradient-primary mt-3">
                 <span>upload the image of the product</span>
-                <input style="display: none" (change)="readImage($event, 'imageHistory')" accept="image/*" type="file"
+                <input style="display: none" (change)="readImage($event, 'historyImage')" accept="image/*" type="file"
                        id="imageHistory"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+        <div
+      class="card multisteps-form__panel multisteps-form__content"
+      [class.js-active]="currentStep === 2" data-animation="FadeIn"
+    >
+      <form class="p-3 m-auto w-100 mt-lg-4" data-animation="FadeIn" style="min-width: 90%"
+            [formGroup]="olfactionFormGroup"
+            (ngSubmit)="createOrEditOlfaction($event)">
+        <input type="hidden" formControlName="product" [value]="product.id" *ngIf="product !== undefined">
+        <div class="m-auto row w-100">
+          <div class="row">
+            <h5 class="font-weight-bolder">Olfactive Information</h5>
+            <div class="col-8">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>title</label>
+                  <input class="form-control" type="text" formControlName="title" placeholder="eg. Off-White"/>
+                </div>
+              </div>
+              <div class="row mb-5">
+                <div class="d-flex flex-column">
+                  <label class="mt-4">Content</label>
+                  <editor
+                    [formControlName]="'content'"
+                    [init]="{
+                  menubar: false,
+                  base_url: '/tinymce', suffix: '.min',
+                  selector: 'textarea',
+    toolbar: 'formatselect | bold italic backcolor | p h1 h2 h3 h4 h5 h6 address pre samp forecolor fontsize fontsize_class | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+  }"
+                  ></editor>
+                </div>
+              </div>
+              <div class="button-row d-flex w-100 align-items-center justify-content-between mt-2">
+                <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" type="reset" title="Next">
+                  annuler
+                </button>
+                <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white"
+                        [disabled]="olfactionFormGroup.invalid"
+                        type="submit" title="Next">
+                  valider
+                </button>
+              </div>
+            </div>
+            <div class="col-4 d-flex align-items-center flex-column">
+              <img [ngSrc]="olfactionImagePath === undefined ? '/assets/img/login.jpg' : olfactionImagePath" [width]="40" [height]="150" style="width: 100%; min-height: 500px"
+                   class="mt-5" alt="collection image" height="732" width="1000"/>
+              <label for="imageOlfaction" class="btn bg-gradient-primary mt-3">
+                <span>upload the image of the product</span>
+                <input style="display: none" (change)="readImage($event, 'olfactionImage')" accept="image/*" type="file"
+                       id="imageOlfaction"/>
               </label>
             </div>
           </div>
