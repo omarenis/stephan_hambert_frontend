@@ -20,7 +20,7 @@ const routes: Route[] = [
     path: 'collections', component: CollectionsComponent
   },
   {
-    path: 'historique', component: HistoireComponent
+    path: 'histoire', component: HistoireComponent
   }
 ];
 
