@@ -25,6 +25,7 @@ export class LoginComponent {
 
   submit(event: Event) {
     event.preventDefault();
+    console.log(this.formGroup);
     this.loginSignupService.login(this.formGroup.value.username, this.formGroup.value.password).subscribe({
       next: (token: Token) => {
         localStorage.setItem('access', token.access);

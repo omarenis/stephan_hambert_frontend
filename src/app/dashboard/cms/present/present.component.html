@@ -1,0 +1,47 @@
+<form class="p-3 mt-lg-4 m-auto w-100 card bg-white" data-animation="FadeIn"
+      [formGroup]="formGroup" (ngSubmit)="submit($event)">
+  <div class="row w-100">
+    <div class="col-md-8 col-sm-12">
+      <h5 class="font-weight-bolder" i18n>Information About Gift</h5>
+      <div class="d-flex ps-4 pe-4">
+        <label class="col-form-label me-5">Title</label>
+        <input class="form-control" type="text" formControlName="title"/>
+      </div>
+      <div class="row mb-5">
+        <div class="d-flex flex-column">
+          <label class="mt-4">Content</label>
+          <editor
+            [formControlName]="'content'"
+            [init]="{
+                  menubar: false,
+                  base_url: '/tinymce', suffix: '.min',
+                  selector: 'textarea',
+    toolbar: 'formatselect | bold italic backcolor | p h1 h2 h3 h4 h5 h6 address pre samp forecolor fontsize fontsize_class | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+  }"
+          ></editor>
+        </div>
+      </div>
+      <div class="button-row d-flex w-100 align-items-center justify-content-between mt-2">
+        <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" type="reset" title="Next" i18n>
+          annuler
+        </button>
+        <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white" [disabled]="formGroup.invalid"
+                type="submit" title="Next" i18n>
+          valider
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 d-flex align-items-center flex-column">
+      <img
+        [ngSrc]="imagePath === undefined && item === undefined ? '/assets/img/login.jpg' : (imagePath !== undefined ? imagePath : environment.url.replace('/api', '') + this.item.image)"
+        [width]="732" [height]="1000"
+        style="min-height: 300px; max-height: 300px; width: 250px" class="mt-5"
+        alt="collection image"/>
+      <label for="image" class="btn bg-gradient-primary mt-3">
+        <span>upload the image of the product</span>
+        <input style="display: none" (change)="readImage($event)" accept="image/*" type="file"
+               id="image"/>
+      </label>
+    </div>
+  </div>
+</form>

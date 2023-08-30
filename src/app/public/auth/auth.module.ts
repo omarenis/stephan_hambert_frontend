@@ -13,7 +13,7 @@ const routes: Route[] = [
     path: 'signup', component: SignupComponent
   },
   {
-    path: 'login', component: SigningComponent
+    path: 'login', component: LoginComponent
   },
   {
     path: 'reset-password', component: ResetPasswordComponent

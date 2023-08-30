@@ -10,6 +10,9 @@ interface SignupFormGroup {
   password: FormControl;
   repeatedPassword: FormControl;
   username: FormControl;
+  phone: FormControl;
+  address: FormControl;
+  gender: FormControl;
 }
 @Component({
   selector: 'app-signup',
@@ -18,6 +21,7 @@ interface SignupFormGroup {
 })
 export class SignupComponent implements OnInit{
   formGroup !: FormGroup;
+  error !: string;
   constructor(private loginSignupService: LoginSignupService,
               private router: Router, @Inject(DOCUMENT) private document: Document) {
   }
@@ -34,7 +38,10 @@ export class SignupComponent implements OnInit{
       last_name: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       repeatedPassword: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required])
+      username: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required])
     });
 
   }
@@ -48,12 +55,19 @@ export class SignupComponent implements OnInit{
         password: this.formGroup.get('password')?.value,
         first_name: this.formGroup.get('first_name')?.value,
         last_name: this.formGroup.get('last_name')?.value,
-        username: this.formGroup.get('username')?.value
+        username: this.formGroup.get('username')?.value,
+        customerprofile: {
+          phone: this.formGroup.controls['phone'].value,
+          address: this.formGroup.controls["address"].value,
+          gender: this.formGroup.controls['gender'].value
+        }
       }).subscribe({
-        next: () => {
-
+        next: async () => {
+          await this.router.navigate(['/public'])
         },
-        error: () => {}
+        error: (err) => {
+          this.error = err.message;
+        }
       });
     }
   }

@@ -8,7 +8,7 @@
       <label for="email" class="sr-only">Email adresse</label>
       <input type="email" class="form-control" id="email" placeholder="Email Address" formControlName="email">
     </div>
-    <button type="submit" class="btn text-white">S’inscrire
+    <button type="submit" class="btn text-white" [disabled]="formGroup.invalid">S’inscrire
     </button>
   </form>
 </div>

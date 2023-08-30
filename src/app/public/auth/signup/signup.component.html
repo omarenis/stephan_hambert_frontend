@@ -74,23 +74,50 @@
         </div>
         <div class="card-body">
           <form role="form" [formGroup]="formGroup" (ngSubmit)="submit($event)">
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Username" aria-label="username" formControlName="username">
+            <div class="row">
+              <div class="mb-3 col-md-6 col-sm-12">
+                <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname"
+                       formControlName="first_name">
+              </div>
+              <div class="mb-3 col-md-6 col-sm-12">
+                <input type="text" class="form-control" placeholder="Lastname" aria-label="Lastname"
+                       formControlName="last_name">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <select class="form-select" formControlName="gender">
+                <option selected>choose your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-md-6 col-sm-12">
+                <input type="text" class="form-control" placeholder="Email" aria-label="Email"
+                       formControlName="email">
+              </div>
+              <div class="mb-3 col-md-6 col-sm-12">
+                <input type="text" class="form-control" placeholder="Phone" aria-label="Phone"
+                       formControlName="phone">
+              </div>
             </div>
             <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Email" aria-label="Email" formControlName="email">
+              <input type="text" class="form-control" placeholder="Address" aria-label="Address"
+                     formControlName="address">
             </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" formControlName="first_name">
-            </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" formControlName="last_name">
-            </div>
-            <div class="mb-3">
-              <input type="password" class="form-control" placeholder="Password" aria-label="Password" formControlName="password">
-            </div>
-            <div class="mb-3">
-              <input type="password" class="form-control" placeholder="Repeat Password" aria-label="Password" formControlName="repeatedPassword">
+              <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Username" aria-label="username"
+                       formControlName="username">
+              </div>
+            <div class="row">
+              <div class="mb-3 col-md-6 col-sm-12">
+                <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                       formControlName="password">
+              </div>
+              <div class="mb-3 col-md-6 col-sm-12">
+                <input type="password" class="form-control" placeholder="Repeat Password" aria-label="Password"
+                       formControlName="repeatedPassword">
+              </div>
             </div>
             <div class="form-check form-check-info text-start">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
@@ -104,7 +131,6 @@
             <p class="text-sm mt-3 mb-0">Already have an account? <a routerLink="/public/login"
                                                                      class="text-dark font-weight-bolder">Sign in</a>
             </p>
-            f
           </form>
         </div>
       </div>

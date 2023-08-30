@@ -13,7 +13,7 @@ interface Inscription {
   styleUrls: ['./newsletter.component.css']
 })
 
- 
+
 export class NewsletterComponent implements OnInit {
   formGroup !: FormGroup;
   constructor(private inscriptionService: AbstractRestService<Inscription>) {
@@ -31,11 +31,10 @@ export class NewsletterComponent implements OnInit {
     this.inscriptionService.create(`${environment.url}/newsletter/inscriptions`, {
       email: this.formGroup.value.email
     }).subscribe({
-      next: () => {
-
+      next: (response) => {
+        console.log(response);
       },
       error: () => {
-
       }
     })
   }

@@ -64,6 +64,10 @@ export abstract class FormView<T> implements OnInit {
 
     submit(event: Event) {
         const data = serializeDataByType(this.formGroup.value, 'multipart/form-data');
-        console.log(data);
+        const subscriber = this.item !== undefined ? this.service.put(this.actionUrl, Number(this.item), data) : this.service.create(this.actionUrl, data);
+        subscriber.subscribe((response) => {
+          console.log(response);
+          this.item = response;
+        });
     }
 }
