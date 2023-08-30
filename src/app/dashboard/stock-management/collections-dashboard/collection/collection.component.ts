@@ -8,6 +8,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {serializeDataByType} from "../../../../models/forms";
 import {readFileFromInput} from "../../../../services/extra";
 import {Collection, OtherInformationCollection} from "../../../../models/Collection";
+import {iterator} from "rxjs/internal/symbol/iterator";
+import {HttpClient} from "@angular/common/http";
 
 interface OtherInformationFormGroup {
   title: FormControl,
@@ -34,10 +36,17 @@ export class CollectionComponent extends FormView<Collection> {
   private readonly path = `${environment.url}/stock-management/collections`;
   private readonly pathOtherInformationCollection = `${environment.url}/stock-management/other-information-for-collection`;
   private collectionId !: number;
-  private error !: string;
+  citationForm : FormGroup = new FormGroup({
+        citation: new FormControl('', [Validators.required])
+      });
+  error !: string;
+  message !: string;
+  citationMessage !: string;
 
   constructor(protected override service: AbstractRestService<Collection>,
-              protected override router: Router, protected override activatedRoute: ActivatedRoute, private otherInformationService: AbstractRestService<OtherInformationCollection>) {
+              protected override router: Router, protected override activatedRoute: ActivatedRoute, private otherInformationService: AbstractRestService<OtherInformationCollection>,
+              private citationService: HttpClient
+  ) {
     super(service, router, activatedRoute, collectionObject, `${environment.url}/collections`, 'multipart/form-data');
     this.steps = ['collection', 'essential information', 'quote'];
     this.currentStep = 0;
@@ -129,6 +138,16 @@ export class CollectionComponent extends FormView<Collection> {
   override submit(event: Event) {
     event.preventDefault();
     const data = serializeDataByType<Collection>(this.formGroup.value, 'multipart/form-data');
+    const subscriber = this.item !== undefined ? this.service.put(`${environment.url}/collections`, Number(this.item.id), data) : this.service.create(`${environment.url}/collections`, data);
+
+    subscriber.subscribe({
+      next: (item : Collection) => {
+        this.message = `collection successfully ${this.item === undefined ? 'created' : 'updated'}`;
+      },
+      error: (err) => {
+        this.error = err.error.message;
+      }
+    })
     if (this.item !== undefined) {
       this.service.put(`${environment.url}/collections`, Number(this.item.id), data).subscribe({
         next: (response) => {
@@ -153,6 +172,29 @@ export class CollectionComponent extends FormView<Collection> {
   }
 
   getQuoteForCollection() {
-
+    this.currentStep = 2;
+    if(this.citationForm === undefined)
+    {
+      this.citationForm = new FormGroup({
+        citation: new FormControl('', [Validators.required])
+      })
+    }
+    if(this.item.citation !== null)
+    {
+      this.citationForm.setValue({citation: this.item.citation})
+    }
   }
+
+  submitCitation(event: Event) {
+    event.preventDefault();
+    this.citationService.put<Collection>(`${environment.url}/collections/${Number(this.item.id)}`,{citation: this.citationForm.value.citation}).subscribe({
+      next: () => {
+        this.citationMessage = 'citation is successfully updated';
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
 }

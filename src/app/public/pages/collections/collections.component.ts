@@ -20,7 +20,6 @@ export class CollectionsComponent implements OnInit {
     this.collectionService.list(`${environment.url}/public/collections`).subscribe({
       next: (result: Collection[]) => {
         this.collections = result;
-        console.log(result);
         this.collections.map(collection =>  {
           if(collection.additionalinformationcollection_set === undefined)
           {

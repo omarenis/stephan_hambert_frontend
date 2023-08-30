@@ -1,17 +1,16 @@
 <div class="multisteps-form" #multistepForm>
-  <div class="multisteps-form__progress">
+  <div class="multisteps-form__progress w-100">
     <button class="multisteps-form__progress-btn"
             [class.js-active]="0 <= currentStep" (click)="currentStep = 0" [disabled]="">
       <span class="text-white" i18n>collection</span>
     </button>
     <button class="multisteps-form__progress-btn"
-            [class.js-active]="1 <= currentStep" (click)="getAllOtherInformationForCollection()"
-            [disabled]="this.item === undefined || this.item === null">
+            [class.js-active]="1 == currentStep" (click)="getAllOtherInformationForCollection()"
+            [disabled]="this.item === undefined">
       <span class="text-white" i18n>Other Informations</span>
     </button>
     <button class="multisteps-form__progress-btn"
-            [class.js-active]="2 <= currentStep" (click)="getQuoteForCollection()"
-            [disabled]="this.item === undefined || this.item === null">
+            [class.js-active]="2 <= currentStep" (click)="getQuoteForCollection()">
       <span class="text-white" i18n>Citation</span>
     </button>
   </div>
@@ -22,6 +21,8 @@
         <div class="row w-100">
           <div class="col-md-8 col-sm-12">
             <h5 class="font-weight-bolder" i18n>Essential Information about collection</h5>
+            <p class="alert alert-success" *ngIf="message !== undefined">{{message}}</p>
+            <p class="alert alert-danger" *ngIf="error !== undefined">{{error}}</p>
             <div class="d-flex ps-4 pe-4">
               <label class="col-form-label me-5">Title</label>
               <input class="form-control" type="text" formControlName="title"/>
@@ -51,9 +52,11 @@
             </div>
           </div>
           <div class="col-md-4 col-sm-12 d-flex align-items-center flex-column">
-            <img [ngSrc]="imagePath === undefined && item === undefined ? '/assets/img/login.jpg' : (imagePath !== undefined ? imagePath : environment.url.replace('/api', '') + this.item.image)" [width]="732" [height]="1000"
-                 style="min-height: 300px; max-height: 300px; width: 250px" class="mt-5"
-                 alt="collection image"/>
+            <img
+              [ngSrc]="imagePath === undefined && item === undefined ? '/assets/img/login.jpg' : (imagePath !== undefined ? imagePath : environment.url.replace('/api', '') + this.item.image)"
+              [width]="732" [height]="1000"
+              style="min-height: 300px; max-height: 300px; width: 250px" class="mt-5"
+              alt="collection image"/>
             <label for="image" class="btn bg-gradient-primary mt-3">
               <span>upload the image of the product</span>
               <input style="display: none" (change)="readImage($event, -1)" #fileInput accept="image/*" type="file"
@@ -72,23 +75,23 @@
           <form class="p-3 mt-lg-4 m-auto w-100" data-animation="FadeIn"
                 *ngFor="let otherInformation of otherInformation; let i = index" [formGroup]="otherInformation"
                 (ngSubmit)="addOtherInformationToCollection($event, i, Number(otherInformation.controls['id']?.value))">
-            <input type="hidden" formControlName="id" *ngIf="otherInformation.controls['id'] !== undefined" />
-            <input type="hidden" formControlName="collection" />
+            <input type="hidden" formControlName="id" *ngIf="otherInformation.controls['id'] !== undefined"/>
+            <input type="hidden" formControlName="collection"/>
             <input type="hidden" formControlName="id" *ngIf="otherInformation.controls['id'] !== undefined"/>
             <div class="m-auto">
               <div class="row w-100">
                 <h5 class="font-weight-bolder">Other Information </h5>
                 <div class="col-7">
                   <div class="d-flex flex-row align-items-center">
-                      <label i18n class="form-label text-xl-center" style="width: 10%">Title of block</label>
-                      <input class="form-control w-75" type="text" formControlName="title" style="width: 80%"/>
+                    <label i18n class="form-label text-xl-center" style="width: 10%">Title of block</label>
+                    <input class="form-control w-75" type="text" formControlName="title" style="width: 80%"/>
                   </div>
                   <div class="row mb-5">
                     <div class="d-flex flex-column">
                       <label class="mt-4" i18n>Content</label>
                       <editor
                         [formControlName]="'content'"
-                                          [init]="{
+                        [init]="{
                   menubar: false,
                   base_url: '/tinymce', suffix: '.min',
                   selector: 'textarea',
@@ -110,7 +113,8 @@
                   </div>
                 </div>
                 <div class="col-5 d-flex align-items-center flex-column">
-                  <img [ngSrc]="otherInformationImages[i] !== '' ? otherInformationImages[i] : '/assets/img/login.png'" priority="true" [width]="732" [height]="560" style="width: 100%; min-height: 300px"
+                  <img [ngSrc]="otherInformationImages[i] !== '' ? otherInformationImages[i] : '/assets/img/login.png'"
+                       priority="true" [width]="732" [height]="560" style="width: 100%; min-height: 300px"
                        class=""
                        alt="collection image"/>
                   <label [for]="'otherInformation'+i.toString()" class="btn bg-gradient-primary mt-2">
@@ -126,6 +130,34 @@
         </ng-container>
         <button class="btn btn-outline-info w-100 text-center" (click)="addOtherInformationSectionToCollection()">+
         </button>
+      </div>
+    </div>
+    <div
+      class="card multisteps-form__panel multisteps-form__content pt-2"
+      [class.js-active]="currentStep === 2" data-animation="FadeIn"
+    >
+      <div class="h-75" style="overflow-y: scroll">
+        <form class="p-3 mt-lg-4 m-auto w-100" data-animation="FadeIn" [formGroup]="citationForm"
+              (ngSubmit)="submitCitation($event)">
+          <label class="mt-4" i18n>Citation</label>
+          <p *ngIf="citationMessage !== undefined" class="alert alert-success">{{citationMessage}}</p>
+          <editor
+            [formControlName]="'citation'"
+            [init]="{
+                  menubar: false,
+                  base_url: '/tinymce', suffix: '.min',
+                  selector: 'textarea',
+    toolbar: 'formatselect | bold italic backcolor | p h1 h2 h3 h4 h5 h6 address pre samp forecolor fontsize fontsize_class | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+  }"
+          ></editor>
+          <div class="button-row d-flex w-100 align-items-center justify-content-between mt-2">
+            <button class="btn bg-gradient-faded-success w-25 js-btn-next text-white"
+                    [disabled]="citationForm.invalid"
+                    type="submit" title="Next" i18n>
+              update the citation
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
