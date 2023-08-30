@@ -20,7 +20,7 @@ p {
 }
 
 .title-collection {
-  font-family: Proxima Nova;
+  font-family: Proxima Nova, serif;
   font-size: 22px;
   font-weight: 600;
   line-height: 22px;

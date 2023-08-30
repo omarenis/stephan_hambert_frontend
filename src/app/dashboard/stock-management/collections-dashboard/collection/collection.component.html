@@ -5,7 +5,7 @@
       <span class="text-white" i18n>collection</span>
     </button>
     <button class="multisteps-form__progress-btn"
-            [class.js-active]="1 == currentStep" (click)="getAllOtherInformationForCollection()"
+            [class.js-active]="1 <= currentStep" (click)="getAllOtherInformationForCollection()"
             [disabled]="this.item === undefined">
       <span class="text-white" i18n>Other Informations</span>
     </button>
