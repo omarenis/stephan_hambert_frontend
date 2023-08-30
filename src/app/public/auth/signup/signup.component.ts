@@ -48,6 +48,11 @@ export class SignupComponent implements OnInit{
 
   submit(event: Event)
   {
+    event.preventDefault();
+    if(this.formGroup.controls['password'].value !== this.formGroup.controls['repeatPassword'])
+    {
+      this.error = "password didn't match";
+    }
     if(this.formGroup.get('password')?.value === this.formGroup.get('repeatedPassword')?.value)
     {
       this.loginSignupService.signup({
@@ -62,11 +67,12 @@ export class SignupComponent implements OnInit{
           gender: this.formGroup.controls['gender'].value
         }
       }).subscribe({
-        next: async () => {
-          await this.router.navigate(['/public'])
+        next: async (response) => {
+          console.log(response);
         },
         error: (err) => {
           this.error = err.message;
+          console.log(this.error);
         }
       });
     }

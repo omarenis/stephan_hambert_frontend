@@ -22,6 +22,7 @@ export class ProductPageComponent implements OnInit {
     product !: Product;
     products !: Product[];
     carousel !: OwlOptions;
+    selectedPrice !: string;
     comments !: Comment[];
     quantity !: number;
     private actionUrl = `${environment.url}/public/products`;
@@ -34,6 +35,7 @@ export class ProductPageComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.selectedPrice  = "price_20_ml";
         this.quantity = 0;
         this.carousel = {
             loop: true,
