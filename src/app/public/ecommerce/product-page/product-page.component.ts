@@ -35,6 +35,7 @@ export class ProductPageComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.quantity = 1;
       this.selectedPrice  = "price_20_ml";
         this.quantity = 0;
         this.carousel = {
@@ -214,6 +215,7 @@ export class ProductPageComponent implements OnInit {
     }
 
     addToCart() {
+      const price = this.selectedPrice === 'price_20_ml' ? this.product.price_20_ml :  (this.product.price_50_ml ? );
         let orderlinesString = localStorage.getItem(`orderlines`);
         if (orderlinesString === null) {
             orderlinesString = "[]";
