@@ -53,8 +53,8 @@ export const productObject: { [key: string]: Object } = {
   code: {type: 'string', required: true},
   description: {type: 'string', required: true},
   price_20_ml: {type: 'float', required: true},
-    price_50_ml: {type: 'float', required: true},
-    price_100_ml: {type: 'float', required: true},
+  price_50_ml: {type: 'float', required: true},
+  price_100_ml: {type: 'float', required: true},
   current_quantity: {type: 'number', required: true},
   image: {type: 'file', required: true},
   collection: {type: 'foreign_key', required: true},
@@ -75,4 +75,13 @@ export const olfactionObject: { [key: string]: Object } = {
   image: {type: 'file', required: true},
   content: {type: 'string', required: true},
   product: {type: 'number', required: true}
+}
+
+
+export const additional_files_object  = {
+    image_or_video_1: {type: 'file', required: false},
+    image_or_video_2: {type: 'file', required: false},
+    image_or_video_3: {type: 'file', required: false},
+    image_or_video_4: {type: 'file', required: false},
+    product: {type: 'number', required: false}
 }

@@ -29,7 +29,6 @@ const additionalData = {
   third_image: {type: 'file', required: true}
 }
 
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -194,5 +193,9 @@ export class ProductComponent implements OnInit {
         this.olfactionImagePath = environment.originBackend + response.image;
       }
     })
+  }
+
+  getFiles() {
+
   }
 }

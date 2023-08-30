@@ -25,7 +25,8 @@ export class PromosComponent extends CrudConsumer<Promo> {
       title: this.formCreationEditGroup.value.title,
       datetime_end: this.formCreationEditGroup.value.datetime_end,
       datetime_start: this.formCreationEditGroup.value?.datetime_start,
-      percentage: this.formCreationEditGroup.value?.percentage
+      percentage: this.formCreationEditGroup.value?.percentage,
+      code: this.formCreationEditGroup.value?.code
     }).subscribe({
       next: (promo: Promo) => {
         this.data.unshift(promo);
