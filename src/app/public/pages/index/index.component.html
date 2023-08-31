@@ -105,9 +105,9 @@
 </section>
 <div class="card min-height-100 mt-5 bg-transparent" id="section">
   <img ngSrc="assets/img/stephane.png" [width]="width" [height]="height" class="card-img w-100"
-       style="border-radius: 0; min-width: 100%"
+       style="border-radius: 0; min-width: 300px"
        alt="...">
-  <div class="card-img-overlay container-fluid mt-12 pt-7">
+  <div class="card-img-overlay container-fluid pt-7 mt-12">
     <h5 class="card-title" style="font-size: 60px; font-weight: 400; color: black; font-family: Lucida Fax;">
       L’HISTOIRE</h5>
     <p class="card-text" style="width: 529px; color: black">Lorem Ipsum is simply dummy text of the printing and
@@ -119,18 +119,17 @@
 <section class="row mt-5" style="padding-left: 53px; padding-right: 53px">
   <article class="col-md-6 col-sm-12" *ngFor="let collection of collections">
     <div class="card container pt-0 pe-0 ps-0 border-radius-0" style="border: 1px solid black">
-      <img ngSrc="{{collection.image}}" [width]="900" [height]="600" alt=""
+      <img [ngSrc]="environment.originBackend + collection.image" style="max-height: 600px" [width]="900" [height]="600" alt=""
            class="card-img-top border-radius-0 img-fluid"/>
       <div class=" justify-content-center">
         <h4 class="card-title text-center"
             style="color: black; font-weight: 400; font-family: Lucida Fax,serif; font-size: 50px">
-          {{collection.label}}
+          {{collection.title}}
         </h4>
-        <p class="text-center text-black-50 card-content">
-          {{collection.content}}
-        </p>
+        <div class="text-center text-black-50 card-content" [innerHTML]="collection.content">
+        </div>
         <div class="d-flex justify-content-center">
-          <a class="btn btn-dark border-radius-0">
+          <a class="btn btn-dark border-radius-0" href="/public/ecommerce/products?collection={{collection.id}}">
             Découvrir
           </a>
         </div>

@@ -3,6 +3,7 @@ import {Product} from "../../../dashboard/stock-management/models/Product";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Collection} from "../../../models/Collection";
+import {ActivatedRoute} from "@angular/router";
 interface Response {
   products: Product[];
   collections: Collection[];
@@ -15,19 +16,23 @@ interface Response {
 export class ProductListComponent implements OnInit {
     products !: Product[];
     collections !: Collection[];
+    selectedCollection !: number;
     protected readonly window = window;
     private actionUrl = `${environment.url}/public/products`
 
-    constructor(private service: HttpClient) {
+    constructor(private service: HttpClient, private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.service.get<Response>(this.actionUrl).subscribe({
-            next: (response: Response) => {
-                this.products = response.products;
-                this.collections = response.collections;
-            }
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.selectedCollection = params['collection'] !== undefined ? params['collection'] : undefined;
+        this.service.get<Response>(this.actionUrl, {params}).subscribe({
+          next: (response: Response) => {
+            this.products = response.products;
+            this.collections = response.collections;
+          }
         });
+      });
     }
 
   filterData(id: number | undefined) {

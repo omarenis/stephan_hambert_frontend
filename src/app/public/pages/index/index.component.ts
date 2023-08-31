@@ -5,7 +5,14 @@ import {DOCUMENT} from "@angular/common";
 import {ComponentNotifyService} from "../../../services/component-ntify.service";
 import {FormGroup} from "@angular/forms";
 import {Collection} from "../../../models/Collection";
-
+import {CmsInformation} from "../../../models/CmsInformation";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+interface Response {
+  products: Product[];
+  collections: Collection[];
+  presents: CmsInformation[]
+}
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -13,12 +20,7 @@ import {Collection} from "../../../models/Collection";
 })
 export class IndexComponent implements OnInit {
 step !: number;
-  collections !: ({
-    image: string;
-    content: string;
-    label: string;
-    id: number
-  })[];
+  collections !: Collection[];
   position !: string;
   initialValue !: number;
   order = 0;
@@ -26,9 +28,9 @@ step !: number;
   products !: Product[];
   width !: number;
   height !: number;
-
+  presents !: CmsInformation[];
   constructor(private collectionService: AbstractRestService<Collection>, @Inject(DOCUMENT) private document: Document,
-              private notificationService: ComponentNotifyService) {
+              private notificationService: ComponentNotifyService, private indexService: HttpClient) {
     document.documentElement.setAttribute('style', 'overflow-x: hidden');
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -45,6 +47,20 @@ step !: number;
     this.position = 'initial';
     this.step = 0;
     this.document.body.classList.add('overflow-x-hidden');
+    this.indexService.get<Response>(`${environment.url}/public/index`).subscribe({
+      next: (data: Response) => {
+        if(data.collections.length >  0)
+        {
+          this.collections = data.collections;
+        }
+        if(data.presents.length > 0)
+        {
+
+        }
+        this.products = data.products;
+        console.log(data);
+      }
+    })
     this.products = [{
       title: '',
       code: '',
@@ -144,19 +160,6 @@ price_20_ml: 0,
       slug: '',
       number_purchases: 0,
     }];
-
-    this.collections = [{
-      image: '/assets/img/collections/collection_777.png',
-      label: 'LA COLLECTION 777',
-      content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
-      id: 0
-    },
-      {
-        image: '/assets/img/collections/collection_serpent.png',
-        label: 'LA COLLECTION SERPENT',
-        content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy.',
-        id: 0
-      }]
   }
 
   prevSlider() {
@@ -176,4 +179,5 @@ price_20_ml: 0,
 
   protected readonly window = window;
   newsletterFormGroup !: FormGroup;
+  protected readonly environment = environment;
 }

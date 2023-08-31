@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderLine} from "../models/OrderLine";
 import {environment} from "../../../../environments/environment";
 import {FormGroup, Validators} from "@angular/forms";
+import {ComponentNotifyService} from "../../../services/component-ntify.service";
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,13 @@ export class CartComponent implements OnInit{
   orderLines: OrderLine[] = [];
   cartFormGroup !: FormGroup;
   paymentFormGroup !: FormGroup;
+  constructor( private notificationService: ComponentNotifyService) {
+  }
   ngOnInit() {
+    this.notificationService.setConnection({
+      operation: "navigation",
+      page: "cart"
+    })
     console.log(localStorage.getItem('orderlines'));
     this.paymentFormGroup = new FormGroup({
       firstname: new FormGroup('', [Validators.required]),
