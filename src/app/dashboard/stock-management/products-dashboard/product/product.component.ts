@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
   historyImagePath !: string;
   olfactionImagePath !: string;
   currentStep !: number;
-  collectionSelected !: Collection | number | string;
+  collectionSelected !: number | undefined | Collection | string;
   collections !: Collection[];
   promos !: Promo[];
   choices !: Choice[];
@@ -49,7 +49,8 @@ export class ProductComponent implements OnInit {
   method !: string;
   historyFormGroup !: FormGroup;
   message !: string;
-
+  historyMessage !: string;
+  olfactionMessage !: string;
   constructor(private essentialInformationService: AbstractRestService<ProductEssentialInformation>, private categoryService: AbstractRestService<Category>,
               private promoService: AbstractRestService<Promo>, private collectionService: AbstractRestService<Collection>,
               private olfactionService: AbstractRestService<Olfaction>, private activatedRoute: ActivatedRoute,
@@ -80,12 +81,12 @@ export class ProductComponent implements OnInit {
           next: (product: Product) => {
             this.product = product;
             this.imagePath = environment.originBackend + product.image;
-            this.collectionSelected = this.product.collection;
+            this.collectionSelected = typeof  this.product.collection === 'object' ? this.product.collection.id : product.collection;
             console.log(this.product);
             this.historyFormGroup.controls['product'].setValue(product.id);
             this.olfactionFormGroup.controls['product'].setValue(product.id);
+            this.formGroup.controls['collection'].setValue(this.collectionSelected);
             setFormGroupValue<ProductEssentialInformation>(this.formGroup, productObject, product);
-            this.formGroup.controls['image'].setValidators([]);
           },
           error: () => {
           }
@@ -105,7 +106,7 @@ export class ProductComponent implements OnInit {
     const observable = this.product !== undefined ? this.essentialInformationService.put(`${environment.url}/products`, Number(this.product.id), data) : this.essentialInformationService.create(`${environment.url}/products`, data);
     observable.subscribe({
       next: (product: ProductEssentialInformation) => {
-        this.message = `the product is successfully ${this.product !== undefined ? 'modified' : 'created'}`
+        this.message = `the product is successfully ${this.product !== undefined ? 'modified' : 'created'}`;
         this.product = product;
         this.historyFormGroup.controls['product'].setValue(product.id);
         this.olfactionFormGroup.controls['product'].setValue(product.id);
@@ -160,7 +161,7 @@ export class ProductComponent implements OnInit {
           this.historyFormGroup.controls['title'].setValue(response.title);
           this.historyFormGroup.controls['content'].setValue(response.content);
           this.historyImagePath = environment.originBackend + response.image;
-          this.historyFormGroup.controls['image'].setValidators([]);
+          this.historyFormGroup.controls['image'].removeValidators([Validators.required]);
         },
         error: () => {
         }
@@ -175,6 +176,8 @@ export class ProductComponent implements OnInit {
     const subscriber = typeof this.product.history === 'number' ? this.historyService.put(`${environment.url}/stock-management/histories`, Number(this.product.history), data) : this.historyService.create(`${environment.url}/stock-management/histories`, data);
     subscriber.subscribe({
       next: (response) => {
+        this.message = `the history is successfully ${this.product.history !== undefined ? 'modified' : 'created'}`;
+        this.product.history = response.id;
         setFormGroupValue(this.historyFormGroup, historyObject, response);
         this.historyImagePath = environment.originBackend + response.image;
       }
@@ -189,7 +192,9 @@ export class ProductComponent implements OnInit {
     const subscriber = typeof this.product.olfaction === 'number' ? this.olfactionService.put(`${environment.url}/stock-management/olfactions`, Number(this.product.olfaction), data) : this.historyService.create(`${environment.url}/stock-management/olfactions`, data);
     subscriber.subscribe({
       next: (response) => {
+        this.message = `the olfaction is successfully ${this.product.olfaction !== undefined ? 'modified' : 'created'}`;
         setFormGroupValue(this.historyFormGroup, historyObject, response);
+        this.product.olfaction = response.id;
         this.olfactionImagePath = environment.originBackend + response.image;
       }
     })
@@ -198,4 +203,6 @@ export class ProductComponent implements OnInit {
   getFiles() {
 
   }
+
+  protected readonly setFormGroupValue = setFormGroupValue;
 }

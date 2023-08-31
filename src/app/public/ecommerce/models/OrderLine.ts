@@ -8,5 +8,6 @@ export interface OrderLine
     quantity: number;
     date_order ?: Date | string;
     totalHt: number;
+    price: number;
     order ?: number | Order;
 }

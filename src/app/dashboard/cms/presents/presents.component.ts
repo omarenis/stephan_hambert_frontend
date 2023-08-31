@@ -3,6 +3,7 @@ import {CrudConsumer} from "../../../services/CrudConsumer";
 import {CmsInformation, presentObject} from "../../../models/CmsInformation";
 import {AbstractRestService} from "../../../services/genericservice";
 import {environment} from "../../../../environments/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-presents',
@@ -10,7 +11,7 @@ import {environment} from "../../../../environments/environment";
   styleUrls: ['./presents.component.css']
 })
 export class PresentsComponent extends CrudConsumer<CmsInformation>{
-  constructor(protected override service: AbstractRestService<CmsInformation>) {
+  constructor(protected override service: AbstractRestService<CmsInformation>, private router: Router) {
     super(service, `${environment.url}/cms/presents`, {params: {}, headers: {}}, presentObject);
   }
 
@@ -18,6 +19,6 @@ export class PresentsComponent extends CrudConsumer<CmsInformation>{
 
   edit(id: number | undefined) {
     // TODO document why this method 'edit' is empty
-    console.log(this.data);
+    this.router.navigate(['/dashboard/cms/presents/' + JSON.stringify(id)])
   }
 }

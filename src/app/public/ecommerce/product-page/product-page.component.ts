@@ -60,49 +60,63 @@ export class ProductPageComponent implements OnInit {
         this.products = [{
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             slug: '',
             image: '/assets/img/products/product1.png',
             collection: '',
         }, {
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             slug: '',
             image: '/assets/img/products/product2.png',
             collection: '',
         }, {
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             image: '/assets/img/products/product3.png',
             collection: '',
             slug: '',
         }, {
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             slug: '',
             image: '/assets/img/products/product4.png',
             collection: '',
         }, {
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             image: '/assets/img/products/product5.png',
             collection: '',
             slug: '',
         }, {
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             image: '/assets/img/products/product6.png',
             collection: '',
             slug: '',
         }, {
             title: '',
             description: '',
-            price: 0,
+            price_20_ml: 0,
+          price_50_ml: 0,
+          price_100_ml: 0,
             image: '/assets/img/products/product7.png',
             collection: '',
             slug: '',
@@ -199,6 +213,7 @@ export class ProductPageComponent implements OnInit {
                             this.product = product;
                             console.log(product);
                             if (product.image) {
+                              console.log(product.olfaction);
                                 product.image = product.image.toString();
                                 this.historyImage = environment.originBackend + product.history?.image.toString();
                                 this.olfactionImage = environment.originBackend + product.olfaction?.image.toString();
@@ -215,8 +230,18 @@ export class ProductPageComponent implements OnInit {
     }
 
     addToCart() {
-      const price = this.selectedPrice === 'price_20_ml' ? this.product.price_20_ml :  (this.product.price_50_ml ? );
-        let orderlinesString = localStorage.getItem(`orderlines`);
+      let price = 0;
+      if(this.selectedPrice === 'price_20_ml')
+      {
+        price = this.product.price_20_ml;
+      }
+      else if(this.selectedPrice === 'price_50_ml')
+      {
+        price = this.product.price_50_ml;
+      } else {
+        price = this.product.price_100_ml;
+      }
+      let orderlinesString = localStorage.getItem(`orderlines`);
         if (orderlinesString === null) {
             orderlinesString = "[]";
         }
@@ -226,7 +251,7 @@ export class ProductPageComponent implements OnInit {
             orderlines.map((item) => {
                 if (item.product.id == this.product.id) {
                     item.quantity = this.quantity;
-                    item.totalHt = this.product.price * this.quantity;
+                    item.totalHt = price * this.quantity;
                 }
                 edited = true;
                 return item;
@@ -236,7 +261,8 @@ export class ProductPageComponent implements OnInit {
                 orderlines.push({
                     product: this.product,
                     quantity: this.quantity,
-                    totalHt: this.quantity * this.product.price,
+                    totalHt: this.quantity * price,
+                  price: price
                 });
             }
         }

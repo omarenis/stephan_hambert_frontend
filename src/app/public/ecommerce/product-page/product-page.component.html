@@ -91,7 +91,7 @@
         </div>
       </article>
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0" *ngIf="product.olfaction !== undefined && product.olfaction !== null">
       <article class="card-plain mx-auto d-flex flex-row align-items-center">
         <div class="row g-0">
           <div class="col-md-6">

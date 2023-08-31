@@ -17,7 +17,10 @@ export  const setFormGroupValue = <T extends {[key: string]: any }>(formGroup: F
     {
       formGroup.controls[key].setValidators([]);
     } else {
-      formGroup.controls[key].setValue(data[key]);
+      if(data[key] !== undefined && data[key] !== null)
+      {
+        formGroup.controls[key].setValue(data[key]);
+      }
     }
   })
 }

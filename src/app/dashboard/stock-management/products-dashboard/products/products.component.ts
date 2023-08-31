@@ -12,8 +12,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent extends CrudConsumer<Product>{
+  output  = [];
   constructor(protected override service: AbstractRestService<Product>, private router: Router) {
     super(service, `${environment.url}/products`, {headers: {}, params: {}}, productObject);
+  }
+
+  override async ngOnInit() {
+    await super.ngOnInit();
   }
 
   getProduct(operation: Operation): void

@@ -22,7 +22,13 @@
         Quantity
       </th>
       <th scope="col" (click)="orderBy('price')"
-          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price
+          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price 20 ML
+      </th>
+            <th scope="col" (click)="orderBy('price')"
+          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price 50 ML
+      </th>
+            <th scope="col" (click)="orderBy('price')"
+          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price 100 ML
       </th>
       <th scope="col" (click)="orderBy('number_purchases')"
           class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">number
@@ -50,7 +56,7 @@
         <p class="text-sm text-secondary mb-0">{{product.code}}</p>
       </td>
       <td>
-        <p class="text-sm text-secondary mb-0">{{product.promo}}</p>
+        <p class="text-sm text-secondary mb-0">{{product.collection}}</p>
       </td>
       <td>
         <p class="text-sm text-secondary mb-0">{{product.promo}}</p>
@@ -60,7 +66,13 @@
       </td>
 
       <td>
-        <p class="text-sm text-secondary mb-0">{{product.price}}</p>
+        <p class="text-sm text-secondary mb-0">{{product.price_20_ml}}</p>
+      </td>
+            <td>
+        <p class="text-sm text-secondary mb-0">{{product.price_50_ml}}</p>
+      </td>
+            <td>
+        <p class="text-sm text-secondary mb-0">{{product.price_100_ml}}</p>
       </td>
       <td>
         <p class="text-sm text-secondary mb-0">{{product.number_purchases}}</p>

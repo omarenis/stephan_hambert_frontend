@@ -9,7 +9,6 @@ export interface Product {
   slug: string;
   collection: string;
   image: string;
-  price: number;
   history?: History;
   olfaction?: Olfaction;
   id?: number;

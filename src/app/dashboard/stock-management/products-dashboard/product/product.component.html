@@ -41,17 +41,17 @@
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="collection">Collection</label>
                 <select id="collection" class="form-select" formControlName="collection">
-                  <option [selected]="formGroup.controls['collection'].getRawValue() === ''">select collection</option>
+                  <option [selected]="this.product === undefined">select collection</option>
                   <option [value]="collection.id"
-                          [selected]="collection !== undefined && collectionSelected === collection"
+                          [selected]="collection !== undefined && collectionSelected === collection.id"
                           *ngFor="let collection of collections">{{collection.title}}</option>
                 </select>
               </div>
               <div class="col-md-6 col-sm-12 mb-4">
                 <label for="promos">Promo</label>
                 <select id="promos" class="form-select" formControlName="promo">
-                  <option [selected]="formGroup.controls['promo'].getRawValue() === ''">select Promo</option>
-                  <option [value]="promo.id" [selected]="formGroup.controls['promo'].getRawValue() === promo.id"
+                  <option [selected]="formGroup.controls['promo'].value === ''">select Promo</option>
+                  <option [value]="promo.id" [selected]="formGroup.controls['promo'].value === promo.id"
                           *ngFor="let promo of promos">{{promo.title}}</option>
                 </select>
               </div>
@@ -132,6 +132,7 @@
         <div class="m-auto row w-100">
           <div class="row">
             <h5 class="font-weight-bolder">History Information</h5>
+            <p *ngIf="olfactionMessage !== undefined" class="alert-success alert">{{olfactionMessage}}</p>
             <div class="col-8">
               <div class="row">
                 <div class="col-sm-12">
@@ -189,6 +190,7 @@
         <div class="m-auto row w-100">
           <div class="row">
             <h5 class="font-weight-bolder">Olfactive Information</h5>
+            <p *ngIf="olfactionMessage !== undefined" class="alert alert-success">{{olfactionMessage}}</p>
             <div class="col-8">
               <div class="row">
                 <div class="col-sm-12">
@@ -227,7 +229,7 @@
               <label for="imageOlfaction" class="btn bg-gradient-primary mt-3">
                 <span>upload the image of the product</span>
                 <input style="display: none" (change)="readImage($event, 'olfactionImage')" accept="image/*" type="file"
-                       id="imageOlfaction"/>
+                       id="imageHistory"/>
               </label>
             </div>
           </div>
@@ -245,6 +247,7 @@
         <div class="m-auto row w-100">
           <div class="row">
             <h5 class="font-weight-bolder">Olfactive Information</h5>
+
             <div class="col-8">
               <div class="row">
                 <div class="col-sm-12">
