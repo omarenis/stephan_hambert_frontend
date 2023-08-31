@@ -6,6 +6,7 @@ import '@angular/localize/init';
 import {Route, RouterModule} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 const routes: Route[] = [
   {
     path: '', component: AppComponent
@@ -24,6 +25,7 @@ const routes: Route[] = [
   ],
   imports: [
       HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

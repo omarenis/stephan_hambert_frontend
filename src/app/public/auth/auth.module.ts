@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {LockComponent} from "./lock/lock.component";
 import {LoginComponent} from "./login/login.component";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
-import {SigningComponent} from "./signin/signing.component";
 import {SignupComponent} from "./signup/signup.component";
 import {VerificationComponent} from "./verification/verification.component";
 import {Route, RouterModule} from "@angular/router";
 import {SharedModule as GlobalSharedComponent} from "../../shared/shared.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Route[] = [
   {
@@ -31,11 +31,11 @@ const routes: Route[] = [
     LockComponent,
     LoginComponent,
     ResetPasswordComponent,
-    SigningComponent,
     SignupComponent,
     VerificationComponent
   ],
   imports: [
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     GlobalSharedComponent.forRoot()
   ]

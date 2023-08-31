@@ -19,7 +19,7 @@
         </div>
         <div class="row px-xl-5 px-sm-4 px-3">
           <div class="col-3 ms-auto px-1">
-            <button class="btn btn-outline-light w-100" (click)="signupWithFacebook()">
+            <button class="btn btn-outline-light w-100" type="button">
               <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(3.000000, 3.000000)" fill-rule="nonzero">
@@ -73,7 +73,8 @@
           </div>
         </div>
         <div class="card-body">
-          <form role="form" [formGroup]="formGroup" (ngSubmit)="submit($event)">
+          <form [formGroup]="formGroup" (ngSubmit)="submit($event)">
+            <p class="alert alert-danger text-white" *ngIf="error !== undefined"> {{error}} </p>
             <div class="row">
               <div class="mb-3 col-md-6 col-sm-12">
                 <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname"
@@ -126,9 +127,9 @@
               </label>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+              <button type="submit" [disabled]="formGroup.invalid" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
             </div>
-            <p class="text-sm mt-3 mb-0">Already have an account? <a routerLink="/public/login"
+            <p class="text-sm mt-3 mb-0">Already have an account? <a href="/public/auth/login"
                                                                      class="text-dark font-weight-bolder">Sign in</a>
             </p>
           </form>

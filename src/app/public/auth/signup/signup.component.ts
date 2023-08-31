@@ -26,12 +26,7 @@ export class SignupComponent implements OnInit{
               private router: Router, @Inject(DOCUMENT) private document: Document) {
   }
 
-  signupWithFacebook() {
-
-  }
-
   ngOnInit(): void {
-    this.document.body.innerHTML += `<script src="https://accounts.google.com/gsi/client" async defer></script>`;
     this.formGroup = new FormGroup<SignupFormGroup>({
       email: new FormControl('', [Validators.required, Validators.email]),
       first_name: new FormControl('', [Validators.required]),
@@ -43,12 +38,12 @@ export class SignupComponent implements OnInit{
       gender: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required])
     });
-
   }
 
-  submit(event: Event)
+  submit($event: Event)
   {
-    event.preventDefault();
+    console.log($event.preventDefault());
+   $event.preventDefault();
     if(this.formGroup.controls['password'].value !== this.formGroup.controls['repeatPassword'])
     {
       this.error = "password didn't match";
@@ -68,11 +63,10 @@ export class SignupComponent implements OnInit{
         }
       }).subscribe({
         next: async (response) => {
-          console.log(response);
+          this.router.navigate(['/public/auth/login']);
         },
         error: (err) => {
-          this.error = err.message;
-          console.log(this.error);
+          this.error = err.error.message;
         }
       });
     }
