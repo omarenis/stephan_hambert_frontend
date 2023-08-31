@@ -11,6 +11,9 @@ import {Product} from "../../models/Product";
 import {json} from "express";
 import {productObject} from "../../../dashboard/stock-management/models/Product";
 import {OrderLine} from "../models/OrderLine";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {last} from "rxjs";
+import {em} from "@fullcalendar/core/internal-common";
 
 
 @Component({
@@ -28,13 +31,43 @@ export class ProductPageComponent implements OnInit {
     private actionUrl = `${environment.url}/public/products`;
     historyImage !: string | undefined;
     olfactionImage !: string | undefined;
+  commentForm !: FormGroup;
+  isConnected !: boolean;
 
     constructor(private productService: AbstractRestService<Product>, private router: Router,
                 private activatedRouter: ActivatedRoute, private notifyService: ComponentNotifyService,
-                @Inject(DOCUMENT) private document: Document, private _lightBox: Lightbox) {
+                @Inject(DOCUMENT) private document: Document, private _lightBox: Lightbox,
+                private commentService: AbstractRestService<Comment>) {
     }
 
     ngOnInit() {
+      this.isConnected = localStorage.getItem('access') !== null;
+      this.commentForm = new FormGroup({
+        first_name: new FormControl('', [Validators.required]),
+        last_name: new FormControl('', [Validators.required]),
+        email : new FormControl('', [Validators.email, Validators.required]),
+        comment: new FormControl('', [Validators.required]),
+        product: new FormControl('', [Validators.required])
+      });
+      const first_name = localStorage.getItem('first_name');
+      const last_name = localStorage.getItem('last_name');
+      const email = localStorage.getItem('first_name');
+
+      if(first_name !== null)
+      {
+        this.commentForm.controls['first_name'].setValue(first_name);
+      }
+
+      if(last_name !== null)
+      {
+        this.commentForm.controls['last_name'].setValue(last_name);
+      }
+
+      if(email !== null)
+      {
+        this.commentForm.controls['email'].setValue(email);
+      }
+
       this.quantity = 1;
       this.selectedPrice  = "price_20_ml";
         this.quantity = 0;
@@ -213,8 +246,8 @@ export class ProductPageComponent implements OnInit {
                             this.product = product;
                             console.log(product);
                             if (product.image) {
-                              console.log(product.olfaction);
                                 product.image = product.image.toString();
+                                this.commentForm.controls['product'].setValue(product.id);
                                 this.historyImage = environment.originBackend + product.history?.image.toString();
                                 this.olfactionImage = environment.originBackend + product.olfaction?.image.toString();
                             }
