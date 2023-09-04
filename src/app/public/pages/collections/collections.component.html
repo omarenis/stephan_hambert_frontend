@@ -31,7 +31,7 @@
             </div>
           </div>
         </ng-container>
-        <div class="bg-gray-600 text-xxl-center" style="color: white; text-align: center;" id="blockquote"
+        <div class="bg-gray-600 text-xxl-center" style="color: white; text-align: center;" *ngIf="collection.citation !== ''" id="blockquote"
              [innerHTML]="collection.citation">
         </div>
       </div>
@@ -79,4 +79,3 @@ color: black;
     </div>
   </div>
 </article>
-

@@ -31,4 +31,5 @@ export class CollectionsComponent implements OnInit {
   }
 
   protected readonly environment = environment;
+    protected readonly Component = Component;
 }

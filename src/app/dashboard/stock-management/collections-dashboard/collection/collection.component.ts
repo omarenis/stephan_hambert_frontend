@@ -31,17 +31,17 @@ export class CollectionComponent extends FormView<Collection> {
   steps !: string[];
   currentStep !: number;
   otherInformationImages !: string[];
+  citationForm: FormGroup = new FormGroup({
+    citation: new FormControl('', [Validators.required])
+  });
+  error !: string;
+  message !: string;
+  citationMessage !: string;
   protected readonly environment = environment;
   protected readonly Number = Number;
   private readonly path = `${environment.url}/stock-management/collections`;
   private readonly pathOtherInformationCollection = `${environment.url}/stock-management/other-information-for-collection`;
   private collectionId !: number;
-  citationForm : FormGroup = new FormGroup({
-        citation: new FormControl('', [Validators.required])
-      });
-  error !: string;
-  message !: string;
-  citationMessage !: string;
 
   constructor(protected override service: AbstractRestService<Collection>,
               protected override router: Router, protected override activatedRoute: ActivatedRoute, private otherInformationService: AbstractRestService<OtherInformationCollection>,
@@ -78,7 +78,7 @@ export class CollectionComponent extends FormView<Collection> {
       return;
     }
     this.otherInformationService.list(this.pathOtherInformationCollection, {
-      'collection': this.item.id
+      params: {'collection': this.item.id}
     }).subscribe({
       next: (otherInformationForCollection_set: OtherInformationCollection[]) => {
         otherInformationForCollection_set.forEach(otherInformationForCollection => {
@@ -141,8 +141,12 @@ export class CollectionComponent extends FormView<Collection> {
     const subscriber = this.item !== undefined ? this.service.put(`${environment.url}/collections`, Number(this.item.id), data) : this.service.create(`${environment.url}/collections`, data);
 
     subscriber.subscribe({
-      next: (item : Collection) => {
+      next: (item: Collection) => {
         this.message = `collection successfully ${this.item === undefined ? 'created' : 'updated'}`;
+        this.item = item;
+        setTimeout(async () => {
+          await this.router.navigate(['/dashboard//stock-management/collections'])
+        }, 1000);
       },
       error: (err) => {
         this.error = err.error.message;
@@ -151,13 +155,14 @@ export class CollectionComponent extends FormView<Collection> {
     if (this.item !== undefined) {
       this.service.put(`${environment.url}/collections`, Number(this.item.id), data).subscribe({
         next: (response) => {
-          this.imagePath = environment.originBackend + response.image
+          this.imagePath = environment.originBackend + response.image;
+          this.item = response;
         },
-        error : ( err) => {
+        error: (err) => {
           console.log(err);
         }
       });
-      return ;
+      return;
     }
     this.service.create(`${environment.url}/collections`, data).subscribe({
       next: (collection: Collection) => {
@@ -173,21 +178,19 @@ export class CollectionComponent extends FormView<Collection> {
 
   getQuoteForCollection() {
     this.currentStep = 2;
-    if(this.citationForm === undefined)
-    {
+    if (this.citationForm === undefined) {
       this.citationForm = new FormGroup({
         citation: new FormControl('', [Validators.required])
       })
     }
-    if(this.item.citation !== null)
-    {
+    if (this.item.citation !== null) {
       this.citationForm.setValue({citation: this.item.citation})
     }
   }
 
   submitCitation(event: Event) {
     event.preventDefault();
-    this.citationService.put<Collection>(`${environment.url}/collections/${Number(this.item.id)}`,{citation: this.citationForm.value.citation}).subscribe({
+    this.citationService.put<Collection>(`${environment.url}/collections/${Number(this.item.id)}`, {citation: this.citationForm.value.citation}).subscribe({
       next: () => {
         this.citationMessage = 'citation is successfully updated';
       },
@@ -197,4 +200,16 @@ export class CollectionComponent extends FormView<Collection> {
     });
   }
 
+  deleteCitation(event: Event) {
+    event.preventDefault();
+    this.citationService.put<Collection>(`${environment.url}/collections/${Number(this.item.id)}`, {citation: ''}).subscribe({
+      next: () => {
+        this.citationMessage = 'citation is successfully deleted';
+        this.item.citation = '';
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 }

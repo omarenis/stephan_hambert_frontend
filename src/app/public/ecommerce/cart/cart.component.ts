@@ -9,7 +9,7 @@ import {ComponentNotifyService} from "../../../services/component-ntify.service"
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit {
   orderLines: OrderLine[] = [];
   cartFormGroup !: FormGroup;
   paymentFormGroup !: FormGroup;

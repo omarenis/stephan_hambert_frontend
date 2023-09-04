@@ -3,8 +3,9 @@ import {Object as GenericObject} from "./generic";
 
 export interface Operation {
   operation: string;
-  data: {[key: string]: object | number | string}
+  data: { [key: string]: object | number | string }
 }
+
 export function getDefaultValue(type: string): false | '' | 0 {
   if (type === 'number') {
     return 0;
@@ -30,7 +31,7 @@ export function createFilterFormGroup(object: { [key: string]: GenericObject }):
   return new FormGroup(formControls);
 }
 
-export function  setFormGroupValues(instance: { [key: string]: string | number | boolean }, formGroup: FormGroup) {
+export function setFormGroupValues(instance: { [key: string]: string | number | boolean }, formGroup: FormGroup) {
   Object.keys(instance).forEach((key) => {
     if (formGroup.contains(key)) {
       formGroup.get(key)?.setValue(instance[key])
@@ -39,15 +40,15 @@ export function  setFormGroupValues(instance: { [key: string]: string | number |
 }
 
 
-export function serializeDataByType<T>(_object: T, typeForm: string): T | FormData
-{
+export function serializeDataByType<T>(_object: T, typeForm: string): T | FormData {
   let result: FormData | T = _object;
-  if(typeForm !== 'application/json')
-  {
+  if (typeForm !== 'application/json') {
     result = new FormData();
-    const data = (_object as {[key: string]: Blob  | string });
+    const data = (_object as { [key: string]: Blob | string });
     Object.keys(data).forEach(key => {
-      (<FormData> result).append(key,  data[key]);
+      if (data[key] !== null) {
+        (<FormData>result).append(key, data[key]);
+      }
     });
   }
   return result;

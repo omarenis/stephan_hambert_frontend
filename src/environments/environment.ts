@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://127.0.0.1:8000/api',
-  originBackend: 'http://127.0.0.1:8000'
+  url: 'http://137.184.16.128:8000/api',
+  originBackend: 'http://137.184.16.128:8000'
 };
 
 /*
